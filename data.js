@@ -75,6 +75,87 @@ const PROMPTS = [
     tool: "DALL·E 3",
     tags: ["winter", "cabin", "landscape"],
     gradient: "linear-gradient(135deg,#1B1B3A,#4DE8FF)"
+  },
+  {
+    id: "p7",
+    title: "ময়ূরের রঙিন পালক",
+    titleEn: "Colorful Peacock Feathers",
+    prompt: "Extreme close-up of a peacock's tail feathers fanned out, vibrant iridescent blue and green eye patterns, soft natural light, macro photography, ultra sharp detail, 8k",
+    tool: "Midjourney",
+    tags: ["bird", "nature", "macro"],
+    gradient: "linear-gradient(135deg,#0D9488,#7C5CFF)"
+  },
+  {
+    id: "p8",
+    title: "ফ্ল্যামিঙ্গোদের ঝাঁক উড়ে যাওয়া",
+    titleEn: "Flock of Flamingos in Flight",
+    prompt: "A flock of pink flamingos flying low over a calm lake at sunrise, golden reflection on the water, wings spread wide, nature photography, telephoto lens, 8k detail",
+    tool: "DALL·E 3",
+    tags: ["bird", "lake", "sunrise"],
+    gradient: "linear-gradient(135deg,#FF6B9D,#FFC371)"
+  },
+  {
+    id: "p9",
+    title: "পাহাড়ি নদীর বাঁক",
+    titleEn: "Winding Mountain River",
+    prompt: "Aerial drone view of a turquoise river winding through deep green forest and rocky cliffs, crystal clear water, sunlight glinting on the surface, ultra wide shot, cinematic color grading",
+    tool: "Midjourney",
+    tags: ["river", "aerial", "nature"],
+    gradient: "linear-gradient(135deg,#0EA5E9,#10B981)"
+  },
+  {
+    id: "p10",
+    title: "নদীর তীরে সন্ধ্যা",
+    titleEn: "Evening by the Riverbank",
+    prompt: "A peaceful riverbank at dusk, silhouette of a fisherman in a small boat, soft purple and orange sky reflecting on calm water, traditional Bengali countryside, oil painting style",
+    tool: "Stable Diffusion",
+    tags: ["river", "bangla", "sunset"],
+    gradient: "linear-gradient(135deg,#5B247A,#FF7E5F)"
+  },
+  {
+    id: "p11",
+    title: "আকাশ থেকে স্কাইডাইভিং",
+    titleEn: "Skydiving from the Sky",
+    prompt: "First-person POV of a skydiver free-falling above scattered clouds, sunlight breaking through, patchwork landscape far below, extreme sports photography, GoPro style, high adrenaline composition",
+    tool: "Midjourney",
+    tags: ["skydiving", "adventure", "sky"],
+    gradient: "linear-gradient(135deg,#1E3A8A,#60A5FA)"
+  },
+  {
+    id: "p12",
+    title: "প্যারাসুট খোলার মুহূর্ত",
+    titleEn: "Parachute Opening Moment",
+    prompt: "Dramatic shot of a parachute opening mid-air against a bright blue sky, skydiver silhouette below, wide angle lens, dynamic motion, freeze-frame action photography",
+    tool: "DALL·E 3",
+    tags: ["skydiving", "action", "extreme"],
+    gradient: "linear-gradient(135deg,#0284C7,#FACC15)"
+  },
+  {
+    id: "p13",
+    title: "প্যারিসের আইফেল টাওয়ার",
+    titleEn: "Eiffel Tower, Paris",
+    prompt: "The Eiffel Tower at twilight with warm golden lights, Parisian rooftops in the foreground, soft pastel sky, romantic cinematic atmosphere, travel photography style, 35mm",
+    tool: "DALL·E 3",
+    tags: ["worldwide", "paris", "landmark"],
+    gradient: "linear-gradient(135deg,#7C5CFF,#FFC371)"
+  },
+  {
+    id: "p14",
+    title: "জাপানের সাকুরা মৌসুম",
+    titleEn: "Japan Cherry Blossom Season",
+    prompt: "A traditional Japanese street lined with blooming cherry blossom trees, soft pink petals falling, ancient pagoda in the background, serene atmosphere, anime-inspired art style",
+    tool: "Stable Diffusion",
+    tags: ["worldwide", "japan", "spring"],
+    gradient: "linear-gradient(135deg,#FFB6C1,#FF6B9D)"
+  },
+  {
+    id: "p15",
+    title: "সাহারা মরুভূমির রাত",
+    titleEn: "Sahara Desert Night",
+    prompt: "Vast Sahara desert sand dunes under a starry night sky with the Milky Way visible, a lone camel silhouette, astrophotography style, long exposure, deep blue and orange tones",
+    tool: "Midjourney",
+    tags: ["worldwide", "desert", "night"],
+    gradient: "linear-gradient(135deg,#1B1B3A,#FF7E5F)"
   }
 ];
 
