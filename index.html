@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amin AI World — ফ্রি AI প্রম্পট ও টুলস</title>
+<meta name="description" content="বাংলায় ফ্রি AI প্রম্পট গ্যালারি ও জনপ্রিয় AI টুলসের তথ্য — Amin AI World">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg-mesh"></div>
+<div class="noise"></div>
+
+<header>
+  <a href="#top" class="logo"><span class="logo-mark">A</span>Amin AI <span>World</span></a>
+  <nav id="mainNav">
+    <a href="#profile">প্রোফাইল</a>
+    <a href="#prompts">প্রম্পট গ্যালারি</a>
+    <a href="#tools">AI টুলস</a>
+    <a href="#videos">ভিডিও</a>
+    <a href="#articles">লেখার ঘর</a>
+    <a href="#upload" class="nav-cta">প্রম্পট যোগ করুন</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="মেনু খুলুন">☰</button>
+</header>
+
+<main id="top">
+
+  <!-- ---------- HERO ---------- -->
+  <section class="hero">
+    <div>
+      <div class="eyebrow">লাইভ AI প্রম্পট আর্কাইভ</div>
+      <h1>প্রম্পট খুঁজুন,<br><span class="grad">কপি করুন, তৈরি করুন</span></h1>
+      <p>বাংলাদেশের প্রথম বাংলা ভাষার ফ্রি AI প্রম্পট গ্যালারি — ছবিসহ রেডি-মেইড প্রম্পট, আর জনপ্রিয় AI টুলসের হালনাগাদ তথ্য, সব একদম বিনামূল্যে।</p>
+      <div class="hero-cta">
+        <a href="#prompts" class="btn btn-primary">প্রম্পট দেখুন</a>
+        <a href="#upload" class="btn btn-ghost">আপনার প্রম্পট যোগ করুন</a>
+      </div>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="terminal-title">prompt.txt</span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-line"><span class="prompt-sign">&gt;</span>generating prompt...</div>
+        <div class="typed-out" id="typedOut"></div><span class="cursor"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- PROFILE ---------- -->
+  <section class="block" id="profile">
+    <div class="profile-card">
+      <div class="profile-avatar" id="profileAvatar"></div>
+      <div class="profile-info">
+        <h2 id="profileName"></h2>
+        <div class="profile-channel" id="profileChannel"></div>
+        <p id="profileBio"></p>
+        <a id="profileYoutube" class="btn btn-ghost" target="_blank" rel="noopener">📺 ইউটিউব চ্যানেল দেখুন</a>
+        <a id="profileFacebook" class="btn btn-ghost" target="_blank" rel="noopener">📘 ফেসবুক পেজ দেখুন</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ad slot 1 -->
+  <div class="ad-slot">বিজ্ঞাপন স্থান — Google AdSense কোড এখানে বসবে</div>
+
+  <!-- ---------- PROMPTS ---------- -->
+  <section class="block" id="prompts">
+    <div class="block-head">
+      <div>
+        <div class="section-num">// ০১ — গ্যালারি</div>
+        <h2>প্রম্পট গ্যালারি</h2>
+        <p>যেকোনো প্রম্পট কপি করে সরাসরি আপনার পছন্দের AI টুলে ব্যবহার করুন।</p>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="প্রম্পট, ট্যাগ বা টুল দিয়ে খুঁজুন...">
+    </div>
+
+    <div class="filter-bar" id="filterBar"></div>
+    <div class="prompt-grid" id="promptGrid"></div>
+  </section>
+
+  <!-- ---------- TOOLS ---------- -->
+  <section class="block" id="tools">
+    <div class="block-head">
+      <div>
+        <div class="section-num">// ০২ — ডিরেক্টরি</div>
+        <h2>জনপ্রিয় AI টুলস</h2>
+        <p>লেখা, ছবি, ভিডিও ও ভয়েস তৈরির জন্য প্রয়োজনীয় AI টুলগুলোর সংক্ষিপ্ত পরিচিতি।</p>
+      </div>
+    </div>
+    <div class="tools-grid" id="toolsGrid"></div>
+  </section>
+
+  <!-- ---------- VIDEOS ---------- -->
+  <section class="block" id="videos">
+    <div class="block-head">
+      <div>
+        <div class="section-num">// ০৩ — শোকেস</div>
+        <h2>AI ভিডিও উদাহরণ</h2>
+        <p>Runway, Sora-এর মতো টুল দিয়ে তৈরি ভিডিওর উদাহরণ — সাথে যে প্রম্পট দিয়ে বানানো হয়েছে তাও দেখুন।</p>
+      </div>
+    </div>
+    <div class="video-grid" id="videoGrid"></div>
+  </section>
+
+  <!-- Ad slot 2 -->
+  <div class="ad-slot">বিজ্ঞাপন স্থান — Google AdSense কোড এখানে বসবে</div>
+
+  <!-- ---------- ARTICLES / WRITING ROOM ---------- -->
+  <section class="block" id="articles">
+    <div class="block-head">
+      <div>
+        <div class="section-num">// ০৪ — লেখার ঘর</div>
+        <h2>লেখার ঘর</h2>
+        <p>AI, প্রযুক্তি ও সৃজনশীলতা নিয়ে আমার লেখা — অভিজ্ঞতা, গাইড ও মতামত।</p>
+      </div>
+    </div>
+    <div class="article-grid" id="articleGrid"></div>
+  </section>
+
+  <!-- ---------- SUPPORT ---------- -->
+  <section class="block" id="support">
+    <div class="support-panel">
+      <h2>এই প্ল্যাটফর্মকে সাপোর্ট করুন</h2>
+      <p>Amin AI World সম্পূর্ণ ফ্রি রাখার জন্য পরিশ্রম করি। আপনি চাইলে শেয়ার করে, বা সাপোর্ট লিংকের মাধ্যমে পাশে থাকতে পারেন।</p>
+      <div class="hero-cta" style="justify-content:center;">
+        <a href="#" class="btn btn-primary">☕ সাপোর্ট করুন</a>
+        <a href="#" class="btn btn-ghost">🔗 শেয়ার করুন</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- UPLOAD ---------- -->
+  <section class="block" id="upload">
+    <div class="block-head">
+      <div>
+        <div class="section-num">// ০৫ — কন্ট্রিবিউট</div>
+        <h2>নতুন প্রম্পট যোগ করুন</h2>
+        <p>আপনার নিজের তৈরি প্রম্পট এখানে যোগ করুন।</p>
+      </div>
+    </div>
+
+    <div class="upload-panel">
+      <div class="note-box">
+        <b>মনে রাখবেন:</b> এই ফর্ম দিয়ে যোগ করা প্রম্পট শুধু <b>আপনার ব্রাউজারে</b> সংরক্ষিত হবে (ডেমো/প্রিভিউয়ের জন্য)। সবার জন্য স্থায়ীভাবে ওয়েবসাইটে যোগ করতে <code>data.js</code> ফাইলে নতুন প্রম্পট লিখে GitHub-এ আপডেট দিতে হবে — চাইলে আমি প্রতিবার এই কাজটি করে দিতে পারি, শুধু প্রম্পট ও ছবি আমাকে পাঠালেই হবে।
+      </div>
+
+      <form id="uploadForm">
+        <div class="form-grid">
+          <div class="form-row">
+            <label for="title">প্রম্পটের শিরোনাম (বাংলা)</label>
+            <input type="text" id="title" name="title" required placeholder="যেমন: রাতের শহর">
+          </div>
+          <div class="form-row">
+            <label for="titleEn">শিরোনাম (English)</label>
+            <input type="text" id="titleEn" name="titleEn" placeholder="e.g. Night City">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="prompt">পূর্ণ প্রম্পট টেক্সট</label>
+          <textarea id="prompt" name="prompt" required placeholder="পুরো প্রম্পটটি এখানে লিখুন..."></textarea>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-row">
+            <label for="tool">কোন AI টুলের জন্য</label>
+            <select id="tool" name="tool">
+              <option>Midjourney</option>
+              <option>DALL·E 3</option>
+              <option>Stable Diffusion</option>
+              <option>Leonardo AI</option>
+              <option>অন্যান্য</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="tags">ট্যাগ (কমা দিয়ে আলাদা করুন)</label>
+            <input type="text" id="tags" name="tags" placeholder="fantasy, city, night">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="image">ছবির লিংক (ঐচ্ছিক)</label>
+          <input type="url" id="image" name="image" placeholder="https://...">
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">প্রম্পট যোগ করুন</button>
+        <p id="formStatus" style="margin-top:12px; color:#27C93F; font-size:0.88rem; text-align:center;"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ---------- ABOUT ---------- -->
+  <section class="block" id="about">
+    <div class="block-head">
+      <div>
+        <div class="section-num">// ০৬ — পরিচিতি</div>
+        <h2>Amin AI World সম্পর্কে</h2>
+        <p style="max-width:70ch;">
+          Amin AI World একটি বাংলা ভাষাভাষী কমিউনিটির জন্য তৈরি ফ্রি প্ল্যাটফর্ম, যেখানে যে কেউ AI প্রম্পট খুঁজে নিতে পারবে, নিজের প্রম্পট শেয়ার করতে পারবে এবং বিভিন্ন AI টুল সম্পর্কে জানতে পারবে। এই সাইট সম্পূর্ণ বিনামূল্যে ব্যবহারযোগ্য — কোনো সাবস্ক্রিপশন বা লগইন ছাড়াই।
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>© <span id="year"></span> Amin AI World — সকলের জন্য ফ্রি</span>
+  <span>বাংলায় তৈরি, AI ভালোবাসীদের জন্য</span>
+</footer>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
