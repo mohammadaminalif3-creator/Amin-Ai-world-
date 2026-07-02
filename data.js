@@ -1,14 +1,15 @@
-// Amin AI World — content data
-// Add new prompts or tools by copying the object pattern below.
-// imageEmoji/gradient is used when no real image url is provided.
+// ============================================================
+// Amin AI World — data.js (100+ Prompts Edition)
+// ============================================================
 
 const PROFILE = {
-  name: "Amin",
+  name: "Mohammad AL Amin",
   channel: "চারপাশে যা দেখছি",
-  bio: "AI প্রযুক্তি নিয়ে কাজ করি, বাংলা ভাষায় AI প্রম্পট ও টুলসের তথ্য সবার জন্য সহজলভ্য করার চেষ্টা করছি। এই প্ল্যাটফর্ম একটা ছোট স্বপ্ন থেকে শুরু — যেখানে যে কেউ ফ্রিতে AI দিয়ে সৃজনশীল কাজ শিখতে ও করতে পারবে।",
+  bio: "AI প্রযুক্তি নিয়ে কাজ করি। বাংলা ভাষায় AI প্রম্পট ও টুলসের তথ্য সবার জন্য সহজলভ্য করার চেষ্টা করছি। Digital Creator | Entrepreneur | Content Strategist",
   youtube: "https://youtube.com/@charpashezadekhchi?si=tvOTfwOs41ndiGW7",
   facebook: "https://www.facebook.com/share/17jjS1diVA/",
-  avatarGradient: "linear-gradient(135deg,#7C5CFF,#4DE8FF)"
+  avatarImage: "images/amin-profile.png",
+  avatarGradient: "linear-gradient(135deg,#E10600,#1a1a1a)"
 };
 
 const ARTICLES = [
@@ -17,294 +18,187 @@ const ARTICLES = [
     title: "AI প্রম্পট লেখার ৫টি কৌশল",
     excerpt: "ভালো ফলাফল পেতে প্রম্পটে কী কী থাকা জরুরি — স্টাইল, লাইটিং, ক্যামেরা অ্যাঙ্গেল থেকে শুরু করে রেফারেন্স পর্যন্ত।",
     date: "৩০ জুন, ২০২৬",
-    content: "এখানে আপনার পুরো লেখা বসবে। data.js ফাইলে এই content ফিল্ডে যত খুশি লিখতে পারবেন।"
+    content: "বিস্তারিত লেখা শীঘ্রই আসছে।"
   }
 ];
 
-const PROMPTS = [
-  {
-    id: "p1",
-    title: "সাইবারপাঙ্ক শহরের রাত",
-    titleEn: "Cyberpunk City Night",
-    prompt: "A rain-soaked cyberpunk megacity street at night, neon kanji signs reflecting in puddles, flying cars in the distance, cinematic lighting, ultra-detailed, 35mm lens, volumetric fog --ar 16:9",
-    tool: "Midjourney",
-    tags: ["cyberpunk", "city", "night"],
-    gradient: "linear-gradient(135deg,#FF2E63,#1B1B3A)"
-  },
-  {
-    id: "p2",
-    title: "বাংলার গ্রামীণ সকাল",
-    titleEn: "Bengali Village Morning",
-    prompt: "A serene Bengali village at sunrise, mist over green paddy fields, a wooden boat on a calm river, golden light, watercolor painting style, soft pastel tones, highly detailed",
-    tool: "DALL·E 3",
-    tags: ["bangla", "village", "nature"],
-    gradient: "linear-gradient(135deg,#0F9B8E,#1B998B)"
-  },
-  {
-    id: "p3",
-    title: "ফ্যান্টাসি ড্রাগন রাইডার",
-    titleEn: "Fantasy Dragon Rider",
-    prompt: "An armored warrior riding a massive ice dragon above snowy mountain peaks, epic fantasy art, dramatic clouds, dynamic pose, trending on artstation, hyper-detailed scales --ar 9:16",
-    tool: "Stable Diffusion",
-    tags: ["fantasy", "dragon", "epic"],
-    gradient: "linear-gradient(135deg,#4DE8FF,#2541B2)"
-  },
-  {
-    id: "p4",
-    title: "মিনিমাল প্রোডাক্ট শট",
-    titleEn: "Minimal Product Shot",
-    prompt: "Studio product photography of a matte black perfume bottle on a marble pedestal, soft single light source, deep shadows, minimalist background, commercial advertising style, 8k",
-    tool: "Midjourney",
-    tags: ["product", "minimal", "commercial"],
-    gradient: "linear-gradient(135deg,#2D2D2D,#7C5CFF)"
-  },
-  {
-    id: "p5",
-    title: "ভবিষ্যতের রোবট প্রতিকৃতি",
-    titleEn: "Future Robot Portrait",
-    prompt: "Close-up portrait of a humanoid robot with translucent skin showing glowing circuitry, soft rim lighting, photorealistic, shallow depth of field, Unreal Engine 5 render",
-    tool: "Leonardo AI",
-    tags: ["robot", "portrait", "scifi"],
-    gradient: "linear-gradient(135deg,#7C5CFF,#FF6B6B)"
-  },
-  {
-    id: "p6",
-    title: "শীতের পাহাড়ি ক্যাবিন",
-    titleEn: "Winter Mountain Cabin",
-    prompt: "A cozy wooden cabin glowing with warm light, surrounded by snow-covered pine trees, northern lights in the sky, long exposure photography style, peaceful winter night",
-    tool: "DALL·E 3",
-    tags: ["winter", "cabin", "landscape"],
-    gradient: "linear-gradient(135deg,#1B1B3A,#4DE8FF)"
-  },
-  {
-    id: "p7",
-    title: "ময়ূরের রঙিন পালক",
-    titleEn: "Colorful Peacock Feathers",
-    prompt: "Extreme close-up of a peacock's tail feathers fanned out, vibrant iridescent blue and green eye patterns, soft natural light, macro photography, ultra sharp detail, 8k",
-    tool: "Midjourney",
-    tags: ["bird", "nature", "macro"],
-    gradient: "linear-gradient(135deg,#0D9488,#7C5CFF)"
-  },
-  {
-    id: "p8",
-    title: "ফ্ল্যামিঙ্গোদের ঝাঁক উড়ে যাওয়া",
-    titleEn: "Flock of Flamingos in Flight",
-    prompt: "A flock of pink flamingos flying low over a calm lake at sunrise, golden reflection on the water, wings spread wide, nature photography, telephoto lens, 8k detail",
-    tool: "DALL·E 3",
-    tags: ["bird", "lake", "sunrise"],
-    gradient: "linear-gradient(135deg,#FF6B9D,#FFC371)"
-  },
-  {
-    id: "p9",
-    title: "পাহাড়ি নদীর বাঁক",
-    titleEn: "Winding Mountain River",
-    prompt: "Aerial drone view of a turquoise river winding through deep green forest and rocky cliffs, crystal clear water, sunlight glinting on the surface, ultra wide shot, cinematic color grading",
-    tool: "Midjourney",
-    tags: ["river", "aerial", "nature"],
-    gradient: "linear-gradient(135deg,#0EA5E9,#10B981)"
-  },
-  {
-    id: "p10",
-    title: "নদীর তীরে সন্ধ্যা",
-    titleEn: "Evening by the Riverbank",
-    prompt: "A peaceful riverbank at dusk, silhouette of a fisherman in a small boat, soft purple and orange sky reflecting on calm water, traditional Bengali countryside, oil painting style",
-    tool: "Stable Diffusion",
-    tags: ["river", "bangla", "sunset"],
-    gradient: "linear-gradient(135deg,#5B247A,#FF7E5F)"
-  },
-  {
-    id: "p11",
-    title: "আকাশ থেকে স্কাইডাইভিং",
-    titleEn: "Skydiving from the Sky",
-    prompt: "First-person POV of a skydiver free-falling above scattered clouds, sunlight breaking through, patchwork landscape far below, extreme sports photography, GoPro style, high adrenaline composition",
-    tool: "Midjourney",
-    tags: ["skydiving", "adventure", "sky"],
-    gradient: "linear-gradient(135deg,#1E3A8A,#60A5FA)"
-  },
-  {
-    id: "p12",
-    title: "প্যারাসুট খোলার মুহূর্ত",
-    titleEn: "Parachute Opening Moment",
-    prompt: "Dramatic shot of a parachute opening mid-air against a bright blue sky, skydiver silhouette below, wide angle lens, dynamic motion, freeze-frame action photography",
-    tool: "DALL·E 3",
-    tags: ["skydiving", "action", "extreme"],
-    gradient: "linear-gradient(135deg,#0284C7,#FACC15)"
-  },
-  {
-    id: "p13",
-    title: "প্যারিসের আইফেল টাওয়ার",
-    titleEn: "Eiffel Tower, Paris",
-    prompt: "The Eiffel Tower at twilight with warm golden lights, Parisian rooftops in the foreground, soft pastel sky, romantic cinematic atmosphere, travel photography style, 35mm",
-    tool: "DALL·E 3",
-    tags: ["worldwide", "paris", "landmark"],
-    gradient: "linear-gradient(135deg,#7C5CFF,#FFC371)"
-  },
-  {
-    id: "p14",
-    title: "জাপানের সাকুরা মৌসুম",
-    titleEn: "Japan Cherry Blossom Season",
-    prompt: "A traditional Japanese street lined with blooming cherry blossom trees, soft pink petals falling, ancient pagoda in the background, serene atmosphere, anime-inspired art style",
-    tool: "Stable Diffusion",
-    tags: ["worldwide", "japan", "spring"],
-    gradient: "linear-gradient(135deg,#FFB6C1,#FF6B9D)"
-  },
-  {
-    id: "p15",
-    title: "সাহারা মরুভূমির রাত",
-    titleEn: "Sahara Desert Night",
-    prompt: "Vast Sahara desert sand dunes under a starry night sky with the Milky Way visible, a lone camel silhouette, astrophotography style, long exposure, deep blue and orange tones",
-    tool: "Midjourney",
-    tags: ["worldwide", "desert", "night"],
-    gradient: "linear-gradient(135deg,#1B1B3A,#FF7E5F)"
-  }
+const MUSIC = [
+  { id:"m1", title:"কালা মেঘের ভেলা", youtubeId:"_nePq7EOCYc", category:"folk" },
+  { id:"m2", title:"মানুষ অন্তরে এক বাহিরে এক", youtubeId:"uajs8FgJWdI", category:"inspirational" },
+  { id:"m3", title:"গার্মেন্টস কন্যা", youtubeId:"VqcJG-kr0U0", category:"social" },
+  { id:"m4", title:"পোষা পরান পাখি", youtubeId:"C7F7OXJyekA", category:"folk" },
+  { id:"m5", title:"বিদেশ নামের কারাগারে", youtubeId:"rnfUtyQgQZY", category:"emotional" },
+  { id:"m6", title:"Labour Day", youtubeId:"q9k4KNEhlUc", category:"social" },
+  { id:"m7", title:"কত কথা জমে থাকে", youtubeId:"SK-P6WWYDTI", category:"emotional" },
+  { id:"m8", title:"মনের মানুষ", youtubeId:"xX3Szbkol7o", category:"romantic" },
+  { id:"m9", title:"আমার মায়ায় পইড়ো", youtubeId:"kYEOVc_auKE", category:"romantic" },
+  { id:"m10", title:"বাবা", youtubeId:"7vUyLJv78Ow", category:"emotional" }
 ];
 
 const VIDEOS = [
-  {
-    id: "v1",
-    title: "AI দিয়ে তৈরি সিনেমাটিক দৃশ্য (উদাহরণ)",
-    titleEn: "Cinematic AI Generated Scene (Example)",
-    youtubeId: "REPLACE_WITH_YOUTUBE_ID",
-    tool: "Runway",
-    prompt: "A drone shot flying through a futuristic city at golden hour, cinematic color grading, smooth camera motion --motion 4 --duration 5s"
-  },
-  {
-    id: "v2",
-    title: "ফটোরিয়েলিস্টিক প্রকৃতির দৃশ্য (উদাহরণ)",
-    titleEn: "Photorealistic Nature Scene (Example)",
-    youtubeId: "REPLACE_WITH_YOUTUBE_ID",
-    tool: "Sora",
-    prompt: "Ocean waves crashing on a rocky shore at sunset, ultra realistic, slow motion, 4k cinematic footage"
-  }
+  { id:"v1", title:"AI ভিডিও উদাহরণ", titleEn:"AI Video Example", youtubeId:"REPLACE_WITH_YOUTUBE_ID", tool:"Runway", prompt:"Cinematic AI generated scene" }
 ];
 
+const PROMPTS = [
+
+  // ===== বাংলাদেশি পোর্ট্রেট =====
+  { id:"p001", title:"বৃষ্টিতে কলাপাতার ছাতা", titleEn:"Rain & Banana Leaf Shield", prompt:"Photorealistic portrait of a young South Asian man standing in heavy rain, holding a large green banana leaf as umbrella, blue mirror aviator sunglasses, wet black shirt, lush green bokeh background, golden sunset light, cinematic, 85mm f/1.8, 8K", tool:"Midjourney", tags:["portrait","rain","bangla","cinematic"], image:"images/rain-leaf.png", gradient:"linear-gradient(135deg,#1a6b3a,#f0a500)" },
+  { id:"p002", title:"শাড়িতে নদীর ধারে", titleEn:"Saree by the Riverside", prompt:"Elegant Bengali woman in white and blue embroidered cotton saree, standing by a calm river promenade at golden hour, holding glasses thoughtfully, soft bokeh of city lights, gold bangles, contemplative mood, cinematic photography, 8K ultra realistic", tool:"DALL·E 3", tags:["saree","bangla","portrait","river"], image:"images/saree-riverside.png", gradient:"linear-gradient(135deg,#0EA5E9,#d4a017)" },
+  { id:"p003", title:"গ্রামীণ সকালে কৃষক", titleEn:"Village Farmer at Dawn", prompt:"Cinematic portrait of an elderly Bengali farmer in traditional lungi and gamcha, standing in misty paddy fields at dawn, golden morning light, bamboo hat, wrinkled hands holding a hoe, National Geographic style, ultra realistic, 8K", tool:"Midjourney", tags:["bangla","village","farmer","cinematic"], gradient:"linear-gradient(135deg,#78350F,#FCD34D)" },
+  { id:"p004", title:"ঢাকার রিকশাওয়ালা", titleEn:"Dhaka Rickshaw Puller", prompt:"Street photography portrait of a Dhaka rickshaw puller resting on his colorfully decorated rickshaw at night, neon lights of the city reflecting around him, tired but dignified expression, documentary photography style, moody cinematic lighting, 8K", tool:"Stable Diffusion", tags:["bangla","street","documentary","dhaka"], gradient:"linear-gradient(135deg,#1E3A5F,#F97316)" },
+  { id:"p005", title:"বাংলাদেশি বিবাহের কনে", titleEn:"Bangladeshi Wedding Bride", prompt:"Stunning Bangladeshi bride in rich red and gold silk Banarasi saree, heavy gold jewelry, intricate mehndi on hands, sitting on a decorated bridal throne with marigold flowers, soft warm studio lighting, ultra detailed, Vogue Bangladesh style, 8K", tool:"Midjourney", tags:["bride","wedding","bangla","luxury"], gradient:"linear-gradient(135deg,#B22222,#FFD700)" },
+  { id:"p006", title:"মাওয়া ঘাটে সন্ধ্যা", titleEn:"Evening at Mawa Ghat", prompt:"Wide cinematic shot of Padma river bank at Mawa Ghat during golden hour, a lone boatman silhouette on a wooden boat, warm orange and pink sky reflecting on the vast river, mist on the water, epic landscape, 8K ultra wide", tool:"Midjourney", tags:["bangla","river","landscape","cinematic"], gradient:"linear-gradient(135deg,#F97316,#7C3AED)" },
+  { id:"p007", title:"বাংলাদেশি ক্রিকেট ফ্যান", titleEn:"Bangladesh Cricket Fan", prompt:"Enthusiastic young Bangladeshi man in green Bangladesh cricket jersey, face painted with green and red flag colors, screaming with joy, stadium lights and crowd blurred behind him, dynamic sports photography, ultra realistic, 8K", tool:"DALL·E 3", tags:["sport","cricket","bangla","fan"], gradient:"linear-gradient(135deg,#166534,#DC2626)" },
+  { id:"p008", title:"পুরান ঢাকার অলিগলি", titleEn:"Old Dhaka Alley Portrait", prompt:"Street portrait of a confident young man standing in a narrow colorful alley of Old Dhaka, rickshaws and merchants blurred in background, evening warm light filtering between buildings, documentary style, shallow depth of field, ultra realistic, 8K", tool:"Midjourney", tags:["dhaka","street","portrait","urban"], gradient:"linear-gradient(135deg,#7C3AED,#F59E0B)" },
+
+  // ===== ইন্ডিয়ান পোর্ট্রেট =====
+  { id:"p009", title:"ইন্ডিয়ান ব্রাইডাল পোর্ট্রেট", titleEn:"Indian Bridal Portrait", prompt:"Stunning Indian bride in rich red Banarasi silk lehenga, heavy gold jewelry including maang tikka and nath, intricate mehndi, palace corridor with marble pillars and flower petals, Vogue India editorial style, cinematic warm lighting, 8K", tool:"Midjourney", tags:["indian","bridal","portrait","luxury"], image:"images/saree-lake-1.png", gradient:"linear-gradient(135deg,#B22222,#FFD700)" },
+  { id:"p010", title:"রাজস্থানি নর্তকী", titleEn:"Rajasthani Dancer", prompt:"Beautiful Rajasthani woman performing classical dance, wearing vibrant orange and red ghagra choli with mirror work, spinning with arms extended, colorful bangles and heavy silver jewelry, desert fort background at golden hour, motion blur on skirt, ultra realistic, 8K", tool:"Midjourney", tags:["indian","dance","rajasthani","colorful"], gradient:"linear-gradient(135deg,#F97316,#DC2626)" },
+  { id:"p011", title:"কেরালার মৎস্যজীবী মেয়ে", titleEn:"Kerala Fisher Girl", prompt:"Beautiful young woman from Kerala in traditional Kerala set saree (white with gold border), standing on a fishing boat at sunrise on a calm backwater, coconut palms in background, golden warm light, peaceful serene mood, ultra realistic photography, 8K", tool:"DALL·E 3", tags:["indian","kerala","portrait","nature"], gradient:"linear-gradient(135deg,#065F46,#FCD34D)" },
+  { id:"p012", title:"মুম্বাই স্ট্রিট বয়", titleEn:"Mumbai Street Boy", prompt:"Stylish young Indian man in designer streetwear — oversized hoodie, cargo pants, sneakers — leaning against graffiti wall in Mumbai, confident urban pose, bokeh city lights background, street photography, cinematic color grading, 8K", tool:"Midjourney", tags:["indian","street","fashion","urban"], gradient:"linear-gradient(135deg,#1E3A8A,#F97316)" },
+  { id:"p013", title:"হোলি উৎসবে রঙিন মেয়ে", titleEn:"Girl in Holi Festival Colors", prompt:"Beautiful Indian girl laughing with joy during Holi festival, face and clothes covered in vibrant pink, yellow, blue and red powder colors, arms raised, backlit by golden sunlight creating a magical halo effect, ultra realistic, 8K, cinematic", tool:"Stable Diffusion", tags:["indian","holi","festival","colorful"], gradient:"linear-gradient(135deg,#EC4899,#F59E0B)" },
+  { id:"p014", title:"বলিউড স্টাইল পোর্ট্রেট", titleEn:"Bollywood Style Portrait", prompt:"Glamorous Indian actress-style portrait, woman in stunning royal blue silk saree with heavy embroidery, dramatic Bollywood-style makeup with bold red lips, elaborate gold jewelry, studio lighting with dramatic shadows, magazine cover quality, ultra realistic, 8K", tool:"Midjourney", tags:["indian","bollywood","glamour","portrait"], gradient:"linear-gradient(135deg,#1E40AF,#DC2626)" },
+  { id:"p015", title:"ইন্ডিয়ান বিজনেসম্যান", titleEn:"Indian Businessman Portrait", prompt:"Powerful Indian businessman in tailored charcoal suit, standing in front of Mumbai skyline at dusk, confident commanding expression, luxury watch, perfectly groomed, corporate editorial photography, cinematic lighting, ultra sharp, 8K", tool:"DALL·E 3", tags:["indian","business","portrait","corporate"], gradient:"linear-gradient(135deg,#1F2937,#F59E0B)" },
+  { id:"p016", title:"গোয়ার সমুদ্র সৈকতে", titleEn:"Goa Beach Portrait", prompt:"Free-spirited Indian girl in colorful bohemian dress walking barefoot on Goa beach at sunset, long wavy hair blowing in sea breeze, waves washing her feet, golden hour light, travel photography style, ultra realistic, 8K", tool:"Midjourney", tags:["indian","beach","goa","sunset"], gradient:"linear-gradient(135deg,#0EA5E9,#F97316)" },
+
+  // ===== পাকিস্তানি পোর্ট্রেট =====
+  { id:"p017", title:"পাকিস্তানি স্টাইলিশ ম্যান", titleEn:"Pakistani Stylish Man", prompt:"Stylish Pakistani man in navy blue shalwar kameez with subtle embroidery, standing against Mughal architecture, confident expression, well-groomed beard, silver watch, editorial photography, dramatic lighting, ultra sharp, 8K", tool:"Midjourney", tags:["pakistan","stylish","portrait","editorial"], image:"images/argentina-jersey.png", gradient:"linear-gradient(135deg,#01411C,#FFFFFF)" },
+  { id:"p018", title:"লাহোরি ওয়েডিং", titleEn:"Lahori Wedding Portrait", prompt:"Gorgeous Pakistani bride in emerald green and gold bridal lehenga with heavy embroidery, large gold jhoomar on forehead, kohl-lined eyes, intricate mehndi, decorated bridal backdrop with roses and fairy lights, ultra realistic, 8K", tool:"Midjourney", tags:["pakistan","wedding","bride","luxury"], gradient:"linear-gradient(135deg,#065F46,#FFD700)" },
+  { id:"p019", title:"পাকিস্তানি ক্রিকেট হিরো", titleEn:"Pakistani Cricket Hero", prompt:"Confident Pakistani cricketer in green national team jersey, mid-action pose about to bowl, dramatic stadium lighting, crowd blurred in background, sports photography, cinematic motion, ultra realistic, 8K", tool:"DALL·E 3", tags:["pakistan","cricket","sport","action"], gradient:"linear-gradient(135deg,#166534,#FFFFFF)" },
+  { id:"p020", title:"করাচির সড়কে মেয়ে", titleEn:"Karachi Street Girl", prompt:"Modern Pakistani girl in stylish western outfit with dupatta, walking confidently on a busy Karachi street at night, neon signs and city lights bokeh behind her, fashion street photography, ultra realistic, 8K", tool:"Stable Diffusion", tags:["pakistan","street","fashion","urban"], gradient:"linear-gradient(135deg,#7C3AED,#EC4899)" },
+
+  // ===== কাপল / রোমান্টিক =====
+  { id:"p021", title:"বাংলাদেশি কাপল সানসেট", titleEn:"Bangladeshi Couple at Sunset", prompt:"Romantic Bengali couple at Buriganga river bank at golden sunset, woman in red Jamdani saree, man in white panjabi, holding hands, soft bokeh of boats and river, warm cinematic lighting, ultra realistic, 8K portrait photography", tool:"Midjourney", tags:["couple","romantic","bangla","sunset"], gradient:"linear-gradient(135deg,#FF6B35,#F7C59F)" },
+  { id:"p022", title:"রোমান্টিক কাপল বৃষ্টিতে", titleEn:"Romantic Couple in Rain", prompt:"Romantic South Asian couple under one umbrella in heavy rain on city street at night, neon lights reflecting in puddles, woman in red dress, man in dark suit, looking lovingly at each other, cinematic bokeh raindrops, ultra realistic, 8K", tool:"Stable Diffusion", tags:["couple","romantic","rain","cinematic"], gradient:"linear-gradient(135deg,#FF2D55,#1C1C3A)" },
+  { id:"p023", title:"বিবাহ বার্ষিকী পোর্ট্রেট", titleEn:"Anniversary Portrait", prompt:"Loving couple celebrating wedding anniversary in a rooftop garden decorated with fairy lights and roses, woman in elegant red dress, man in dark blazer, gazing into each other's eyes, soft warm bokeh, ultra romantic, cinematic, 8K", tool:"Midjourney", tags:["couple","anniversary","romantic","luxury"], gradient:"linear-gradient(135deg,#DC2626,#F9A8D4)" },
+  { id:"p024", title:"সমুদ্র সৈকতে প্রেম", titleEn:"Love at the Beach", prompt:"Beautiful couple walking hand in hand along a pristine beach at sunset, waves softly washing their feet, woman in white flowy dress, man in linen shirt, golden hour silhouette, travel photography, ultra romantic, 8K", tool:"DALL·E 3", tags:["couple","beach","romantic","sunset"], gradient:"linear-gradient(135deg,#0EA5E9,#F97316)" },
+  { id:"p025", title:"ছাদে চাঁদের আলোয়", titleEn:"Moonlight on the Rooftop", prompt:"Dreamy couple on a rooftop at night, full moon glowing above them, city lights twinkling in the distance, woman leaning on man's shoulder, fairy lights strung around them, soft romantic photography, ultra realistic, 8K", tool:"Midjourney", tags:["couple","romantic","night","moonlight"], gradient:"linear-gradient(135deg,#1E1B4B,#C4B5FD)" },
+  { id:"p026", title:"কফি শপে প্রথম দেখা", titleEn:"First Meet at Coffee Shop", prompt:"Young South Asian couple having coffee at a cozy cafe, first date energy, shy smiles, warm interior bokeh lighting, coffee cups on wooden table between them, candid photography style, soft cinematic tones, ultra realistic, 8K", tool:"Stable Diffusion", tags:["couple","romantic","cafe","candid"], gradient:"linear-gradient(135deg,#92400E,#FDE68A)" },
+  { id:"p027", title:"ইন্ডিয়ান কাপল হোলিতে", titleEn:"Indian Couple in Holi", prompt:"Joyful Indian couple throwing colorful Holi powder at each other, faces and clothes covered in pink, yellow and green colors, laughing and playing, garden setting, bright daylight, freeze frame action photography, ultra realistic, 8K", tool:"Midjourney", tags:["couple","holi","indian","colorful"], gradient:"linear-gradient(135deg,#EC4899,#F59E0B)" },
+  { id:"p028", title:"পাহাড়ে কাপল ট্রেকিং", titleEn:"Couple Trekking in Mountains", prompt:"Adventurous couple holding hands on a mountain trail at sunrise, woman in red jacket, man in blue jacket, dramatic Himalayan peaks behind them, morning mist below, epic landscape photography, ultra realistic, 8K", tool:"DALL·E 3", tags:["couple","adventure","mountain","trekking"], gradient:"linear-gradient(135deg,#1E3A8A,#DC2626)" },
+  { id:"p029", title:"ফুলের বাগানে প্রেমিকা", titleEn:"Lover in Flower Garden", prompt:"Beautiful South Asian woman in a pastel pink salwar suit sitting in a lavender flower field, gentle breeze moving her dupatta, golden hour backlight, romantic dreamy atmosphere, ultra realistic, 8K fashion photography", tool:"Midjourney", tags:["romantic","girl","flowers","dreamy"], gradient:"linear-gradient(135deg,#EC4899,#C4B5FD)" },
+  { id:"p030", title:"বাংলাদেশি নববধূ ও বর", titleEn:"Bangladeshi Bride and Groom", prompt:"Elegant Bangladeshi bride and groom portrait, bride in deep red silk jamdani with gold zardosi work, groom in ivory sherwani with gold accents, sitting together on a floral throne, professional studio lighting, ultra realistic, 8K wedding photography", tool:"Midjourney", tags:["wedding","couple","bangla","luxury"], gradient:"linear-gradient(135deg,#7C2D12,#FCD34D)" },
+
+  // ===== সিনেমাটিক =====
+  { id:"p031", title:"সিনেমাটিক ভিলেজ গার্ল", titleEn:"Cinematic Village Girl", prompt:"Cinematic portrait of a beautiful Bengali village girl in yellow cotton saree, sitting beside clay pot under banyan tree, morning mist in rice fields behind her, brass water pot, natural sunlight through leaves, National Geographic style, ultra realistic, 8K", tool:"Midjourney", tags:["bangla","village","cinematic","portrait"], gradient:"linear-gradient(135deg,#F59E0B,#10B981)" },
+  { id:"p032", title:"নিওন সিটি রাতে", titleEn:"Neon City at Night", prompt:"Ultra cinematic shot of a rain-soaked Asian city street at night, neon signs in multiple languages reflecting in puddles, lone figure in trench coat walking away, steam rising from manholes, cyberpunk atmosphere, 35mm anamorphic lens look, 8K", tool:"Midjourney", tags:["city","night","cinematic","cyberpunk"], gradient:"linear-gradient(135deg,#7C3AED,#EC4899)" },
+  { id:"p033", title:"যোদ্ধার বিজয়", titleEn:"Warrior's Victory", prompt:"Epic cinematic shot of a South Asian warrior woman in ornate golden armor standing on top of a cliff, sword raised toward stormy sky, lightning in the background, dramatic wind blowing her cape, movie poster quality, ultra realistic, 8K", tool:"Midjourney", tags:["warrior","epic","cinematic","fantasy"], gradient:"linear-gradient(135deg,#78350F,#F59E0B)" },
+  { id:"p034", title:"গোয়েন্দার গল্প", titleEn:"Detective Story", prompt:"Noir cinematic portrait of a South Asian detective in 1940s style, wearing trench coat and fedora hat, standing under street lamp in foggy night, shadows dramatically across face, holding a case file, black and white with selective color on lamp, 8K", tool:"Stable Diffusion", tags:["cinematic","detective","noir","dramatic"], gradient:"linear-gradient(135deg,#1F2937,#6B7280)" },
+  { id:"p035", title:"মরুভূমির রাণী", titleEn:"Desert Queen", prompt:"Majestic South Asian queen in elaborate golden desert robes, sitting on an ornate throne atop sand dunes at sunset, jewel-encrusted crown, fierce expression, camels silhouetted in background, epic movie still quality, cinematic widescreen, 8K", tool:"Midjourney", tags:["queen","desert","epic","cinematic"], gradient:"linear-gradient(135deg,#92400E,#FCD34D)" },
+  { id:"p036", title:"সমুদ্রের গভীরে নর্তকী", titleEn:"Underwater Dancer", prompt:"Surreal cinematic underwater portrait of a graceful South Asian woman in flowing red silk dress dancing beneath the ocean surface, hair and fabric flowing upward, tropical fish swimming around her, rays of light from above, ultra realistic, 8K", tool:"Midjourney", tags:["underwater","surreal","cinematic","dance"], gradient:"linear-gradient(135deg,#0C4A6E,#DC2626)" },
+  { id:"p037", title:"মেঘের উপরে উড়ান", titleEn:"Above the Clouds", prompt:"Cinematic aerial shot from above the clouds at golden hour, a single aircraft cutting through a sea of white clouds, sun setting on the horizon painting everything in orange and gold, epic wide angle, ultra realistic, 8K", tool:"DALL·E 3", tags:["aerial","cinematic","clouds","epic"], gradient:"linear-gradient(135deg,#F97316,#7DD3FC)" },
+  { id:"p038", title:"ঐতিহাসিক মোগল রাজপুত্র", titleEn:"Mughal Prince Portrait", prompt:"Majestic Mughal prince portrait, young man in elaborate embroidered sherwani with turban adorned with peacock feather and precious gems, sitting on jeweled throne, intricate palace interior with marble inlay, dramatic lighting, ultra realistic, 8K", tool:"Midjourney", tags:["mughal","historical","portrait","royal"], gradient:"linear-gradient(135deg,#92400E,#7C3AED)" },
+
+  // ===== অ্যাডভেঞ্চার =====
+  { id:"p039", title:"অ্যাডভেঞ্চার হাইকার গার্ল", titleEn:"Adventure Hiker Girl", prompt:"Bold adventurous South Asian woman on rocky mountain peak at sunrise, red hiking gear and backpack, arms spread wide, dramatic clouds below, golden hour light, epic landscape, ultra wide angle, cinematic, 8K", tool:"Midjourney", tags:["adventure","girl","mountain","epic"], image:"images/girl-guitar-doves-1.png", gradient:"linear-gradient(135deg,#FF4500,#1a1a2e)" },
+  { id:"p040", title:"স্কাইডাইভিং পিওভি", titleEn:"Skydiving POV", prompt:"First-person POV of skydiver free-falling above scattered clouds, sunlight breaking through, patchwork landscape far below, extreme sports photography, GoPro style, high adrenaline composition, ultra realistic, 8K", tool:"Midjourney", tags:["skydiving","adventure","sky","extreme"], gradient:"linear-gradient(135deg,#1E3A8A,#60A5FA)" },
+  { id:"p041", title:"সার্ফিং বিশাল ঢেউয়ে", titleEn:"Surfing Giant Waves", prompt:"Epic action shot of a South Asian surfer riding a massive 30-foot ocean wave, water spray exploding around surfboard, dramatic lighting, ultra wide angle, extreme sports photography, freeze frame, ultra realistic, 8K", tool:"Stable Diffusion", tags:["surfing","adventure","ocean","extreme"], gradient:"linear-gradient(135deg,#0C4A6E,#7DD3FC)" },
+  { id:"p042", title:"জঙ্গলে এক্সপ্লোরার", titleEn:"Jungle Explorer", prompt:"Adventurous young woman as jungle explorer pushing through dense tropical rainforest, wearing khaki explorer outfit, machete in hand, sunlight breaking through forest canopy creating god rays, butterflies around her, ultra realistic, 8K", tool:"Midjourney", tags:["adventure","jungle","explorer","nature"], gradient:"linear-gradient(135deg,#166534,#F59E0B)" },
+  { id:"p043", title:"পাহাড়ে রক ক্লাইম্বিং", titleEn:"Rock Climbing", prompt:"South Asian man rock climbing on sheer vertical cliff face, gripping holds with intense focus, mountain valley visible thousands of feet below, dramatic angle from above, extreme sports photography, ultra realistic, 8K", tool:"DALL·E 3", tags:["climbing","adventure","extreme","mountain"], gradient:"linear-gradient(135deg,#92400E,#78350F)" },
+  { id:"p044", title:"মোটরসাইকেল হাইওয়ে", titleEn:"Motorcycle Highway Ride", prompt:"Cinematic shot of a South Asian man on a powerful motorcycle speeding down an empty coastal highway at sunset, sea on one side, mountains on the other, wind blur effect, adventure travel photography, ultra realistic, 8K", tool:"Midjourney", tags:["motorcycle","adventure","highway","sunset"], gradient:"linear-gradient(135deg,#1F2937,#F97316)" },
+  { id:"p045", title:"গুহা অন্বেষণ", titleEn:"Cave Exploration", prompt:"Explorer with headlamp inside a breathtaking limestone cave, massive stalactites hanging above, underground river glowing turquoise below, dramatic scale showing tiny human against vast cave, ultra realistic, 8K", tool:"Midjourney", tags:["cave","adventure","exploration","nature"], gradient:"linear-gradient(135deg,#1E3A5F,#06B6D4)" },
+  { id:"p046", title:"সাবমেরিনে ডুব দেওয়া", titleEn:"Deep Sea Diving", prompt:"South Asian diver in full scuba gear swimming alongside a massive whale shark in crystal clear blue ocean, shafts of sunlight from above, ultra wide angle, underwater photography, serene adventure, 8K", tool:"Stable Diffusion", tags:["diving","adventure","ocean","wildlife"], gradient:"linear-gradient(135deg,#0C4A6E,#0EA5E9)" },
+
+  // ===== ফানি / ক্রিয়েটিভ =====
+  { id:"p047", title:"ফানি অফিস মিটিং", titleEn:"Funny Office Meeting", prompt:"Funny digital art: bored South Asian man in business suit secretly watching cricket match on phone under table during serious board meeting, everyone else staring at boring charts, subtle smirk, comic style with exaggerated expressions, vibrant colors, ultra detailed", tool:"DALL·E 3", tags:["funny","office","creative","comic"], image:"images/facebook-creative.jpg", gradient:"linear-gradient(135deg,#F59E0B,#3B82F6)" },
+  { id:"p048", title:"সমুদ্রে ভেলায় ফুটবল", titleEn:"Football on Ocean Raft", prompt:"Surreal: South Asian man on plastic bottle raft in middle of ocean, sitting on sofa watching football on Samsung TV powered by Honda generator, blue shirt, aviator sunglasses, golden sunset, seagulls, ultra realistic, hyper detailed, 8K", tool:"Midjourney", tags:["surreal","funny","creative","ocean"], image:"images/football-ocean.png", gradient:"linear-gradient(135deg,#FF7E5F,#FEB47B)" },
+  { id:"p049", title:"বিড়ালের বস", titleEn:"Cat Boss", prompt:"Funny hyper realistic image of a cat wearing a tiny business suit sitting at executive office desk, glasses on nose, signing important documents, other cats as employees in background, Pixar-style rendering, ultra detailed, hilarious, 8K", tool:"Midjourney", tags:["funny","cat","creative","humor"], gradient:"linear-gradient(135deg,#7C3AED,#F59E0B)" },
+  { id:"p050", title:"রিকশায় রাজকীয় যাত্রা", titleEn:"Royal Rickshaw Ride", prompt:"Hilarious image of a South Asian king in full royal robes, crown and scepter, riding a Dhaka cycle rickshaw through busy market street, looking completely serious and dignified, people staring in shock, cinematic comedy, ultra realistic, 8K", tool:"DALL·E 3", tags:["funny","creative","bangla","royal"], gradient:"linear-gradient(135deg,#92400E,#FCD34D)" },
+  { id:"p051", title:"মহাকাশে বিরিয়ানি", titleEn:"Biryani in Space", prompt:"Hilarious hyper realistic image of a South Asian astronaut floating in space station, carefully eating biryani from a traditional clay pot with a spoon in zero gravity, rice grains floating around, Earth visible through window, ultra realistic, 8K", tool:"Midjourney", tags:["funny","space","food","creative"], gradient:"linear-gradient(135deg,#1E1B4B,#F97316)" },
+  { id:"p052", title:"ব্যাঙের ক্রিকেট ম্যাচ", titleEn:"Frog Cricket Match", prompt:"Ultra realistic funny image of frogs playing a cricket match in a paddy field, tiny cricket gear, crowd of frogs watching, proper cricket field setup, cinematic Pixar quality, vibrant colors, 8K", tool:"Stable Diffusion", tags:["funny","creative","animal","humor"], gradient:"linear-gradient(135deg,#166534,#FCD34D)" },
+  { id:"p053", title:"টাইম মেশিনে দাদা", titleEn:"Grandpa in Time Machine", prompt:"Funny hyper realistic image of a cheerful elderly South Asian grandfather in traditional lungi and vest, accidentally pressing a glowing button on a futuristic time machine, looking confused and surprised, sci-fi comedy, ultra realistic, 8K", tool:"DALL·E 3", tags:["funny","scifi","creative","family"], gradient:"linear-gradient(135deg,#1F2937,#10B981)" },
+
+  // ===== স্টাইলিশ নারী =====
+  { id:"p054", title:"ফ্যাশন ম্যাগাজিন কভার", titleEn:"Fashion Magazine Cover", prompt:"High fashion magazine cover shot of a stunning South Asian model in avant-garde designer outfit, bold geometric patterns, professional studio lighting, Vogue quality, dramatic pose, ultra sharp, 8K", tool:"Midjourney", tags:["fashion","model","magazine","editorial"], gradient:"linear-gradient(135deg,#1F2937,#EC4899)" },
+  { id:"p055", title:"সানসেট মডেল শুট", titleEn:"Sunset Model Shoot", prompt:"Professional fashion shoot of a beautiful South Asian model in flowing silk dress on rooftop at magic hour, wind dramatically blowing fabric, Mumbai skyline in background, golden hour lighting, Vogue India quality, ultra realistic, 8K", tool:"Midjourney", tags:["fashion","model","sunset","editorial"], gradient:"linear-gradient(135deg,#FF6B35,#7C3AED)" },
+  { id:"p056", title:"সূর্যাস্তে নীল পোশাক", titleEn:"Blue Dress in Sunset Water", prompt:"Beautiful South Asian woman in navy blue floral dress standing in shallow water during vivid pink sunset, holding white heels, splashing water, long dark wavy hair, dramatic sky reflection, cinematic wide angle, ultra realistic, 8K", tool:"Midjourney", tags:["portrait","sunset","water","romantic"], image:"images/sunset-water.png", gradient:"linear-gradient(135deg,#FF6B9D,#FF9A5C)" },
+  { id:"p057", title:"বোহেমিয়ান গার্ল ট্রাভেলার", titleEn:"Bohemian Girl Traveler", prompt:"Free-spirited South Asian woman in colorful bohemian maxi dress and floral crown, sitting cross-legged on top of vintage VW van on empty desert road, sunset behind her, travel adventure aesthetic, ultra realistic, 8K", tool:"Stable Diffusion", tags:["girl","travel","bohemian","adventure"], gradient:"linear-gradient(135deg,#F97316,#7C3AED)" },
+  { id:"p058", title:"কর্পোরেট পাওয়ার উইমেন", titleEn:"Corporate Power Woman", prompt:"Powerful South Asian businesswoman in sharp navy power suit, standing in front of floor-to-ceiling glass windows overlooking city skyline at golden hour, confident authoritative pose, Forbes magazine quality, ultra realistic, 8K", tool:"Midjourney", tags:["woman","business","corporate","powerful"], gradient:"linear-gradient(135deg,#1E3A8A,#F59E0B)" },
+  { id:"p059", title:"গার্ল উইথ গিটার সানসেট", titleEn:"Girl with Guitar at Sunset", prompt:"Beautiful South Asian girl sitting on cliff edge playing acoustic guitar at sunset, ocean below, golden light bathing her face and guitar, long hair blowing in breeze, cinematic peaceful atmosphere, ultra realistic, 8K", tool:"Midjourney", tags:["girl","guitar","sunset","music"], gradient:"linear-gradient(135deg,#F59E0B,#DC2626)" },
+  { id:"p060", title:"শাড়িতে কফি টাইম", titleEn:"Coffee Time in Saree", prompt:"Elegant South Asian woman in pastel pink Organza saree sitting at cafe window seat with cappuccino, morning light filtering in, city outside blurred, peaceful thoughtful expression, lifestyle photography, ultra realistic, 8K", tool:"DALL·E 3", tags:["saree","lifestyle","coffee","elegant"], gradient:"linear-gradient(135deg,#FDF2F8,#EC4899)" },
+
+  // ===== স্টাইলিশ পুরুষ =====
+  { id:"p061", title:"গিটার বাদকের পোর্ট্রেট", titleEn:"Dark Studio Guitar Portrait", prompt:"Cinematic close-up of young South Asian musician playing acoustic guitar in dramatic dark studio, deep teal kurta, silver aviator sunglasses, warm golden rim light on strings and fingers, moody editorial, 85mm f/1.2, 8K", tool:"Midjourney", tags:["guitar","music","portrait","dark"], image:"images/guitar-dark.png", gradient:"linear-gradient(135deg,#0D4F4F,#C8B400)" },
+  { id:"p062", title:"স্টাইলিশ দাড়ি ওয়ালা", titleEn:"Stylish Bearded Man", prompt:"Portrait of confident South Asian man with dramatic full curly beard with auburn highlights, deep purple linen shirt, sitting relaxed on grey couch with iPhone, luxury silver watch, warm Edison bulb lighting, neon pink bokeh, editorial, 85mm f/1.4, 8K", tool:"Leonardo AI", tags:["portrait","stylish","beard","editorial"], image:"images/purple-man.jpg", gradient:"linear-gradient(135deg,#6B21A8,#EC4899)" },
+  { id:"p063", title:"আর্জেন্টিনা জার্সি পোর্ট্রেট", titleEn:"Argentina Jersey Portrait", prompt:"Confident young South Asian man in Argentina football #10 jersey against bold pink-red gradient wall, blue mirror aviators, casual confident pose, street photography, bright natural light, ultra sharp, 8K", tool:"Midjourney", tags:["portrait","football","sport","street"], image:"images/argentina-jersey.png", gradient:"linear-gradient(135deg,#75AADB,#FFFFFF)" },
+  { id:"p064", title:"সুফি মরমী পুরুষ", titleEn:"Sufi Mystic Man", prompt:"Mystical portrait of a South Asian Sufi man in flowing white robes, arms outstretched mid-whirl, dramatic backlighting creating a halo effect, smoke and rose petals in air, spiritual atmosphere, ultra cinematic, 8K", tool:"Midjourney", tags:["sufi","spiritual","portrait","cinematic"], gradient:"linear-gradient(135deg,#FFFBEB,#7C3AED)" },
+  { id:"p065", title:"টেক উদ্যোক্তা", titleEn:"Tech Entrepreneur", prompt:"Young South Asian tech entrepreneur in smart casual outfit, standing in modern glass office with multiple screens showing code and dashboards, confident innovative look, silicon valley style photography, ultra realistic, 8K", tool:"DALL·E 3", tags:["tech","entrepreneur","business","modern"], gradient:"linear-gradient(135deg,#0EA5E9,#7C3AED)" },
+  { id:"p066", title:"শেফের পোর্ট্রেট", titleEn:"Master Chef Portrait", prompt:"Confident South Asian master chef in white chef uniform, holding a beautifully plated dish, modern restaurant kitchen background with warm ambient lighting, editorial food photography style, ultra realistic, 8K", tool:"Midjourney", tags:["chef","food","portrait","professional"], gradient:"linear-gradient(135deg,#FFFFFF,#DC2626)" },
+  { id:"p067", title:"স্ট্রিট ফটোগ্রাফার", titleEn:"Street Photographer", prompt:"South Asian street photographer crouching in narrow Old Dhaka alley, vintage film camera raised to eye, colorful walls and hanging lanterns behind him, documentary style self-portrait, moody cinematic lighting, 8K", tool:"Stable Diffusion", tags:["photographer","street","documentary","dhaka"], gradient:"linear-gradient(135deg,#1F2937,#F59E0B)" },
+
+  // ===== প্রকৃতি ও ল্যান্ডস্কেপ =====
+  { id:"p068", title:"সুন্দরবনের বাঘ", titleEn:"Sundarbans Tiger", prompt:"Majestic Royal Bengal Tiger emerging from dense Sundarbans mangrove forest, partly submerged in amber water, intense golden eyes staring directly at camera, dramatic rim lighting, National Geographic quality, ultra realistic, 8K", tool:"Midjourney", tags:["wildlife","tiger","nature","bangla"], gradient:"linear-gradient(135deg,#92400E,#166534)" },
+  { id:"p069", title:"পদ্মা নদীর বিস্তার", titleEn:"Padma River Expanse", prompt:"Breathtaking aerial drone shot of the mighty Padma river at sunset, river taking up entire frame with countless water channels and islands, golden light turning water to molten copper, ultra wide, cinematic, 8K", tool:"Midjourney", tags:["landscape","river","aerial","bangla"], gradient:"linear-gradient(135deg,#F97316,#1E3A8A)" },
+  { id:"p070", title:"কক্সবাজার সূর্যোদয়", titleEn:"Cox's Bazar Sunrise", prompt:"Breathtaking sunrise at Cox's Bazar world's longest sea beach, pink and golden sky reflected in wet sand, silhouette of fishing boats, ultra wide angle, long exposure photography, peaceful, ultra realistic, 8K", tool:"DALL·E 3", tags:["beach","landscape","sunrise","bangla"], gradient:"linear-gradient(135deg,#F9A8D4,#F97316)" },
+  { id:"p071", title:"সাজেকের মেঘ সমুদ্র", titleEn:"Sajek Cloud Ocean", prompt:"Epic aerial view of Sajek Valley Bangladesh, waves of clouds rolling between green mountain ridges at sunrise, tiny cottages visible on hilltops, breathtaking natural panorama, golden hour, 8K ultra wide cinematic", tool:"Midjourney", tags:["landscape","mountain","clouds","bangla"], gradient:"linear-gradient(135deg,#0EA5E9,#166534)" },
+  { id:"p072", title:"ময়ূরের পালক ক্লোজআপ", titleEn:"Peacock Feather Macro", prompt:"Extreme close-up macro of peacock tail feathers fanned out, vibrant iridescent blue and green eye patterns, soft natural light, ultra sharp micro detail, 8K macro photography", tool:"Midjourney", tags:["bird","nature","macro","colorful"], gradient:"linear-gradient(135deg,#0D9488,#7C5CFF)" },
+  { id:"p073", title:"ফ্ল্যামিঙ্গো ঝাঁক উড়ে যাওয়া", titleEn:"Flamingo Flock in Flight", prompt:"Stunning flock of pink flamingos flying low over calm lake at sunrise, golden reflection on water, wings spread wide, nature photography, telephoto lens, ultra realistic, 8K", tool:"DALL·E 3", tags:["bird","flamingo","nature","sunrise"], gradient:"linear-gradient(135deg,#FF6B9D,#FFC371)" },
+  { id:"p074", title:"পাহাড়ি নদীর বাঁক", titleEn:"Winding Mountain River", prompt:"Aerial drone view of turquoise river winding through deep green forest and rocky cliffs, crystal clear water, sunlight glinting, ultra wide cinematic color grading, 8K", tool:"Midjourney", tags:["river","aerial","nature","landscape"], gradient:"linear-gradient(135deg,#0EA5E9,#10B981)" },
+  { id:"p075", title:"সাহারা মরুভূমির রাত", titleEn:"Sahara Desert Night", prompt:"Vast Sahara desert sand dunes under starry sky with Milky Way visible, lone camel silhouette, astrophotography style, long exposure, deep blue and orange tones, ultra realistic, 8K", tool:"Midjourney", tags:["worldwide","desert","night","stars"], gradient:"linear-gradient(135deg,#1B1B3A,#FF7E5F)" },
+  { id:"p076", title:"জাপানের সাকুরা বৃষ্টি", titleEn:"Japan Cherry Blossom", prompt:"Traditional Japanese street lined with blooming cherry blossom trees, soft pink petals falling like snow, ancient pagoda visible in background, serene spring atmosphere, golden hour, ultra realistic, 8K travel photography", tool:"Stable Diffusion", tags:["worldwide","japan","spring","travel"], gradient:"linear-gradient(135deg,#FFB6C1,#FF6B9D)" },
+  { id:"p077", title:"আইসল্যান্ডের অরোরা", titleEn:"Iceland Northern Lights", prompt:"Breathtaking Northern Lights (Aurora Borealis) dance over a frozen Icelandic lake, vivid green and purple light curtains reflected perfectly in ice, snow-covered landscape, astrophotography, ultra realistic, 8K", tool:"Midjourney", tags:["worldwide","aurora","landscape","night"], gradient:"linear-gradient(135deg,#1E3A8A,#10B981)" },
+
+  // ===== ফ্যান্টাসি / আর্ট =====
+  { id:"p078", title:"ড্রাগন রাইডার", titleEn:"Dragon Rider", prompt:"Epic armored warrior riding massive ice dragon above snowy mountain peaks, epic fantasy art, dramatic clouds, dynamic pose, trending on ArtStation, hyper detailed scales, 8K --ar 9:16", tool:"Midjourney", tags:["fantasy","dragon","epic","warrior"], gradient:"linear-gradient(135deg,#4DE8FF,#2541B2)" },
+  { id:"p079", title:"এলফ রাজকুমারী", titleEn:"Elven Princess", prompt:"Stunning South Asian elven princess with pointed ears and long dark hair, wearing intricate silver armor with gold filigree, mystical forest background with glowing fireflies, magical fantasy art, ultra detailed, 8K", tool:"Stable Diffusion", tags:["fantasy","elf","princess","magic"], gradient:"linear-gradient(135deg,#166534,#7C3AED)" },
+  { id:"p080", title:"সাইবারপাঙ্ক শহরের রাত", titleEn:"Cyberpunk City Night", prompt:"Rain-soaked cyberpunk megacity street at night, neon kanji signs reflecting in puddles, flying cars in distance, cinematic lighting, ultra detailed, 35mm lens, volumetric fog --ar 16:9", tool:"Midjourney", tags:["cyberpunk","city","night","scifi"], gradient:"linear-gradient(135deg,#FF2E63,#1B1B3A)" },
+  { id:"p081", title:"AI রোবট পোর্ট্রেট", titleEn:"AI Robot Portrait", prompt:"Close-up portrait of a humanoid robot with translucent skin showing glowing circuitry, soft rim lighting, photorealistic, shallow depth of field, Unreal Engine 5 render, 8K", tool:"Stable Diffusion", tags:["robot","scifi","portrait","ai"], gradient:"linear-gradient(135deg,#7C5CFF,#FF6B6B)" },
+  { id:"p082", title:"জাদুকরী বন", titleEn:"Magical Forest", prompt:"Enchanted magical forest at night, glowing mushrooms and fireflies, ancient twisted trees with bioluminescent vines, a South Asian girl in white dress standing in the middle looking up in wonder, ultra realistic fantasy art, 8K", tool:"Midjourney", tags:["fantasy","forest","magic","nature"], gradient:"linear-gradient(135deg,#065F46,#7C3AED)" },
+  { id:"p083", title:"ভবিষ্যতের ঢাকা", titleEn:"Future Dhaka 2100", prompt:"Futuristic vision of Dhaka city in 2100, flying cars over gleaming glass skyscrapers, elevated green bridges connecting buildings, clean river with electric boats, Bangladesh flag still flying proudly, cinematic sci-fi cityscape, 8K", tool:"DALL·E 3", tags:["scifi","future","dhaka","concept"], gradient:"linear-gradient(135deg,#166534,#0EA5E9)" },
+
+  // ===== ফুড ফটোগ্রাফি =====
+  { id:"p084", title:"বিরিয়ানির মাস্টারপিস", titleEn:"Biryani Masterpiece", prompt:"Stunning overhead food photography of a steaming pot of fragrant Kacchi Biryani being opened, golden rice with whole spices, tender meat visible, saffron steam rising, bokeh background, Michelin star restaurant style, ultra realistic, 8K", tool:"Midjourney", tags:["food","biryani","photography","bangla"], gradient:"linear-gradient(135deg,#92400E,#FCD34D)" },
+  { id:"p085", title:"পিঠার সংকলন", titleEn:"Bengali Pitha Collection", prompt:"Gorgeous flat lay of traditional Bengali pitha collection — bhapa pitha, pakan pitha, chitoi pitha — arranged artfully on a traditional nakshi kantha fabric, morning light, food styling, ultra realistic, 8K overhead shot", tool:"DALL·E 3", tags:["food","pitha","bangla","traditional"], gradient:"linear-gradient(135deg,#F9A8D4,#FCD34D)" },
+  { id:"p086", title:"কফি আর্ট লাটে", titleEn:"Coffee Latte Art", prompt:"Perfect pour of a latte with intricate rosette latte art on top, coffee in beautiful ceramic cup, steam gently rising, warm cafe bokeh background, food photography, shallow depth of field, ultra realistic, 8K", tool:"Midjourney", tags:["coffee","food","cafe","art"], gradient:"linear-gradient(135deg,#92400E,#FDE68A)" },
+
+  // ===== প্রোডাক্ট ফটোগ্রাফি =====
+  { id:"p087", title:"মিনিমাল পারফিউম শট", titleEn:"Minimal Perfume Shot", prompt:"Studio product photography of matte black perfume bottle on marble pedestal, soft single light source, deep shadows, minimalist white background, commercial advertising style, ultra sharp, 8K", tool:"Midjourney", tags:["product","minimal","commercial","perfume"], gradient:"linear-gradient(135deg,#2D2D2D,#7C5CFF)" },
+  { id:"p088", title:"লাক্সারি ঘড়ির শট", titleEn:"Luxury Watch Shot", prompt:"Ultra detailed product photography of a luxury Swiss watch on black velvet, macro lens showing every gear and reflection, dramatic single spotlight, water droplets on crystal, commercial advertising quality, 8K", tool:"Stable Diffusion", tags:["product","watch","luxury","commercial"], gradient:"linear-gradient(135deg,#1F2937,#F59E0B)" },
+
+  // ===== আর্কিটেকচার =====
+  { id:"p089", title:"তাজ মহলের রাত", titleEn:"Taj Mahal at Night", prompt:"Majestic Taj Mahal reflected perfectly in its long fountain pool at night, full moon overhead, soft blue and white tones, ultra wide angle, long exposure creating glass-like water reflection, travel photography, ultra realistic, 8K", tool:"Midjourney", tags:["worldwide","india","architecture","night"], gradient:"linear-gradient(135deg,#DBEAFE,#1E3A8A)" },
+  { id:"p090", title:"আইফেল টাওয়ার সানসেট", titleEn:"Eiffel Tower Sunset", prompt:"Eiffel Tower at twilight with warm golden lights, Parisian rooftops in foreground, soft pastel sky, romantic cinematic atmosphere, travel photography, 35mm, ultra realistic, 8K", tool:"DALL·E 3", tags:["worldwide","paris","architecture","sunset"], gradient:"linear-gradient(135deg,#7C5CFF,#FFC371)" },
+  { id:"p091", title:"মসজিদের অভ্যন্তর", titleEn:"Mosque Interior", prompt:"Breathtaking interior of a grand mosque, ornate geometric tile patterns, massive golden chandelier, rows of arched columns, soft light filtering through stained glass windows, wide angle architectural photography, ultra realistic, 8K", tool:"Midjourney", tags:["architecture","mosque","interior","islamic"], gradient:"linear-gradient(135deg,#065F46,#FCD34D)" },
+
+  // ===== টেকনোলজি ও AI =====
+  { id:"p092", title:"AI ব্রেইন ভিজুয়ালাইজেশন", titleEn:"AI Brain Visualization", prompt:"Stunning 3D visualization of artificial intelligence neural network as a glowing brain made of light and data streams, floating in dark space, electric blue and purple colors, ultra detailed, sci-fi concept art, 8K", tool:"Midjourney", tags:["ai","technology","concept","scifi"], gradient:"linear-gradient(135deg,#7C3AED,#4DE8FF)" },
+  { id:"p093", title:"ডিজিটাল মানবতা", titleEn:"Digital Humanity", prompt:"Ultra detailed digital art of a human face dissolving into streams of binary code and data particles on one side, realistic human on the other, representing the fusion of humanity and technology, cinematic, 8K", tool:"Stable Diffusion", tags:["ai","technology","concept","art"], gradient:"linear-gradient(135deg,#1E1B4B,#0EA5E9)" },
+  { id:"p094", title:"হলোগ্রাম মিটিং", titleEn:"Hologram Meeting", prompt:"Futuristic business meeting where a South Asian executive interacts with holographic projections of global team members, sleek modern office, blue hologram light, near future technology, ultra realistic, 8K", tool:"Midjourney", tags:["technology","future","business","scifi"], gradient:"linear-gradient(135deg,#1E3A8A,#06B6D4)" },
+
+  // ===== মোটিভেশনাল =====
+  { id:"p095", title:"সাফল্যের শিখরে", titleEn:"At the Peak of Success", prompt:"Powerful silhouette of a South Asian person standing on top of a mountain with arms raised in victory, dramatic sunrise behind them painting the sky in gold and orange, inspirational motivational photography, ultra cinematic, 8K", tool:"Midjourney", tags:["motivational","success","mountain","inspiration"], gradient:"linear-gradient(135deg,#F97316,#FCD34D)" },
+  { id:"p096", title:"নতুন দিনের শুরু", titleEn:"Beginning of a New Day", prompt:"Beautiful South Asian young man standing on rooftop at sunrise, city waking up below him, arms wide open embracing the new day, warm golden light, aspirational lifestyle photography, ultra realistic, 8K", tool:"DALL·E 3", tags:["motivational","sunrise","lifestyle","youth"], gradient:"linear-gradient(135deg,#F59E0B,#EF4444)" },
+
+  // ===== আপনার ছবিগুলো =====
+  { id:"p097", title:"AI শাড়ি পোর্ট্রেট — ১", titleEn:"AI Saree Portrait v1", prompt:"AI generated photorealistic Bengali woman in white and sky blue cotton saree with intricate border, leaning on railing by peaceful lake, holding glasses elegantly, soft evening bokeh with glowing lights, gold jewelry, cinematic warm tones, 85mm f/1.4, 8K", tool:"Stable Diffusion", tags:["ai-generated","saree","bangla","portrait"], image:"images/saree-lake-1.png", gradient:"linear-gradient(135deg,#87CEEB,#d4a017)" },
+  { id:"p098", title:"AI শাড়ি পোর্ট্রেট — ২", titleEn:"AI Saree Portrait v2", prompt:"AI generated hyperrealistic Bengali woman in traditional white and cyan cotton saree with geometric border, posed elegantly on riverside walkway at dusk, wind gently moving her hair, rich skin tone, professional fashion photography, 8K cinematic", tool:"Stable Diffusion", tags:["ai-generated","saree","elegant","dusk"], image:"images/saree-lake-2.png", gradient:"linear-gradient(135deg,#4DE8FF,#1B998B)" },
+  { id:"p099", title:"গিটার বাদিকা ও পায়রা", titleEn:"Guitarist Girl with Doves", prompt:"Dreamy portrait of beautiful South Asian girl in flowing dusty rose tulle dress playing acoustic guitar in ancient ivy-covered stone garden at golden hour, white doves perched nearby, long dark wavy hair, magical fairytale atmosphere, ultra realistic, 8K", tool:"Midjourney", tags:["portrait","guitar","romantic","fairytale"], image:"images/girl-guitar-doves-2.png", gradient:"linear-gradient(135deg,#D4A5A5,#F9E4B7)" },
+  { id:"p100", title:"প্রফেশনাল হেডশট", titleEn:"Professional Headshot", prompt:"Clean professional headshot of young South Asian man in cobalt blue formal shirt against pure white background, natural warm smile, neat black hair, studio lighting with soft shadows, corporate photography, ultra sharp, 8K, LinkedIn-ready", tool:"DALL·E 3", tags:["headshot","professional","corporate","portrait"], image:"images/blue-shirt.png", gradient:"linear-gradient(135deg,#1E40AF,#FFFFFF)" },
+  { id:"p101", title:"ফেসবুক ক্রিয়েটিভ পোর্ট্রেট", titleEn:"Facebook Creative Portrait", prompt:"Creative 3D composite: confident South Asian entrepreneur sitting relaxed on bean bag with iPhone 15 Pro, surrounded by books on Focus, Discipline, Consistency, camera, laptop, plants and LED motivational signs, giant floating Facebook profile mockup behind him, 256K followers, cherry blossoms floating, cinematic warm lighting, Behance trending", tool:"Midjourney", tags:["creative","social-media","composite","entrepreneur"], image:"images/facebook-creative.jpg", gradient:"linear-gradient(135deg,#1877F2,#f5a623)" },
+  { id:"p102", title:"এডিটোরিয়াল পোর্ট্রেট Amin AI World", titleEn:"Editorial Portrait Amin AI World", prompt:"Ultra-realistic cinematic black-and-white portrait, confident young South Asian man, dramatic low-angle, bold visionary expression, silver aviator sunglasses, black knitted sweater, vibrant red rectangular background on white canvas, luxury branding, HDR, 8K, Hasselblad 85mm f/1.8", tool:"AI Portrait Generator", tags:["portrait","branding","editorial","amin"], image:"images/amin-profile.png", gradient:"linear-gradient(135deg,#E10600,#1a1a1a)" }
+
+];
+
+// ---------- TOOLS ----------
 const TOOLS = [
-  {
-    id: "t1",
-    name: "ChatGPT",
-    category: "টেক্সট / চ্যাট",
-    desc: "OpenAI-এর তৈরি কথোপকথনমূলক AI, লেখা, কোড, আইডিয়া ও বিশ্লেষণে সহায়ক।",
-    link: "https://chat.openai.com",
-    free: true
-  },
-  {
-    id: "t2",
-    name: "Midjourney",
-    category: "ছবি জেনারেশন",
-    desc: "টেক্সট প্রম্পট থেকে উচ্চমানের শৈল্পিক ছবি তৈরির জনপ্রিয় টুল, Discord-ভিত্তিক।",
-    link: "https://www.midjourney.com",
-    free: false
-  },
-  {
-    id: "t3",
-    name: "DALL·E 3",
-    category: "ছবি জেনারেশন",
-    desc: "OpenAI-এর ছবি জেনারেটর, বিস্তারিত প্রম্পট বোঝায় দক্ষ ও ফটোরিয়েলিস্টিক আউটপুট দেয়।",
-    link: "https://openai.com/dall-e-3",
-    free: false
-  },
-  {
-    id: "t4",
-    name: "Stable Diffusion",
-    category: "ছবি জেনারেশন",
-    desc: "ওপেন-সোর্স ছবি জেনারেশন মডেল, নিজের কম্পিউটারে বা ফ্রি অনলাইন টুলেও চালানো যায়।",
-    link: "https://stability.ai",
-    free: true
-  },
-  {
-    id: "t5",
-    name: "Claude",
-    category: "টেক্সট / চ্যাট",
-    desc: "Anthropic-এর তৈরি AI অ্যাসিস্ট্যান্ট, লেখা, কোডিং ও বিশ্লেষণে নির্ভরযোগ্য।",
-    link: "https://claude.ai",
-    free: true
-  },
-  {
-    id: "t6",
-    name: "ElevenLabs",
-    category: "ভয়েস / অডিও",
-    desc: "টেক্সট-টু-স্পিচ ও ভয়েস ক্লোনিং টুল, প্রাকৃতিক শোনায় এমন কণ্ঠস্বর তৈরি করে।",
-    link: "https://elevenlabs.io",
-    free: true
-  },
-  {
-    id: "t7",
-    name: "Leonardo AI",
-    category: "ছবি জেনারেশন",
-    desc: "গেম আর্ট ও কনসেপ্ট ডিজাইনের জন্য জনপ্রিয় AI ইমেজ জেনারেটর, ফ্রি ক্রেডিট দেয়।",
-    link: "https://leonardo.ai",
-    free: true
-  },
-  {
-    id: "t8",
-    name: "Runway",
-    category: "ভিডিও",
-    desc: "AI দিয়ে ভিডিও জেনারেশন ও এডিটিং, টেক্সট-টু-ভিডিও ফিচার সমৃদ্ধ।",
-    link: "https://runwayml.com",
-    free: false
-  },
-  {
-    id: "t9",
-    name: "Gemini",
-    category: "টেক্সট / চ্যাট",
-    desc: "Google-এর তৈরি AI অ্যাসিস্ট্যান্ট, সার্চ ও Google Workspace-এর সাথে গভীরভাবে যুক্ত।",
-    link: "https://gemini.google.com",
-    free: true
-  },
-  {
-    id: "t10",
-    name: "Perplexity AI",
-    category: "সার্চ / রিসার্চ",
-    desc: "তথ্যসূত্রসহ উত্তর দেয় এমন AI সার্চ ইঞ্জিন, রিসার্চ ও তথ্য যাচাইয়ের জন্য উপযোগী।",
-    link: "https://www.perplexity.ai",
-    free: true
-  },
-  {
-    id: "t11",
-    name: "Canva AI",
-    category: "ডিজাইন",
-    desc: "AI দিয়ে পোস্টার, প্রেজেন্টেশন, সোশ্যাল মিডিয়া ডিজাইন সহজে তৈরি করার টুল।",
-    link: "https://www.canva.com",
-    free: true
-  },
-  {
-    id: "t12",
-    name: "Suno AI",
-    category: "ভয়েস / অডিও",
-    desc: "টেক্সট প্রম্পট থেকে সম্পূর্ণ গান ও সংগীত তৈরি করা যায় এমন AI টুল।",
-    link: "https://suno.com",
-    free: true
-  },
-  {
-    id: "t13",
-    name: "GitHub Copilot",
-    category: "কোডিং",
-    desc: "AI কোড সহকারী, প্রোগ্রামিং করার সময় কোড সাজেশন ও অটোকমপ্লিট দেয়।",
-    link: "https://github.com/features/copilot",
-    free: false
-  },
-  {
-    id: "t14",
-    name: "Pika",
-    category: "ভিডিও",
-    desc: "টেক্সট বা ছবি থেকে শর্ট AI ভিডিও তৈরির জনপ্রিয় টুল, ব্যবহার সহজ।",
-    link: "https://pika.art",
-    free: true
-  },
-  {
-    id: "t15",
-    name: "HeyGen",
-    category: "ভিডিও",
-    desc: "AI অ্যাভাটার ব্যবহার করে টেক্সট থেকে কথা বলা ভিডিও তৈরির টুল।",
-    link: "https://www.heygen.com",
-    free: true
-  },
-  {
-    id: "t16",
-    name: "Notion AI",
-    category: "প্রোডাক্টিভিটি",
-    desc: "Notion-এর মধ্যেই লেখা, সারাংশ ও আইডিয়া তৈরিতে সহায়ক AI ফিচার।",
-    link: "https://www.notion.so/product/ai",
-    free: false
-  }
+  { id:"t1", name:"ChatGPT", category:"টেক্সট / চ্যাট", desc:"OpenAI-এর তৈরি কথোপকথনমূলক AI, লেখা, কোড, আইডিয়া ও বিশ্লেষণে সহায়ক।", link:"https://chat.openai.com", free:true },
+  { id:"t2", name:"Midjourney", category:"ছবি জেনারেশন", desc:"টেক্সট প্রম্পট থেকে উচ্চমানের শৈল্পিক ছবি তৈরির সবচেয়ে জনপ্রিয় টুল।", link:"https://www.midjourney.com", free:false },
+  { id:"t3", name:"DALL·E 3", category:"ছবি জেনারেশন", desc:"OpenAI-এর ছবি জেনারেটর, বিস্তারিত প্রম্পট বোঝায় অত্যন্ত দক্ষ।", link:"https://openai.com/dall-e-3", free:false },
+  { id:"t4", name:"Stable Diffusion", category:"ছবি জেনারেশন", desc:"ওপেন-সোর্স ছবি জেনারেশন মডেল, ফ্রি অনলাইন টুলেও চালানো যায়।", link:"https://stability.ai", free:true },
+  { id:"t5", name:"Claude AI", category:"টেক্সট / চ্যাট", desc:"Anthropic-এর AI অ্যাসিস্ট্যান্ট, লেখা, কোডিং ও বিশ্লেষণে অত্যন্ত নির্ভরযোগ্য।", link:"https://claude.ai", free:true },
+  { id:"t6", name:"Grok", category:"টেক্সট / চ্যাট", desc:"xAI (Elon Musk)-এর AI — রিয়েল-টাইম X/Twitter ডেটা অ্যাক্সেস সহ, সরাসরি ও সৎ উত্তর।", link:"https://grok.com", free:true },
+  { id:"t7", name:"Gemini", category:"টেক্সট / চ্যাট", desc:"Google-এর AI অ্যাসিস্ট্যান্ট, Google Workspace ও সার্চের সাথে গভীরভাবে যুক্ত।", link:"https://gemini.google.com", free:true },
+  { id:"t8", name:"Kling AI", category:"ভিডিও (অ্যাডভান্সড)", desc:"Kuaishou-এর অত্যাধুনিক AI ভিডিও জেনারেটর — ছবি বা টেক্সট থেকে হাই-কোয়ালিটি ভিডিও, বাস্তবসম্মত মোশন সহ।", link:"https://klingai.com", free:true },
+  { id:"t9", name:"Seedance 2.0", category:"ভিডিও (অ্যাডভান্সড)", desc:"ByteDance-এর নতুন AI ভিডিও মডেল — ফটো বা প্রম্পট থেকে সিনেমা-মানের ভিডিও তৈরিতে সক্ষম।", link:"https://seedance.ai", free:true },
+  { id:"t10", name:"Runway ML", category:"ভিডিও", desc:"AI দিয়ে ভিডিও জেনারেশন ও এডিটিং, টেক্সট-টু-ভিডিও ফিচার সমৃদ্ধ।", link:"https://runwayml.com", free:false },
+  { id:"t11", name:"Luma Dream Machine", category:"ভিডিও (অ্যাডভান্সড)", desc:"ছবি বা টেক্সট থেকে অসাধারণ রিয়েলিস্টিক AI ভিডিও তৈরির টুল।", link:"https://lumalabs.ai/dream-machine", free:true },
+  { id:"t12", name:"Pika", category:"ভিডিও", desc:"টেক্সট বা ছবি থেকে শর্ট AI ভিডিও তৈরির জনপ্রিয় ও সহজ টুল।", link:"https://pika.art", free:true },
+  { id:"t13", name:"HeyGen", category:"ভিডিও / অ্যাভাটার", desc:"AI অ্যাভাটার দিয়ে কথা বলা ভিডিও তৈরি, ডিজিটাল ক্লোন ও ভয়েস ক্লোনিং সহ।", link:"https://www.heygen.com", free:true },
+  { id:"t14", name:"Leonardo AI", category:"ছবি জেনারেশন", desc:"গেম আর্ট ও কনসেপ্ট ডিজাইনের জনপ্রিয় AI, প্রতিদিন ফ্রি ক্রেডিট দেয়।", link:"https://leonardo.ai", free:true },
+  { id:"t15", name:"Ideogram", category:"ছবি জেনারেশন", desc:"AI ইমেজ জেনারেটর যা ছবির ভেতরে সঠিক টেক্সট বসাতে পারে — পোস্টার ও লোগোর জন্য আদর্শ।", link:"https://ideogram.ai", free:true },
+  { id:"t16", name:"Adobe Firefly", category:"ছবি জেনারেশন", desc:"Adobe-এর AI ইমেজ টুল — Photoshop ও Illustrator-এর সাথে ইন্টিগ্রেটেড।", link:"https://firefly.adobe.com", free:true },
+  { id:"t17", name:"ElevenLabs", category:"ভয়েস / অডিও", desc:"টেক্সট-টু-স্পিচ ও ভয়েস ক্লোনিং টুল, প্রাকৃতিক শোনায় এমন কণ্ঠ তৈরি করে।", link:"https://elevenlabs.io", free:true },
+  { id:"t18", name:"Suno AI", category:"মিউজিক জেনারেশন", desc:"টেক্সট প্রম্পট থেকে সম্পূর্ণ গান তৈরি — কথা, সুর, ভোকাল সব একসাথে।", link:"https://suno.com", free:true },
+  { id:"t19", name:"Perplexity AI", category:"সার্চ / রিসার্চ", desc:"তথ্যসূত্রসহ উত্তর দেয় এমন AI সার্চ ইঞ্জিন, রিসার্চ ও যাচাইয়ের জন্য।", link:"https://www.perplexity.ai", free:true },
+  { id:"t20", name:"Canva AI", category:"ডিজাইন", desc:"AI দিয়ে পোস্টার, প্রেজেন্টেশন ও সোশ্যাল মিডিয়া ডিজাইন সহজে তৈরি।", link:"https://www.canva.com", free:true }
 ];
