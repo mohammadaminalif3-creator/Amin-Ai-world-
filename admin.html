@@ -165,6 +165,8 @@ textarea.finp{min-height:90px;resize:vertical;font-family:'JetBrains Mono',monos
       <button class="tab active" onclick="showTab('t-prompt',this)">📸 প্রম্পট যোগ</button>
       <button class="tab" onclick="showTab('t-music',this)">🎵 গান যোগ</button>
       <button class="tab" onclick="showTab('t-profile',this)">👤 প্রোফাইল ছবি</button>
+      <button class="tab" onclick="showTab('t-islamic',this)">🕌 ইসলামিক বাণী</button>
+      <button class="tab" onclick="showTab('t-inspiration',this)">✨ প্রেরণার বাণী</button>
       <button class="tab" onclick="showTab('t-settings',this)">⚙️ সেটিংস</button>
       <button class="tab" onclick="showTab('t-guide',this)">📖 গাইড</button>
     </div>
@@ -273,6 +275,42 @@ textarea.finp{min-height:90px;resize:vertical;font-family:'JetBrains Mono',monos
       <button class="btn-submit btn-violet" id="profSubmitBtn" onclick="submitProfile()">👤 প্রোফাইল ছবি আপডেট করুন</button>
     </div>
 
+    <!-- ISLAMIC QUOTE -->
+    <div class="tc" id="t-islamic">
+      <p style="color:var(--muted);font-size:.85rem;margin-bottom:18px;">কোরআন বা হাদিসের বাণী যোগ করুন — ছবি দিলে সুন্দর কার্ড হবে।</p>
+      <div class="upload-area" id="iqUploadArea" onclick="document.getElementById('iqFile').click()">
+        <div class="ui">🖼️</div><h4>গ্রাফিক ছবি (ঐচ্ছিক)</h4><p>আপনার নিজের ডিজাইন করা ছবি</p>
+      </div>
+      <input type="file" id="iqFile" accept="image/*" style="display:none" onchange="onIqSel(this)">
+      <div class="preview-wrap" id="iqPreviewWrap"><img id="iqPreviewEl" alt="preview"><button class="remove-img" onclick="clearIq()">✕</button></div>
+      <div class="prog-wrap" id="iqProgWrap"><div class="prog-bg"><div class="prog-bar" id="iqProgBar"></div></div><p class="prog-text" id="iqProgText"></p></div>
+      <label class="label">শিরোনাম *</label><input class="finp" type="text" id="iqTitle" placeholder="যেমন: সবরের পুরস্কার">
+      <label class="label">বাণী / উক্তি *</label><textarea class="finp" id="iqQuote" placeholder="কোরআন বা হাদিসের বাণী এখানে লিখুন..."></textarea>
+      <label class="label">উৎস (Attribution)</label><input class="finp" type="text" id="iqAttrib" placeholder="যেমন: সূরা আশ-শারহ: ৫-৬">
+      <div class="g2">
+        <div><label class="label">ক্যাটাগরি</label><select class="finp" id="iqCat"><option value="quran">কোরআন</option><option value="hadith">হাদিস</option></select></div>
+        <div><label class="label">থিম রঙ</label><select class="finp" id="iqGrad"><option value="linear-gradient(135deg,#065F46,#0D9488)">🟢 সবুজ</option><option value="linear-gradient(135deg,#1E3A8A,#3B82F6)">🔵 নীল</option><option value="linear-gradient(135deg,#4C1D95,#7C3AED)">🟣 বেগুনি</option><option value="linear-gradient(135deg,#92400E,#D97706)">🟠 কমলা</option></select></div>
+      </div>
+      <button class="btn-submit btn-green" onclick="submitQuote('islamic-extra.json','iqTitle','iqQuote','iqAttrib','iqCat','iqGrad','iqProgWrap','iqProgBar','iqProgText',iqImgFile,'iqSubmitBtn')">✅ ইসলামিক বাণী যোগ করুন</button>
+    </div>
+    <!-- INSPIRATION QUOTE -->
+    <div class="tc" id="t-inspiration">
+      <p style="color:var(--muted);font-size:.85rem;margin-bottom:18px;">প্রেরণামূলক বাণী যোগ করুন — নিজের গ্রাফিক্স ডিজাইন সহ।</p>
+      <div class="upload-area" id="insUploadArea" onclick="document.getElementById('insFile').click()">
+        <div class="ui">🖼️</div><h4>গ্রাফিক ছবি (ঐচ্ছিক)</h4><p>আপনার নিজের ডিজাইন করা ছবি</p>
+      </div>
+      <input type="file" id="insFile" accept="image/*" style="display:none" onchange="onInsSel(this)">
+      <div class="preview-wrap" id="insPreviewWrap"><img id="insPreviewEl" alt="preview"><button class="remove-img" onclick="clearIns()">✕</button></div>
+      <div class="prog-wrap" id="insProgWrap"><div class="prog-bg"><div class="prog-bar" id="insProgBar"></div></div><p class="prog-text" id="insProgText"></p></div>
+      <label class="label">শিরোনাম *</label><input class="finp" type="text" id="insTitle" placeholder="যেমন: স্বপ্ন দেখো">
+      <label class="label">বাণী / উক্তি *</label><textarea class="finp" id="insQuote" placeholder="প্রেরণামূলক বাণী এখানে লিখুন..."></textarea>
+      <label class="label">উৎস</label><input class="finp" type="text" id="insAttrib" placeholder="যেমন: — জীবনের পথে">
+      <div class="g2">
+        <div><label class="label">ক্যাটাগরি</label><select class="finp" id="insCat"><option value="life">জীবন</option><option value="dream">স্বপ্ন</option><option value="motivation">অনুপ্রেরণা</option><option value="success">সাফল্য</option><option value="patriotic">দেশপ্রেম</option><option value="education">শিক্ষা</option></select></div>
+        <div><label class="label">থিম রঙ</label><select class="finp" id="insGrad"><option value="linear-gradient(135deg,#7C5CFF,#4DE8FF)">💜 ভায়োলেট</option><option value="linear-gradient(135deg,#DC2626,#F97316)">🔴 লাল কমলা</option><option value="linear-gradient(135deg,#166534,#10B981)">🟢 সবুজ</option><option value="linear-gradient(135deg,#92400E,#FCD34D)">🟡 সোনালি</option><option value="linear-gradient(135deg,#1E1B4B,#F97316)">🌙 রাতের আকাশ</option></select></div>
+      </div>
+      <button class="btn-submit btn-green" onclick="submitQuote('inspiration-extra.json','insTitle','insQuote','insAttrib','insCat','insGrad','insProgWrap','insProgBar','insProgText',insImgFile,'insSubmitBtn')">✅ প্রেরণার বাণী যোগ করুন</button>
+    </div>
     <!-- SETTINGS -->
     <div class="tc" id="t-settings">
       <div class="settings-card">
@@ -527,3 +565,58 @@ function hideAlerts(){ document.getElementById('alertOk').style.display='none'; 
 </script>
 </body>
 </html>
+<script>
+// Quote image file vars
+let iqImgFile = null, insImgFile = null;
+
+function onIqSel(inp){ if(!inp.files[0])return; iqImgFile=inp.files[0]; document.getElementById('iqPreviewEl').src=URL.createObjectURL(iqImgFile); document.getElementById('iqPreviewWrap').style.display='block'; document.getElementById('iqUploadArea').style.display='none'; }
+function clearIq(){ iqImgFile=null; document.getElementById('iqFile').value=''; document.getElementById('iqPreviewWrap').style.display='none'; document.getElementById('iqUploadArea').style.display='block'; }
+
+function onInsSel(inp){ if(!inp.files[0])return; insImgFile=inp.files[0]; document.getElementById('insPreviewEl').src=URL.createObjectURL(insImgFile); document.getElementById('insPreviewWrap').style.display='block'; document.getElementById('insUploadArea').style.display='none'; }
+function clearIns(){ insImgFile=null; document.getElementById('insFile').value=''; document.getElementById('insPreviewWrap').style.display='none'; document.getElementById('insUploadArea').style.display='block'; }
+
+async function submitQuote(jsonFile, titleId, quoteId, attribId, catId, gradId, progWrap, progBar, progText, imgFile, btnId){
+  const token=getToken(); if(!token){showAlert('err','আগে GitHub Token সেট করুন!');return;}
+  const title=document.getElementById(titleId).value.trim();
+  const quote=document.getElementById(quoteId).value.trim();
+  if(!title||!quote){showAlert('err','শিরোনাম ও বাণী দিন!');return;}
+
+  hideAlerts();
+  setProgress(progWrap,progBar,progText,20,'প্রসেস হচ্ছে...');
+
+  try{
+    let imagePath='';
+    if(imgFile){
+      const b64=await fileToB64(imgFile);
+      const ext=imgFile.name.split('.').pop().toLowerCase().replace('jpg','jpeg');
+      const fname='qimg_'+Date.now()+'.'+ext;
+      imagePath='images/'+fname;
+      setProgress(progWrap,progBar,progText,50,'ছবি আপলোড হচ্ছে...');
+      const ok=await uploadFile(token,imagePath,b64,'Add quote image: '+fname);
+      if(!ok) throw new Error('ছবি আপলোড ব্যর্থ!');
+    }
+
+    const newQ={id:'q'+Date.now(),title,quote,attribution:document.getElementById(attribId).value.trim()||'',category:document.getElementById(catId).value,gradient:document.getElementById(gradId).value};
+    if(imagePath) newQ.image=imagePath;
+
+    setProgress(progWrap,progBar,progText,80,'সেভ হচ্ছে...');
+    const ex=await getFileSHA(token,jsonFile);
+    let list=[]; if(ex&&ex.content){try{list=JSON.parse(atob(ex.content.replace(/\n/g,'')));}catch(e){list=[];}}
+    list.unshift(newQ);
+    const ok2=await uploadFile(token,jsonFile,btoa(unescape(encodeURIComponent(JSON.stringify(list,null,2)))),'Add quote: '+title);
+    if(!ok2) throw new Error('সেভ ব্যর্থ!');
+
+    setProgress(progWrap,progBar,progText,100,'সম্পন্ন ✓');
+    showAlert('ok','✅ বাণী সফলভাবে যোগ হয়েছে! ১-২ মিনিটে সাইটে দেখা যাবে।');
+
+    document.getElementById(titleId).value='';
+    document.getElementById(quoteId).value='';
+    document.getElementById(attribId).value='';
+    if(imgFile===iqImgFile) clearIq(); else clearIns();
+    setTimeout(()=>document.getElementById(progWrap).style.display='none',2000);
+  }catch(e){
+    showAlert('err','❌ '+e.message);
+    document.getElementById(progWrap).style.display='none';
+  }
+}
+</script>
