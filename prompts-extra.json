@@ -1,10 +1,22 @@
 [
   {
+    "id": "pe1783266997730",
+    "title": "আকাশে মেঘের উপর",
+    "titleEn": "sky up",
+    "prompt": "© Amin Ai world.\n\"A surreal digital artwork of the young man from the image (dark hair, beard) sitting comfortably on a fluffy white cloud high in the sky. He is wearing a yellow hoodie, blue joggers, red and white sneakers, and a pastel-colored cap.with sunglass.  He is looking at his smartphone with a relaxed expression. The sky is a brilliant blue with soft sunlight and scattered white clouds, creating a dreamy and peaceful atmosphere. The lighting is soft and natural with slight glow effects on the clouds. Clean, modern 3D rendered style, like a polished digital poster or concept art. The text '' is written in a stylish font at the top.\"\nMaking a hyper resolution Ultra HD photo with same Face.",
+    "tool": "অন্যান্য",
+    "tags": [
+      "cinematic"
+    ],
+    "gradient": "linear-gradient(135deg,#FF6B9D,#FF9A5C)",
+    "image": "images/img_1783266994080.png"
+  },
+  {
     "id": "pe1783264351102",
-    "title": "বাংলাদেশের ম্যাপ",
+    "title": "à¦¬à¦¾à¦à¦²à¦¾à¦¦à§à¦¶à§à¦° à¦®à§à¦¯à¦¾à¦ª",
     "titleEn": "Bangladeshi map",
     "prompt": "Create a hyper-realistic, ultra-HD aerial fantasy artwork of Bangladesh shaped like a living island map, surrounded by winding rivers and lush green forests. The landscape is composed of vibrant rice fields, mangrove forests, canals, and waterways that perfectly form the outline of Bangladesh. Place the National Martyrs' Memorial (Savar) prominently in the northern region, the National Parliament Building (Jatiyo Sangsad Bhaban) in the central area, and the Sixty Dome Mosque (Shat Gombuj Mosque) in the southwest. A massive Bangladesh national flag waves proudly on a tall flagpole. Traditional wooden boats, colorful sailboats, cargo ships, and rickshaws travel through the rivers and village roads. Include a Royal Bengal Tiger near the mangrove forest to symbolize the Sundarbans. Add tiny villages, farmers, lush trees, and realistic water reflections. In the foreground, a beautiful young South Asian woman wearing a red floral salwar kameez with a royal blue dupatta and blue leggings sits gracefully on giant 3D stone letters spelling \"BANGLADESH\", smiling confidently at the camera. Dramatic monsoon clouds, soft cinematic daylight, volumetric lighting, realistic shadows, HDR, photorealistic textures, drone perspective, miniature world effect, vibrant natural colors, depth of field, ultra-detailed, 16K, masterpiece, travel poster aesthetic, national pride, Unreal Engine, Octane Render.",
-    "tool": "অন্যান্য",
+    "tool": "à¦à¦¨à§à¦¯à¦¾à¦¨à§à¦¯",
     "tags": [
       "adventure"
     ],
