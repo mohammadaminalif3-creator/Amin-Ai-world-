@@ -1,10 +1,22 @@
 [
   {
+    "id": "pe1783270485708",
+    "title": "সোস্যাল",
+    "titleEn": "social",
+    "prompt": "The Cinematic photo prompt 👇👇❤️\n\nPrompt (Recreate Similar Image Style):\nUltra-realistic cinematic personal branding portrait of a successful South Asian digital entrepreneur sitting confidently in a modern beige armchair, holding a smartphone and looking directly at the camera. He wears a fitted charcoal gray t-shirt, beige chinos, white sneakers, a smartwatch, and stylish blue mirrored sunglasses. Warm golden morning sunlight fills a cozy, elegant home office.\nBehind him, a giant floating social media profile interface inspired by a professional Facebook creator page dominates the background, displaying a verified creator profile with follower statistics, profile photos, posts, and digital branding elements. Soft fluffy clouds float around the interface, while a smiling sun illustration shines from the top corner. Blooming pink cherry blossom branches frame both sides of the composition.\nThe workspace includes motivational decor: stacked books labeled \"FOCUS,\" \"DISCIPLINE,\" and \"CONSISTENCY,\" a coffee mug with \"FOCUS • PLAN • EXECUTE • REPEAT,\" a glowing desk sign reading \"Stay Focused, Keep Growing,\" a professional camera, laptop, smartphone, small plants, and modern desk accessories. The atmosphere conveys productivity, personal growth, content creation, entrepreneurship, and success.\nPhotorealistic, hyper-detailed skin texture, realistic reflections on sunglasses, shallow depth of field, cinematic lighting, warm color grading, luxury lifestyle aesthetic, inspirational social media influencer branding, ultra-sharp focus, DSLR photography, 85mm lens, f/1.8, volumetric sunlight, bokeh background, 8K resolution, masterpiece quality, highly detailed environment, professional commercial advertising style, clean composition, motivational creator workspace, modern digital entrepreneur lifestyle.\nNegative Prompt: blurry, low resolution, extra fingers, distorted face, duplicate objects, bad anatomy, watermark, logo errors, cropped body, overexposed lighting, cartoon, painting, unrealistic proportions, messy background, text artifacts, low quality, noise, motion blur.",
+    "tool": "অন্যান্য",
+    "tags": [
+      "trending"
+    ],
+    "gradient": "linear-gradient(135deg,#1F2937,#F59E0B)",
+    "image": "images/img_1783270482331.jpeg"
+  },
+  {
     "id": "pe1783267989019",
-    "title": "সিনেমেটিক",
+    "title": "à¦¸à¦¿à¦¨à§à¦®à§à¦à¦¿à¦",
     "titleEn": "Cinematic",
     "prompt": "AI Image Prompt (Exact Scene Recreation)\nPrompt:\nCreate a hyper-realistic, ultra-HD 16K full-body studio portrait of the same man from the uploaded reference image, preserving his exact facial features, hairstyle, beard, skin tone, body proportions, expression, and identity with no changes. He is standing confidently in the center, looking directly at the camera with a calm, professional expression. He wears a bright yellow open button-up shirt over a teal blue crew-neck T-shirt, black straight-fit trousers, and clean white sneakers.\nBoth arms are slightly extended outward with open palms facing upward. A floating glossy blue-purple Meta-style sphere hovers above his left hand, while a glossy blue Facebook \"f\" logo sphere floats above his right hand. Elegant metallic gold ribbon confetti floats around him, creating a premium celebration atmosphere.\nThe background is a pure matte black seamless studio backdrop, making the colorful outfit and floating elements stand out dramatically. Soft cinematic three-point lighting, subtle rim light around the shoulders, realistic shadows, HDR lighting, ultra-detailed skin texture, sharp facial details, realistic fabric folds, premium commercial advertising photography, centered composition, shallow depth of field, high contrast, vibrant colors, photorealistic, DSLR quality, 85mm lens, f/2.0, ISO 100, professional studio lighting, masterpiece, award-winning photography, ultra-sharp focus, no blur, no watermark, no text, no extra people, no cropped body, full-body framing.",
-    "tool": "অন্যান্য",
+    "tool": "à¦à¦¨à§à¦¯à¦¾à¦¨à§à¦¯",
     "tags": [
       "cinematic"
     ],
@@ -13,10 +25,10 @@
   },
   {
     "id": "pe1783266997730",
-    "title": "à¦à¦à¦¾à¦¶à§ à¦®à§à¦à§à¦° à¦à¦ªà¦°",
+    "title": "Ã Â¦ÂÃ Â¦ÂÃ Â¦Â¾Ã Â¦Â¶Ã Â§Â Ã Â¦Â®Ã Â§ÂÃ Â¦ÂÃ Â§ÂÃ Â¦Â° Ã Â¦ÂÃ Â¦ÂªÃ Â¦Â°",
     "titleEn": "sky up",
-    "prompt": "Â© Amin Ai world.\n\"A surreal digital artwork of the young man from the image (dark hair, beard) sitting comfortably on a fluffy white cloud high in the sky. He is wearing a yellow hoodie, blue joggers, red and white sneakers, and a pastel-colored cap.with sunglass.  He is looking at his smartphone with a relaxed expression. The sky is a brilliant blue with soft sunlight and scattered white clouds, creating a dreamy and peaceful atmosphere. The lighting is soft and natural with slight glow effects on the clouds. Clean, modern 3D rendered style, like a polished digital poster or concept art. The text '' is written in a stylish font at the top.\"\nMaking a hyper resolution Ultra HD photo with same Face.",
-    "tool": "à¦à¦¨à§à¦¯à¦¾à¦¨à§à¦¯",
+    "prompt": "ÃÂ© Amin Ai world.\n\"A surreal digital artwork of the young man from the image (dark hair, beard) sitting comfortably on a fluffy white cloud high in the sky. He is wearing a yellow hoodie, blue joggers, red and white sneakers, and a pastel-colored cap.with sunglass.  He is looking at his smartphone with a relaxed expression. The sky is a brilliant blue with soft sunlight and scattered white clouds, creating a dreamy and peaceful atmosphere. The lighting is soft and natural with slight glow effects on the clouds. Clean, modern 3D rendered style, like a polished digital poster or concept art. The text '' is written in a stylish font at the top.\"\nMaking a hyper resolution Ultra HD photo with same Face.",
+    "tool": "Ã Â¦ÂÃ Â¦Â¨Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¯",
     "tags": [
       "cinematic"
     ],
@@ -25,10 +37,10 @@
   },
   {
     "id": "pe1783264351102",
-    "title": "Ã Â¦Â¬Ã Â¦Â¾Ã Â¦ÂÃ Â¦Â²Ã Â¦Â¾Ã Â¦Â¦Ã Â§ÂÃ Â¦Â¶Ã Â§ÂÃ Â¦Â° Ã Â¦Â®Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Âª",
+    "title": "ÃÂ ÃÂ¦ÃÂ¬ÃÂ ÃÂ¦ÃÂ¾ÃÂ ÃÂ¦ÃÂÃÂ ÃÂ¦ÃÂ²ÃÂ ÃÂ¦ÃÂ¾ÃÂ ÃÂ¦ÃÂ¦ÃÂ ÃÂ§ÃÂÃÂ ÃÂ¦ÃÂ¶ÃÂ ÃÂ§ÃÂÃÂ ÃÂ¦ÃÂ° ÃÂ ÃÂ¦ÃÂ®ÃÂ ÃÂ§ÃÂÃÂ ÃÂ¦ÃÂ¯ÃÂ ÃÂ¦ÃÂ¾ÃÂ ÃÂ¦ÃÂª",
     "titleEn": "Bangladeshi map",
     "prompt": "Create a hyper-realistic, ultra-HD aerial fantasy artwork of Bangladesh shaped like a living island map, surrounded by winding rivers and lush green forests. The landscape is composed of vibrant rice fields, mangrove forests, canals, and waterways that perfectly form the outline of Bangladesh. Place the National Martyrs' Memorial (Savar) prominently in the northern region, the National Parliament Building (Jatiyo Sangsad Bhaban) in the central area, and the Sixty Dome Mosque (Shat Gombuj Mosque) in the southwest. A massive Bangladesh national flag waves proudly on a tall flagpole. Traditional wooden boats, colorful sailboats, cargo ships, and rickshaws travel through the rivers and village roads. Include a Royal Bengal Tiger near the mangrove forest to symbolize the Sundarbans. Add tiny villages, farmers, lush trees, and realistic water reflections. In the foreground, a beautiful young South Asian woman wearing a red floral salwar kameez with a royal blue dupatta and blue leggings sits gracefully on giant 3D stone letters spelling \"BANGLADESH\", smiling confidently at the camera. Dramatic monsoon clouds, soft cinematic daylight, volumetric lighting, realistic shadows, HDR, photorealistic textures, drone perspective, miniature world effect, vibrant natural colors, depth of field, ultra-detailed, 16K, masterpiece, travel poster aesthetic, national pride, Unreal Engine, Octane Render.",
-    "tool": "Ã Â¦ÂÃ Â¦Â¨Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¯",
+    "tool": "ÃÂ ÃÂ¦ÃÂÃÂ ÃÂ¦ÃÂ¨ÃÂ ÃÂ§ÃÂÃÂ ÃÂ¦ÃÂ¯ÃÂ ÃÂ¦ÃÂ¾ÃÂ ÃÂ¦ÃÂ¨ÃÂ ÃÂ§ÃÂÃÂ ÃÂ¦ÃÂ¯",
     "tags": [
       "adventure"
     ],
