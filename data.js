@@ -218,3 +218,45 @@ const TOOLS = [
   {id:"t24",name:"Meta AI",category:"টেক্সট / চ্যাট",desc:"Meta-এর AI — WhatsApp, Instagram, Facebook-এ সরাসরি ব্যবহার করা যায়।",link:"https://www.meta.ai",free:true},
   {id:"t25",name:"Copilot (Microsoft)",category:"টেক্সট / চ্যাট",desc:"Microsoft-এর AI — Windows, Office 365 ও Bing-এর সাথে ইন্টিগ্রেটেড।",link:"https://copilot.microsoft.com",free:true}
 ];
+
+// ===== ইসলামিক লিংক =====
+const ISLAMIC_LINKS = [
+  {id:"il1",name:"আল কাউসার",link:"https://www.alkawsar.com/bn/article/2998/",desc:"ইসলামিক প্রবন্ধ ও গবেষণা",icon:"📖"},
+  {id:"il2",name:"iHadis",link:"https://ihadis.com",desc:"হাদিসের বিশাল ডিজিটাল সংকলন",icon:"📚"},
+  {id:"il3",name:"কোরআনের বাণী",link:"https://www.quranerbani.com/?m=1",desc:"পবিত্র কোরআনের বাণী বাংলায়",icon:"🕌"},
+  {id:"il4",name:"Quran.com",link:"https://quran.com",desc:"বিশ্বের সেরা কোরআন অ্যাপ ও ওয়েবসাইট",icon:"📿"},
+  {id:"il5",name:"IslamQA",link:"https://islamqa.info/bn",desc:"ইসলামিক প্রশ্ন ও উত্তর বাংলায়",icon:"❓"},
+  {id:"il6",name:"Sunnah.com",link:"https://sunnah.com",desc:"হাদিসের সম্পূর্ণ সংকলন",icon:"🌙"}
+];
+
+// ===== কোরআন ও হাদিসের বাণী =====
+const ISLAMIC_QUOTES = [
+  {id:"iq01",title:"সবর ও শুকরিয়া",quote:"নিশ্চয়ই কষ্টের সাথে স্বস্তি আছে। নিশ্চয়ই কষ্টের সাথে স্বস্তি আছে।",attribution:"সূরা আশ-শারহ: ৫-৬",category:"quran",gradient:"linear-gradient(135deg,#065F46,#0D9488)"},
+  {id:"iq02",title:"আল্লাহর উপর তাওয়াক্কুল",quote:"যে ব্যক্তি আল্লাহর উপর ভরসা করে, তার জন্য আল্লাহই যথেষ্ট।",attribution:"সূরা আত-তালাক: ৩",category:"quran",gradient:"linear-gradient(135deg,#1E3A8A,#3B82F6)"},
+  {id:"iq03",title:"ধৈর্যের পুরস্কার",quote:"নিশ্চয়ই আল্লাহ ধৈর্যশীলদের সাথে আছেন।",attribution:"সূরা আল-বাকারা: ১৫৩",category:"quran",gradient:"linear-gradient(135deg,#78350F,#D97706)"},
+  {id:"iq04",title:"দু'আর গুরুত্ব",quote:"তোমরা আমাকে ডাকো, আমি তোমাদের ডাকে সাড়া দেবো।",attribution:"সূরা গাফির: ৬০",category:"quran",gradient:"linear-gradient(135deg,#4C1D95,#7C3AED)"},
+  {id:"iq05",title:"আল্লাহর রহমত",quote:"আমার রহমত সব কিছুকে পরিব্যাপ্ত করে আছে।",attribution:"সূরা আল-আরাফ: ১৫৬",category:"quran",gradient:"linear-gradient(135deg,#065F46,#10B981)"},
+  {id:"iq06",title:"জ্ঞান অর্জন করো",quote:"জ্ঞান অর্জন করা প্রত্যেক মুসলিমের উপর ফরয।",attribution:"হাদিস — ইবনে মাজাহ",category:"hadith",gradient:"linear-gradient(135deg,#1E3A8A,#0EA5E9)"},
+  {id:"iq07",title:"উত্তম চরিত্র",quote:"মুমিনদের মধ্যে সে ব্যক্তি সবচেয়ে পরিপূর্ণ ঈমানদার, যে তাদের মধ্যে সবচেয়ে উত্তম চরিত্রের অধিকারী।",attribution:"হাদিস — তিরমিযী",category:"hadith",gradient:"linear-gradient(135deg,#92400E,#F59E0B)"},
+  {id:"iq08",title:"মুচকি হাসি",quote:"তোমার ভাইয়ের সামনে মুচকি হাসা সদকাস্বরূপ।",attribution:"হাদিস — তিরমিযী",category:"hadith",gradient:"linear-gradient(135deg,#065F46,#34D399)"},
+  {id:"iq09",title:"সত্যবাদিতা",quote:"সত্যবাদিতাকে অবলম্বন কর, কারণ সত্যবাদিতা নেক কাজের দিকে পথ দেখায়।",attribution:"হাদিস — বুখারী ও মুসলিম",category:"hadith",gradient:"linear-gradient(135deg,#1F2937,#374151)"},
+  {id:"iq10",title:"পরিষ্কার-পরিচ্ছন্নতা",quote:"পরিষ্কার-পরিচ্ছন্নতা ঈমানের অর্ধেক।",attribution:"হাদিস — মুসলিম",category:"hadith",gradient:"linear-gradient(135deg,#0C4A6E,#38BDF8)"},
+  {id:"iq11",title:"মায়ের মর্যাদা",quote:"জান্নাত মায়েদের পায়ের নিচে।",attribution:"হাদিস — নাসায়ী",category:"hadith",gradient:"linear-gradient(135deg,#BE185D,#F9A8D4)"},
+  {id:"iq12",title:"আল্লাহর ভালোবাসা",quote:"যে ব্যক্তি আল্লাহর সাথে সাক্ষাৎ পছন্দ করে, আল্লাহও তার সাথে সাক্ষাৎ পছন্দ করেন।",attribution:"হাদিস — বুখারী",category:"hadith",gradient:"linear-gradient(135deg,#065F46,#6EE7B7)"}
+];
+
+// ===== জীবন, স্বপ্ন ও প্রেরণার বাণী =====
+const INSPIRATION_QUOTES = [
+  {id:"ins01",title:"স্বপ্ন দেখো",quote:"যে স্বপ্ন দেখার সাহস রাখে, সে পৃথিবীকে বদলে দেওয়ার শক্তি রাখে।",attribution:"— জীবনের পথে",category:"dream",gradient:"linear-gradient(135deg,#7C3AED,#4DE8FF)"},
+  {id:"ins02",title:"ব্যর্থতা থেকে শেখো",quote:"ব্যর্থতা মানে শেষ নয়, এটা একটা নতুন শুরুর সুযোগ। উঠে দাঁড়াও, আবার চেষ্টা করো।",attribution:"— অনুপ্রেরণার পথে",category:"life",gradient:"linear-gradient(135deg,#DC2626,#F97316)"},
+  {id:"ins03",title:"সময়ের মূল্য",quote:"সময় কখনো ফিরে আসে না। আজকের প্রতিটা মুহূর্তকে সোনার মতো কাজে লাগাও।",attribution:"— জীবনের সত্য",category:"life",gradient:"linear-gradient(135deg,#92400E,#FCD34D)"},
+  {id:"ins04",title:"পরিশ্রমই সাফল্য",quote:"মেধার চেয়ে পরিশ্রম বড়। কঠোর পরিশ্রমই তোমাকে সাফল্যের শীর্ষে পৌঁছে দেবে।",attribution:"— সাফল্যের রহস্য",category:"success",gradient:"linear-gradient(135deg,#1E3A8A,#F59E0B)"},
+  {id:"ins05",title:"নিজেকে বিশ্বাস করো",quote:"পৃথিবীর সবচেয়ে বড় শক্তি হলো নিজের উপর বিশ্বাস। তুমি পারবে — শুধু বিশ্বাস রাখো।",attribution:"— আত্মবিশ্বাসের পথ",category:"motivation",gradient:"linear-gradient(135deg,#065F46,#10B981)"},
+  {id:"ins06",title:"মায়ের ভালোবাসা",quote:"মায়ের ভালোবাসা পৃথিবীর সবচেয়ে নিঃস্বার্থ ভালোবাসা। এই ভালোবাসার কোনো বিনিময় নেই।",attribution:"— জীবনের সত্য",category:"life",gradient:"linear-gradient(135deg,#BE185D,#F9A8D4)"},
+  {id:"ins07",title:"বাংলাদেশ আমার অহংকার",quote:"এই সবুজ মাটি, এই নীল আকাশ, এই পদ্মার স্রোত — আমার বাংলাদেশ, আমার গর্ব।",attribution:"— দেশপ্রেম",category:"patriotic",gradient:"linear-gradient(135deg,#166534,#DC2626)"},
+  {id:"ins08",title:"একুশের প্রতিজ্ঞা",quote:"ভাষার জন্য যারা রক্ত দিয়েছেন, তাদের স্বপ্ন পূরণ করাই আমাদের দায়িত্ব।",attribution:"— একুশের চেতনা",category:"patriotic",gradient:"linear-gradient(135deg,#DC2626,#1F2937)"},
+  {id:"ins09",title:"স্বপ্নের পথে",quote:"রাতের অন্ধকার কাটলেই ভোরের আলো আসে। তোমার কঠিন সময়ও একদিন শেষ হবে।",attribution:"— আশার আলো",category:"dream",gradient:"linear-gradient(135deg,#1E1B4B,#F97316)"},
+  {id:"ins10",title:"শিক্ষাই আলো",quote:"একটি শিক্ষিত মন পৃথিবীর সবচেয়ে শক্তিশালী অস্ত্র। জ্ঞান অর্জন করো, পৃথিবী বদলাও।",attribution:"— শিক্ষার আলো",category:"education",gradient:"linear-gradient(135deg,#1E3A8A,#7C3AED)"},
+  {id:"ins11",title:"প্রকৃত বন্ধুত্ব",quote:"সত্যিকারের বন্ধু সে, যে বিপদে পাশে থাকে। সুখের দিনের বন্ধু অনেক পাওয়া যায়।",attribution:"— জীবনের পাঠ",category:"life",gradient:"linear-gradient(135deg,#0C4A6E,#34D399)"},
+  {id:"ins12",title:"ছোট ছোট পদক্ষেপ",quote:"প্রতিদিন একটু একটু এগিয়ে যাও। বড় পরিবর্তন আসে ছোট ছোট পদক্ষেপ থেকে।",attribution:"— জীবনের দর্শন",category:"motivation",gradient:"linear-gradient(135deg,#7C5CFF,#4DE8FF)"}
+];
