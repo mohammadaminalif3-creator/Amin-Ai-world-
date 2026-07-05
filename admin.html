@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — Amin AI World</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0C12;--card:#151926;--border:#232838;--violet:#7C5CFF;--cyan:#4DE8FF;--text:#E9EBF2;--muted:#8B93A7;--green:#27C93F;--red:#FF5F56;--orange:#F97316;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Hind Siliguri','Inter',sans-serif;min-height:100vh;}
+a{color:inherit;}
+input,textarea,select,button{font-family:inherit;}
+
+/* LOGIN */
+#loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:radial-gradient(circle at 50% 30%,rgba(124,92,255,.2),transparent 60%),var(--bg);}
+.login-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:44px 36px;width:100%;max-width:380px;text-align:center;}
+.login-logo{font-family:'Space Grotesk';font-size:1.7rem;font-weight:700;margin-bottom:6px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.login-logo-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#7C5CFF,#4DE8FF);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;color:#0A0C12;}
+.login-logo span{color:var(--cyan);}
+.login-sub{color:var(--muted);font-size:.85rem;margin-bottom:30px;}
+.inp{width:100%;background:#0d0f18;border:1px solid var(--border);border-radius:9px;padding:12px 14px;color:var(--text);font-size:.95rem;margin-bottom:10px;outline:none;transition:border-color .15s;}
+.inp:focus{border-color:var(--violet);}
+.btn-login{width:100%;background:var(--violet);color:#fff;border:none;padding:13px;border-radius:9px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:4px;transition:background .15s;}
+.btn-login:hover{background:#6a4ce0;}
+.err{color:var(--red);font-size:.82rem;margin-top:8px;display:none;}
+.login-hint{color:var(--muted);font-size:.75rem;margin-top:20px;}
+.login-hint a{color:var(--cyan);}
+
+/* MAIN */
+#adminPanel{display:none;}
+.topbar{background:rgba(10,12,18,.95);border-bottom:1px solid var(--border);padding:13px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);}
+.topbar-logo{font-family:'Space Grotesk';font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:8px;}
+.topbar-logo span{color:var(--cyan);}
+.topbar-right{display:flex;gap:8px;align-items:center;}
+.site-btn{color:var(--cyan);font-size:.8rem;text-decoration:none;padding:6px 12px;border:1px solid var(--border);border-radius:6px;}
+.logout-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:6px;cursor:pointer;font-size:.82rem;}
+
+.wrap{max-width:760px;margin:0 auto;padding:22px 16px;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;}
+.stat-n{font-family:'Space Grotesk';font-size:1.6rem;font-weight:700;color:var(--cyan);}
+.stat-l{color:var(--muted);font-size:.7rem;margin-top:2px;}
+
+/* TOKEN */
+.token-box{background:rgba(124,92,255,.08);border:1px solid rgba(124,92,255,.25);border-radius:12px;padding:16px;margin-bottom:20px;}
+.token-box h3{font-size:.88rem;font-weight:700;margin-bottom:5px;}
+.token-box p{font-size:.78rem;color:var(--muted);margin-bottom:10px;line-height:1.5;}
+.token-row{display:flex;gap:8px;}
+.token-inp{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 12px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.78rem;outline:none;}
+.token-inp:focus{border-color:var(--violet);}
+.btn-sm{background:var(--violet);color:#fff;border:none;padding:8px 14px;border-radius:7px;cursor:pointer;font-size:.8rem;font-weight:600;white-space:nowrap;}
+.token-status{font-size:.75rem;margin-top:6px;}
+
+/* ALERT */
+.alert{border-radius:10px;padding:13px 15px;margin-bottom:14px;font-size:.85rem;display:none;}
+.alert.ok{background:rgba(39,201,63,.1);border:1px solid rgba(39,201,63,.25);color:var(--green);}
+.alert.err{background:rgba(255,95,86,.1);border:1px solid rgba(255,95,86,.25);color:var(--red);}
+
+/* TABS */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;}
+.tab{padding:9px 16px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;font-size:.82rem;font-weight:600;white-space:nowrap;transition:all .15s;}
+.tab.active{background:var(--violet);border-color:var(--violet);color:#fff;}
+.tc{display:none;}
+.tc.active{display:block;}
+
+/* FORM */
+.label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:5px;font-weight:600;}
+.finp{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:.88rem;outline:none;transition:border-color .15s;margin-bottom:14px;}
+.finp:focus{border-color:var(--violet);}
+textarea.finp{min-height:90px;resize:vertical;font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:1.5;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:540px){.g2{grid-template-columns:1fr;}}
+.frow{margin-bottom:0;}
+
+/* UPLOAD AREA */
+.upload-area{border:2px dashed var(--border);border-radius:12px;padding:28px 20px;text-align:center;cursor:pointer;background:var(--card);margin-bottom:12px;transition:border-color .2s;}
+.upload-area:hover,.upload-area.drag{border-color:var(--violet);}
+.upload-area .ui{font-size:2.2rem;margin-bottom:8px;}
+.upload-area h4{font-size:.9rem;font-weight:600;margin-bottom:3px;}
+.upload-area p{font-size:.75rem;color:var(--muted);}
+.preview-wrap{display:none;margin-bottom:12px;position:relative;}
+.preview-wrap img{width:100%;max-height:240px;object-fit:cover;border-radius:10px;border:1px solid var(--border);}
+.remove-img{position:absolute;top:8px;right:8px;background:rgba(255,95,86,.9);color:#fff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;}
+
+/* PROGRESS */
+.prog-wrap{display:none;margin-bottom:12px;}
+.prog-bg{background:var(--border);border-radius:99px;height:5px;overflow:hidden;}
+.prog-bar{background:var(--violet);height:100%;border-radius:99px;transition:width .3s;width:0%;}
+.prog-text{font-size:.75rem;color:var(--muted);margin-top:5px;}
+
+/* TAG CHIPS */
+.tag-row{display:flex;flex-wrap:wrap;gap:5px;margin:-4px 0 14px;}
+.tg-chip{padding:4px 11px;border-radius:99px;border:1px solid var(--border);color:var(--muted);font-size:.72rem;cursor:pointer;background:var(--card);}
+.tg-chip:hover{border-color:var(--cyan);color:var(--cyan);}
+
+/* SUBMIT */
+.btn-submit{width:100%;border:none;padding:13px;border-radius:9px;font-size:.95rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .15s;}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;}
+.btn-green{background:var(--green);color:#fff;}
+.btn-violet{background:var(--violet);color:#fff;}
+
+/* GUIDE */
+.guide-list{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.guide-item{display:flex;gap:14px;padding:16px;border-bottom:1px solid var(--border);}
+.guide-item:last-child{border-bottom:none;}
+.g-num{width:28px;height:28px;border-radius:50%;background:var(--violet);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0;}
+.g-info h4{font-size:.88rem;font-weight:600;margin-bottom:3px;}
+.g-info p{color:var(--muted);font-size:.78rem;line-height:1.5;}
+.g-info code{background:var(--bg);padding:2px 7px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--cyan);}
+
+/* SETTINGS */
+.settings-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:16px;}
+.settings-card h3{font-family:'Space Grotesk';font-size:.95rem;font-weight:700;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo"><div class="login-logo-mark">A</div>Amin AI <span>World</span></div>
+    <p class="login-sub">🔐 Admin Panel — শুধুমাত্র অ্যাডমিনের জন্য</p>
+    <input class="inp" type="email" id="emailInput" placeholder="ইমেইল দিন..." autocomplete="email">
+    <input class="inp" type="password" id="pwdInput" placeholder="পাসওয়ার্ড দিন..." autocomplete="current-password">
+    <button class="btn-login" onclick="doLogin()">প্রবেশ করুন →</button>
+    <p class="err" id="loginErr">❌ ভুল ইমেইল বা পাসওয়ার্ড!</p>
+    <p class="login-hint">পাসওয়ার্ড ভুলে গেছেন? <a href="index.html">সাইটে ফিরুন</a></p>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel">
+  <div class="topbar">
+    <div class="topbar-logo"><div style="width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#7C5CFF,#4DE8FF);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:#0A0C12;">A</div>Amin AI <span>World</span> — Admin</div>
+    <div class="topbar-right">
+      <a class="site-btn" href="index.html" target="_blank">🌐 সাইট দেখুন</a>
+      <button class="logout-btn" onclick="doLogout()">লগআউট</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="stat-n" id="statP">98+</div><div class="stat-l">প্রম্পট</div></div>
+      <div class="stat"><div class="stat-n">25</div><div class="stat-l">AI টুলস</div></div>
+      <div class="stat"><div class="stat-n">10+</div><div class="stat-l">গান</div></div>
+    </div>
+
+    <div class="token-box">
+      <h3>🔑 GitHub Token</h3>
+      <p>সরাসরি সাইটে ছবি ও কনটেন্ট আপলোড করতে GitHub Personal Access Token লাগবে। <a href="https://github.com/settings/tokens/new" target="_blank" style="color:var(--cyan)">এখানে ক্লিক করে তৈরি করুন</a> (repo > contents:write সিলেক্ট করুন)।</p>
+      <div class="token-row">
+        <input class="token-inp" type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+        <button class="btn-sm" onclick="saveToken()">সেভ</button>
+      </div>
+      <p class="token-status" id="tokenStatus"></p>
+    </div>
+
+    <div class="alert ok" id="alertOk"></div>
+    <div class="alert err" id="alertErr"></div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('t-prompt',this)">📸 প্রম্পট যোগ</button>
+      <button class="tab" onclick="showTab('t-music',this)">🎵 গান যোগ</button>
+      <button class="tab" onclick="showTab('t-profile',this)">👤 প্রোফাইল ছবি</button>
+      <button class="tab" onclick="showTab('t-settings',this)">⚙️ সেটিংস</button>
+      <button class="tab" onclick="showTab('t-guide',this)">📖 গাইড</button>
+    </div>
+
+    <!-- ADD PROMPT -->
+    <div class="tc active" id="t-prompt">
+      <div class="upload-area" id="imgUploadArea" onclick="document.getElementById('imgFile').click()" ondragover="dragOver(event)" ondrop="dropFile(event)">
+        <div class="ui">🖼️</div>
+        <h4>ছবি বেছে নিন বা এখানে ড্র্যাগ করুন</h4>
+        <p>JPG, PNG, WEBP — সর্বোচ্চ ৫ MB</p>
+      </div>
+      <input type="file" id="imgFile" accept="image/*" style="display:none" onchange="onImgSel(this)">
+      <div class="preview-wrap" id="imgPreviewWrap">
+        <img id="imgPreviewEl" alt="preview">
+        <button class="remove-img" onclick="clearImg()">✕</button>
+      </div>
+      <div class="prog-wrap" id="imgProgWrap"><div class="prog-bg"><div class="prog-bar" id="imgProgBar"></div></div><p class="prog-text" id="imgProgText"></p></div>
+
+      <div class="g2">
+        <div class="frow"><label class="label">শিরোনাম (বাংলা) *</label><input class="finp" type="text" id="pTitleBn" placeholder="যেমন: রোমান্টিক সানসেট কাপল"></div>
+        <div class="frow"><label class="label">Title (English)</label><input class="finp" type="text" id="pTitleEn" placeholder="Romantic Sunset Couple"></div>
+      </div>
+      <label class="label">প্রম্পট টেক্সট (ইংরেজিতে) *</label>
+      <textarea class="finp" id="pPromptText" placeholder="Photorealistic portrait of a beautiful South Asian woman in red saree standing by river at golden hour, cinematic lighting, 8K..."></textarea>
+      <div class="g2">
+        <div class="frow">
+          <label class="label">AI টুল</label>
+          <select class="finp" id="pTool">
+            <option>Midjourney</option><option>DALL·E 3</option><option>Stable Diffusion</option>
+            <option>Leonardo AI</option><option>Kling AI</option><option>Ideogram</option>
+            <option>Adobe Firefly</option><option>অন্যান্য</option>
+          </select>
+        </div>
+        <div class="frow">
+          <label class="label">থিম রঙ</label>
+          <select class="finp" id="pGrad">
+            <option value="linear-gradient(135deg,#FF6B9D,#FF9A5C)">🌸 গোলাপি সানসেট</option>
+            <option value="linear-gradient(135deg,#7C5CFF,#4DE8FF)">💜 ভায়োলেট</option>
+            <option value="linear-gradient(135deg,#0EA5E9,#10B981)">🩵 নীল সবুজ</option>
+            <option value="linear-gradient(135deg,#FF2D55,#1C1C3A)">❤️ লাল রাত</option>
+            <option value="linear-gradient(135deg,#F97316,#FCD34D)">🌅 কমলা সোনা</option>
+            <option value="linear-gradient(135deg,#B22222,#FFD700)">👑 বিবাহ লাল</option>
+            <option value="linear-gradient(135deg,#1E3A8A,#60A5FA)">🌊 গভীর নীল</option>
+            <option value="linear-gradient(135deg,#166534,#FCD34D)">🌿 সবুজ সোনা</option>
+            <option value="linear-gradient(135deg,#6B21A8,#EC4899)">🪄 বেগুনি গোলাপি</option>
+            <option value="linear-gradient(135deg,#1F2937,#F59E0B)">🌙 অন্ধকার সোনা</option>
+          </select>
+        </div>
+      </div>
+      <label class="label">ট্যাগ (কমা দিয়ে আলাদা করুন)</label>
+      <input class="finp" type="text" id="pTags" placeholder="portrait, romantic, bangla, sunset">
+      <div class="tag-row">
+        <span style="font-size:.72rem;color:var(--muted)">দ্রুত যোগ:</span>
+        <span class="tg-chip" onclick="addTag('portrait')">portrait</span>
+        <span class="tg-chip" onclick="addTag('romantic')">romantic</span>
+        <span class="tg-chip" onclick="addTag('bangla')">bangla</span>
+        <span class="tg-chip" onclick="addTag('indian')">indian</span>
+        <span class="tg-chip" onclick="addTag('couple')">couple</span>
+        <span class="tg-chip" onclick="addTag('sad')">sad</span>
+        <span class="tg-chip" onclick="addTag('love')">love</span>
+        <span class="tg-chip" onclick="addTag('cinematic')">cinematic</span>
+        <span class="tg-chip" onclick="addTag('adventure')">adventure</span>
+        <span class="tg-chip" onclick="addTag('funny')">funny</span>
+        <span class="tg-chip" onclick="addTag('trending')">trending</span>
+        <span class="tg-chip" onclick="addTag('fantasy')">fantasy</span>
+      </div>
+      <button class="btn-submit btn-green" id="promptSubmitBtn" onclick="submitPrompt()">✅ সাইটে যোগ করুন</button>
+    </div>
+
+    <!-- ADD MUSIC -->
+    <div class="tc" id="t-music">
+      <p style="color:var(--muted);font-size:.85rem;margin-bottom:18px;">আপনার YouTube চ্যানেলের নতুন গান এখানে যোগ করুন।</p>
+      <label class="label">গানের শিরোনাম *</label>
+      <input class="finp" type="text" id="mTitle" placeholder="যেমন: নতুন গানের নাম">
+      <label class="label">YouTube ভিডিও লিংক অথবা ID *</label>
+      <input class="finp" type="text" id="mYoutubeId" placeholder="https://youtu.be/XXXX অথবা শুধু ID: XXXX">
+      <div class="prog-wrap" id="mProgWrap"><div class="prog-bg"><div class="prog-bar" id="mProgBar"></div></div><p class="prog-text" id="mProgText"></p></div>
+      <label class="label">ক্যাটাগরি</label>
+      <select class="finp" id="mCat">
+        <option value="folk">লোকগীতি</option>
+        <option value="romantic">রোমান্টিক</option>
+        <option value="emotional">আবেগময়</option>
+        <option value="social">সামাজিক</option>
+        <option value="inspirational">অনুপ্রেরণামূলক</option>
+      </select>
+      <div id="musicPreview" style="margin-bottom:14px;display:none;">
+        <label class="label">প্রিভিউ:</label>
+        <img id="musicThumb" style="width:100%;max-height:180px;object-fit:cover;border-radius:10px;border:1px solid var(--border);" alt="thumbnail">
+      </div>
+      <button class="btn-submit btn-green" id="musicSubmitBtn" onclick="submitMusic()">🎵 গান যোগ করুন</button>
+    </div>
+
+    <!-- PROFILE PIC -->
+    <div class="tc" id="t-profile">
+      <div class="upload-area" id="profUploadArea" onclick="document.getElementById('profFile').click()">
+        <div class="ui">👤</div>
+        <h4>প্রোফাইল ছবি বেছে নিন</h4>
+        <p>আপনার সেরা ছবিটা দিন — সাইটের প্রোফাইল সেকশনে দেখাবে</p>
+      </div>
+      <input type="file" id="profFile" accept="image/*" style="display:none" onchange="onProfSel(this)">
+      <div class="preview-wrap" id="profPreviewWrap">
+        <img id="profPreviewEl" alt="profile" style="max-height:300px;">
+        <button class="remove-img" onclick="clearProf()">✕</button>
+      </div>
+      <div class="prog-wrap" id="profProgWrap"><div class="prog-bg"><div class="prog-bar" id="profProgBar"></div></div><p class="prog-text" id="profProgText"></p></div>
+      <button class="btn-submit btn-violet" id="profSubmitBtn" onclick="submitProfile()">👤 প্রোফাইল ছবি আপডেট করুন</button>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="tc" id="t-settings">
+      <div class="settings-card">
+        <h3>🔐 Admin লগইন পরিবর্তন করুন</h3>
+        <label class="label">নতুন ইমেইল</label>
+        <input class="finp" type="email" id="newEmail" placeholder="admin@aminaiworld.com">
+        <label class="label">নতুন পাসওয়ার্ড</label>
+        <input class="finp" type="password" id="newPwd" placeholder="শক্তিশালী পাসওয়ার্ড দিন">
+        <label class="label">পাসওয়ার্ড নিশ্চিত করুন</label>
+        <input class="finp" type="password" id="confirmPwd" placeholder="আবার দিন">
+        <button class="btn-submit btn-violet" onclick="saveCredentials()">✅ পরিবর্তন সেভ করুন</button>
+      </div>
+      <div class="settings-card">
+        <h3>🗑️ Extra কনটেন্ট রিসেট করুন</h3>
+        <p style="color:var(--muted);font-size:.82rem;margin-bottom:14px;">Admin Panel থেকে যোগ করা সব প্রম্পট ও গান মুছে ফেলতে চাইলে:</p>
+        <button class="btn-submit" style="background:var(--red);color:#fff;" onclick="resetExtra()">🗑️ সব Extra কনটেন্ট মুছুন</button>
+      </div>
+    </div>
+
+    <!-- GUIDE -->
+    <div class="tc" id="t-guide">
+      <div class="guide-list">
+        <div class="guide-item"><div class="g-num">১</div><div class="g-info"><h4>GitHub Token তৈরি করুন</h4><p><a href="https://github.com/settings/tokens/new" target="_blank" style="color:var(--cyan)">github.com/settings/tokens/new</a> → Note: "Amin AI World" → <code>repo</code> scope → Generate → Token কপি করে উপরে বসান।</p></div></div>
+        <div class="guide-item"><div class="g-num">২</div><div class="g-info"><h4>প্রম্পট যোগ করুন</h4><p>"প্রম্পট যোগ" ট্যাবে যান → ছবি সিলেক্ট করুন → ফর্ম পূরণ করুন → "সাইটে যোগ করুন" চাপুন → ১-২ মিনিটে সাইটে দেখা যাবে।</p></div></div>
+        <div class="guide-item"><div class="g-num">৩</div><div class="g-info"><h4>গান যোগ করুন</h4><p>"গান যোগ" ট্যাবে যান → YouTube লিংক দিন → শিরোনাম ও ক্যাটাগরি দিন → "গান যোগ করুন" চাপুন। সাইটের বিনোদন সেকশনে দেখা যাবে।</p></div></div>
+        <div class="guide-item"><div class="g-num">৪</div><div class="g-info"><h4>প্রোফাইল ছবি আপডেট করুন</h4><p>"প্রোফাইল ছবি" ট্যাবে যান → আপনার ছবি সিলেক্ট করুন → "আপডেট" চাপুন। সাইটের প্রোফাইল সেকশনে নতুন ছবি দেখা যাবে।</p></div></div>
+        <div class="guide-item"><div class="g-num">৫</div><div class="g-info"><h4>Admin লিংক মনে রাখুন</h4><p>Admin Panel: <code>mohammadaminalif3-creator.github.io/Amin-Ai-world-/admin.html</code><br>ডিফল্ট ইমেইল: <code>admin@aminaiworld.com</code> | পাসওয়ার্ড: <code>Amin@2024</code></p></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const REPO = 'mohammadaminalif3-creator/Amin-Ai-world-';
+const BRANCH = 'main';
+const DEFAULT_EMAIL = 'admin@aminaiworld.com';
+const DEFAULT_PWD = 'Amin@2024';
+
+let selImgFile = null, selProfFile = null;
+
+// ===== AUTH =====
+function getAdminEmail(){ return localStorage.getItem('adminEmail') || DEFAULT_EMAIL; }
+function getAdminPwd(){ return localStorage.getItem('adminPwd') || DEFAULT_PWD; }
+
+function doLogin(){
+  const email = document.getElementById('emailInput').value.trim();
+  const pwd = document.getElementById('pwdInput').value;
+  if(email === getAdminEmail() && pwd === getAdminPwd()){
+    sessionStorage.setItem('adminOk','1');
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('adminPanel').style.display='block';
+    loadToken();
+  } else {
+    document.getElementById('loginErr').style.display='block';
+    setTimeout(()=>document.getElementById('loginErr').style.display='none',2500);
+  }
+}
+function doLogout(){
+  sessionStorage.removeItem('adminOk');
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('adminPanel').style.display='none';
+  document.getElementById('emailInput').value='';
+  document.getElementById('pwdInput').value='';
+}
+document.getElementById('pwdInput').addEventListener('keypress',e=>{if(e.key==='Enter')doLogin();});
+document.getElementById('emailInput').addEventListener('keypress',e=>{if(e.key==='Enter')doLogin();});
+if(sessionStorage.getItem('adminOk')){ document.getElementById('loginScreen').style.display='none'; document.getElementById('adminPanel').style.display='block'; loadToken(); }
+
+// ===== TOKEN =====
+function loadToken(){
+  const t = localStorage.getItem('ghToken');
+  if(t){ document.getElementById('tokenInput').value=t; document.getElementById('tokenStatus').innerHTML='<span style="color:var(--green)">✅ Token সেট আছে</span>'; }
+}
+function saveToken(){
+  const t = document.getElementById('tokenInput').value.trim();
+  if(!t){ showAlert('err','Token দিন!'); return; }
+  localStorage.setItem('ghToken',t);
+  document.getElementById('tokenStatus').innerHTML='<span style="color:var(--green)">✅ Token সেভ হয়েছে!</span>';
+}
+function getToken(){ return localStorage.getItem('ghToken'); }
+
+// ===== TABS =====
+function showTab(id, btn){
+  document.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ===== IMAGE SELECT =====
+function onImgSel(inp){
+  if(!inp.files[0]) return;
+  selImgFile = inp.files[0];
+  document.getElementById('imgPreviewEl').src = URL.createObjectURL(selImgFile);
+  document.getElementById('imgPreviewWrap').style.display='block';
+  document.getElementById('imgUploadArea').style.display='none';
+}
+function clearImg(){ selImgFile=null; document.getElementById('imgFile').value=''; document.getElementById('imgPreviewWrap').style.display='none'; document.getElementById('imgUploadArea').style.display='block'; }
+function dragOver(e){ e.preventDefault(); document.getElementById('imgUploadArea').classList.add('drag'); }
+function dropFile(e){ e.preventDefault(); document.getElementById('imgUploadArea').classList.remove('drag'); const f=e.dataTransfer.files[0]; if(f&&f.type.startsWith('image/')){ selImgFile=f; document.getElementById('imgPreviewEl').src=URL.createObjectURL(f); document.getElementById('imgPreviewWrap').style.display='block'; document.getElementById('imgUploadArea').style.display='none'; } }
+
+// ===== PROFILE SELECT =====
+function onProfSel(inp){ if(!inp.files[0]) return; selProfFile=inp.files[0]; document.getElementById('profPreviewEl').src=URL.createObjectURL(selProfFile); document.getElementById('profPreviewWrap').style.display='block'; document.getElementById('profUploadArea').style.display='none'; }
+function clearProf(){ selProfFile=null; document.getElementById('profFile').value=''; document.getElementById('profPreviewWrap').style.display='none'; document.getElementById('profUploadArea').style.display='block'; }
+
+// ===== MUSIC PREVIEW =====
+document.getElementById('mYoutubeId').addEventListener('input', function(){
+  const id = extractYouTubeId(this.value);
+  if(id){
+    document.getElementById('musicThumb').src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+    document.getElementById('musicPreview').style.display='block';
+  } else { document.getElementById('musicPreview').style.display='none'; }
+});
+function extractYouTubeId(url){
+  const m = url.match(/(?:youtu\.be\/|v=|embed\/)([A-Za-z0-9_-]{11})/);
+  if(m) return m[1];
+  if(/^[A-Za-z0-9_-]{11}$/.test(url.trim())) return url.trim();
+  return null;
+}
+
+// ===== TAGS =====
+function addTag(tag){ const inp=document.getElementById('pTags'); const cur=inp.value.trim(); if(!cur) inp.value=tag; else if(!cur.split(',').map(t=>t.trim()).includes(tag)) inp.value=cur+', '+tag; }
+
+// ===== GITHUB API =====
+async function getFileSHA(token, path){
+  try{ const r=await fetch(`https://api.github.com/repos/${REPO}/contents/${path}?ref=${BRANCH}`,{headers:{'Authorization':`token ${token}`}}); if(r.ok){ const d=await r.json(); return {sha:d.sha,content:d.content}; } }catch(e){}
+  return null;
+}
+async function uploadFile(token, path, b64, message){
+  const ex=await getFileSHA(token,path);
+  const body={message,content:b64,branch:BRANCH};
+  if(ex) body.sha=ex.sha;
+  const r=await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`,{method:'PUT',headers:{'Authorization':`token ${token}`,'Content-Type':'application/json'},body:JSON.stringify(body)});
+  return r.ok;
+}
+async function fileToB64(file, maxW=900){
+  return new Promise(res=>{
+    const canvas=document.createElement('canvas'); const ctx=canvas.getContext('2d'); const img=new Image();
+    const url=URL.createObjectURL(file);
+    img.onload=()=>{ let w=img.width,h=img.height; if(w>maxW){h=Math.round(h*maxW/w);w=maxW;} canvas.width=w;canvas.height=h; ctx.drawImage(img,0,0,w,h); URL.revokeObjectURL(url); canvas.toBlob(blob=>{ const fr=new FileReader(); fr.onload=()=>res(fr.result.split(',')[1]); fr.readAsDataURL(blob); },'image/jpeg',0.85); };
+    img.src=url;
+  });
+}
+function setProgress(wrapId, barId, textId, pct, msg){ document.getElementById(wrapId).style.display='block'; document.getElementById(barId).style.width=pct+'%'; document.getElementById(textId).textContent=msg; }
+
+// ===== SUBMIT PROMPT =====
+async function submitPrompt(){
+  const token=getToken(); if(!token){showAlert('err','আগে GitHub Token সেট করুন!');return;}
+  const titleBn=document.getElementById('pTitleBn').value.trim(); const promptText=document.getElementById('pPromptText').value.trim();
+  if(!titleBn||!promptText){showAlert('err','শিরোনাম ও প্রম্পট টেক্সট দিন!');return;}
+  const btn=document.getElementById('promptSubmitBtn'); btn.disabled=true; btn.textContent='⏳ প্রসেস হচ্ছে...'; hideAlerts();
+  try{
+    let imagePath='';
+    if(selImgFile){
+      setProgress('imgProgWrap','imgProgBar','imgProgText',20,'ছবি প্রসেস হচ্ছে...');
+      const b64=await fileToB64(selImgFile);
+      const ext=selImgFile.name.split('.').pop().toLowerCase().replace('jpg','jpeg');
+      const fname='img_'+Date.now()+'.'+ext;
+      imagePath='images/'+fname;
+      setProgress('imgProgWrap','imgProgBar','imgProgText',55,'GitHub-এ ছবি আপলোড হচ্ছে...');
+      const ok=await uploadFile(token,imagePath,b64,'Add image: '+fname);
+      if(!ok) throw new Error('ছবি আপলোড ব্যর্থ! Token চেক করুন।');
+      setProgress('imgProgWrap','imgProgBar','imgProgText',80,'ছবি আপলোড সফল ✓');
+    }
+    const tags=document.getElementById('pTags').value.split(',').map(t=>t.trim()).filter(Boolean);
+    const newP={id:'pe'+Date.now(),title:titleBn,titleEn:document.getElementById('pTitleEn').value.trim()||titleBn,prompt:promptText,tool:document.getElementById('pTool').value,tags,gradient:document.getElementById('pGrad').value};
+    if(imagePath) newP.image=imagePath;
+    setProgress('imgProgWrap','imgProgBar','imgProgText',90,'প্রম্পট সেভ হচ্ছে...');
+    const ex=await getFileSHA(token,'prompts-extra.json');
+    let prompts=[]; if(ex&&ex.content){ try{prompts=JSON.parse(atob(ex.content.replace(/\n/g,'')));}catch(e){prompts=[];} }
+    prompts.unshift(newP);
+    const ok2=await uploadFile(token,'prompts-extra.json',btoa(unescape(encodeURIComponent(JSON.stringify(prompts,null,2)))),'Add prompt: '+titleBn);
+    if(!ok2) throw new Error('প্রম্পট সেভ ব্যর্থ!');
+    setProgress('imgProgWrap','imgProgBar','imgProgText',100,'সম্পন্ন ✓');
+    showAlert('ok','✅ প্রম্পট সফলভাবে যোগ হয়েছে! ১-২ মিনিটে সাইটে দেখা যাবে।');
+    document.getElementById('pTitleBn').value=''; document.getElementById('pTitleEn').value=''; document.getElementById('pPromptText').value=''; document.getElementById('pTags').value=''; clearImg();
+    const cur=parseInt(document.getElementById('statP').textContent)||98;
+    document.getElementById('statP').textContent=(cur+1)+'+';
+    setTimeout(()=>document.getElementById('imgProgWrap').style.display='none',2000);
+  }catch(e){ showAlert('err','❌ '+e.message); document.getElementById('imgProgWrap').style.display='none'; }
+  btn.disabled=false; btn.textContent='✅ সাইটে যোগ করুন';
+}
+
+// ===== SUBMIT MUSIC =====
+async function submitMusic(){
+  const token=getToken(); if(!token){showAlert('err','আগে GitHub Token সেট করুন!');return;}
+  const title=document.getElementById('mTitle').value.trim(); const rawId=document.getElementById('mYoutubeId').value.trim();
+  const youtubeId=extractYouTubeId(rawId);
+  if(!title||!youtubeId){showAlert('err','শিরোনাম ও সঠিক YouTube লিংক দিন!');return;}
+  const btn=document.getElementById('musicSubmitBtn'); btn.disabled=true; btn.textContent='⏳ সেভ হচ্ছে...'; hideAlerts();
+  try{
+    setProgress('mProgWrap','mProgBar','mProgText',30,'music-extra.json লোড হচ্ছে...');
+    const ex=await getFileSHA(token,'music-extra.json');
+    let musicList=[]; if(ex&&ex.content){ try{musicList=JSON.parse(atob(ex.content.replace(/\n/g,'')));}catch(e){musicList=[];} }
+    const newSong={id:'me'+Date.now(),title,youtubeId,category:document.getElementById('mCat').value};
+    musicList.unshift(newSong);
+    setProgress('mProgWrap','mProgBar','mProgText',70,'সেভ হচ্ছে...');
+    const ok=await uploadFile(token,'music-extra.json',btoa(unescape(encodeURIComponent(JSON.stringify(musicList,null,2)))),'Add music: '+title);
+    if(!ok) throw new Error('মিউজিক সেভ ব্যর্থ!');
+    setProgress('mProgWrap','mProgBar','mProgText',100,'সম্পন্ন ✓');
+    showAlert('ok','✅ গান যোগ হয়েছে! ১-২ মিনিটে বিনোদন সেকশনে দেখা যাবে।');
+    document.getElementById('mTitle').value=''; document.getElementById('mYoutubeId').value=''; document.getElementById('musicPreview').style.display='none';
+    const cur=parseInt(document.getElementById('statP').textContent.replace(/\D/g,''))||98;
+    document.querySelector('.stats .stat:nth-child(3) .stat-n').textContent=(parseInt(document.querySelector('.stats .stat:nth-child(3) .stat-n').textContent)||10)+1+'+';
+    setTimeout(()=>document.getElementById('mProgWrap').style.display='none',2000);
+  }catch(e){ showAlert('err','❌ '+e.message); document.getElementById('mProgWrap').style.display='none'; }
+  btn.disabled=false; btn.textContent='🎵 গান যোগ করুন';
+}
+
+// ===== SUBMIT PROFILE =====
+async function submitProfile(){
+  const token=getToken(); if(!token){showAlert('err','আগে GitHub Token সেট করুন!');return;}
+  if(!selProfFile){showAlert('err','প্রোফাইল ছবি সিলেক্ট করুন!');return;}
+  const btn=document.getElementById('profSubmitBtn'); btn.disabled=true; btn.textContent='⏳ আপলোড হচ্ছে...'; hideAlerts();
+  try{
+    setProgress('profProgWrap','profProgBar','profProgText',30,'ছবি প্রসেস হচ্ছে...');
+    const b64=await fileToB64(selProfFile,600);
+    setProgress('profProgWrap','profProgBar','profProgText',70,'GitHub-এ আপলোড হচ্ছে...');
+    const ok=await uploadFile(token,'images/amin-profile.png',b64,'Update profile picture');
+    if(!ok) throw new Error('আপলোড ব্যর্থ!');
+    setProgress('profProgWrap','profProgBar','profProgText',100,'সম্পন্ন ✓');
+    showAlert('ok','✅ প্রোফাইল ছবি আপডেট হয়েছে! ১-২ মিনিটে দেখা যাবে।');
+    setTimeout(()=>document.getElementById('profProgWrap').style.display='none',2000);
+  }catch(e){ showAlert('err','❌ '+e.message); document.getElementById('profProgWrap').style.display='none'; }
+  btn.disabled=false; btn.textContent='👤 প্রোফাইল ছবি আপডেট করুন';
+}
+
+// ===== SETTINGS =====
+function saveCredentials(){
+  const email=document.getElementById('newEmail').value.trim();
+  const pwd=document.getElementById('newPwd').value;
+  const confirm=document.getElementById('confirmPwd').value;
+  if(!email||!pwd){showAlert('err','ইমেইল ও পাসওয়ার্ড দিন!');return;}
+  if(pwd!==confirm){showAlert('err','পাসওয়ার্ড মিলছে না!');return;}
+  if(pwd.length<6){showAlert('err','পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে!');return;}
+  localStorage.setItem('adminEmail',email); localStorage.setItem('adminPwd',pwd);
+  showAlert('ok','✅ Admin তথ্য আপডেট হয়েছে! পরের লগইনে নতুন তথ্য ব্যবহার করুন।');
+  document.getElementById('newEmail').value=''; document.getElementById('newPwd').value=''; document.getElementById('confirmPwd').value='';
+}
+async function resetExtra(){
+  if(!confirm('সত্যিই সব extra কনটেন্ট মুছবেন?')) return;
+  const token=getToken(); if(!token){showAlert('err','Token দিন!');return;}
+  const ok1=await uploadFile(token,'prompts-extra.json',btoa('[]'),'Reset prompts-extra');
+  const ok2=await uploadFile(token,'music-extra.json',btoa('[]'),'Reset music-extra');
+  if(ok1&&ok2) showAlert('ok','✅ রিসেট সম্পন্ন!');
+  else showAlert('err','❌ রিসেট ব্যর্থ!');
+}
+
+// ===== ALERTS =====
+function showAlert(type, msg){ hideAlerts(); const el=document.getElementById(type==='ok'?'alertOk':'alertErr'); el.textContent=msg; el.style.display='block'; el.scrollIntoView({behavior:'smooth'}); if(type==='ok') setTimeout(()=>el.style.display='none',6000); }
+function hideAlerts(){ document.getElementById('alertOk').style.display='none'; document.getElementById('alertErr').style.display='none'; }
+</script>
+</body>
+</html>
