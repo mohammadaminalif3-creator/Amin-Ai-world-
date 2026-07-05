@@ -347,6 +347,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderIncome();
   renderMusic(allMusic);
   renderArticles();
+  renderQuoteSection(ISLAMIC_QUOTES,'islamicFilter','islamicGrid','islamic-extra.json');
+  renderQuoteSection(INSPIRATION_QUOTES,'inspirationFilter','inspirationGrid','inspiration-extra.json');
+  renderIslamicLinks();
   startTerminal();
   setupSearch();
   setupMobileNav();
@@ -356,3 +359,80 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Enter key for chat
   document.getElementById('chatInput')?.addEventListener('keypress', e => { if(e.key==='Enter') sendChat(); });
 });
+
+// ===== QUOTE RENDER =====
+const CAT_LABELS = {
+  all:'সব', quran:'কোরআন', hadith:'হাদিস',
+  life:'জীবন', dream:'স্বপ্ন', motivation:'অনুপ্রেরণা',
+  success:'সাফল্য', patriotic:'দেশপ্রেম', education:'শিক্ষা'
+};
+
+function renderQuoteSection(data, filterId, gridId, extraFile){
+  const filterEl = document.getElementById(filterId);
+  const gridEl = document.getElementById(gridId);
+  if(!filterEl || !gridEl) return;
+
+  // load extra from github
+  fetch(extraFile+'?v='+Date.now())
+    .then(r=>r.ok?r.json():[])
+    .catch(()=>[])
+    .then(extra=>{
+      const all = [...extra, ...data];
+      const cats = ['all', ...new Set(all.map(q=>q.category))];
+      let active = 'all';
+
+      function renderFilter(){
+        filterEl.innerHTML = cats.map(c=>
+          `<button class="chip ${c===active?'active':''}" data-c="${c}">${CAT_LABELS[c]||c}</button>`
+        ).join('');
+        filterEl.querySelectorAll('.chip').forEach(b=>{
+          b.addEventListener('click',()=>{active=b.dataset.c;renderFilter();renderCards();});
+        });
+      }
+
+      function renderCards(){
+        const list = active==='all' ? all : all.filter(q=>q.category===active);
+        gridEl.innerHTML = list.map(q=>`
+          <div class="quote-card">
+            <div class="quote-bg" style="background:${q.gradient||'linear-gradient(135deg,#065F46,#1E3A8A)'}">
+              ${q.image?`<img src="${q.image}" onerror="this.style.display='none'" loading="lazy">`:''}
+            </div>
+            <div class="quote-overlay"></div>
+            <div class="quote-body">
+              <span class="quote-badge badge-${q.category||'life'}">${CAT_LABELS[q.category]||q.category}</span>
+              <div class="quote-text">${q.quote}</div>
+              <div class="quote-attribution">${q.attribution}</div>
+              <div class="quote-actions">
+                <button class="quote-copy-btn" data-text="${encodeURIComponent(q.quote+'\n'+q.attribution)}">📋 কপি</button>
+              </div>
+            </div>
+          </div>`).join('');
+
+        gridEl.querySelectorAll('.quote-copy-btn').forEach(btn=>{
+          btn.addEventListener('click',async()=>{
+            try{
+              await navigator.clipboard.writeText(decodeURIComponent(btn.dataset.text));
+              btn.textContent='✓ কপি হয়েছে';btn.classList.add('copied');
+              setTimeout(()=>{btn.textContent='📋 কপি';btn.classList.remove('copied');},1800);
+            }catch(e){}
+          });
+        });
+      }
+
+      renderFilter(); renderCards();
+    });
+}
+
+// ===== ISLAMIC LINKS =====
+function renderIslamicLinks(){
+  const grid = document.getElementById('islamicLinksGrid');
+  if(!grid || !window.ISLAMIC_LINKS) return;
+  grid.innerHTML = ISLAMIC_LINKS.map(l=>`
+    <a class="islamic-link-card" href="${l.link}" target="_blank" rel="noopener">
+      <div class="islamic-link-icon">${l.icon}</div>
+      <div class="islamic-link-info">
+        <div class="name">${l.name}</div>
+        <div class="desc">${l.desc}</div>
+      </div>
+    </a>`).join('');
+}
