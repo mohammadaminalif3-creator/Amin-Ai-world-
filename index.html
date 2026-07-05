@@ -3,10 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amin AI World — ফ্রি AI প্রম্পট, টুলস ও বিনোদন</title>
-<meta name="description" content="বাংলায় ফ্রি AI প্রম্পট গ্যালারি, জনপ্রিয় AI টুলসের তথ্য ও বিনোদন — Amin AI World">
-<meta property="og:title" content="Amin AI World">
-<meta property="og:description" content="বাংলায় ফ্রি AI প্রম্পট গ্যালারি ও AI টুলস ডিরেক্টরি">
+<title>Amin AI World — AI চ্যাট, প্রম্পট, টুলস ও বিনোদন</title>
+<meta name="description" content="বাংলায় ফ্রি AI চ্যাট, প্রম্পট গ্যালারি, AI টুলস ডিরেক্টরি, মুভি, গান ও বিনোদন — Amin AI World">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -18,161 +16,187 @@
 <header>
   <a href="#top" class="logo"><span class="logo-mark">A</span>Amin AI <span>World</span></a>
   <nav id="mainNav">
-    <a href="#profile">প্রোফাইল</a>
+    <a href="#ai-chat">AI চ্যাট</a>
     <a href="#prompts">প্রম্পট</a>
     <a href="#tools">AI টুলস</a>
     <a href="#entertainment">বিনোদন</a>
-    <a href="#articles">লেখার ঘর</a>
-    <a href="#upload" class="nav-cta">প্রম্পট যোগ করুন</a>
+    <a href="#social">সোশ্যাল</a>
+    <a href="#movies">মুভি</a>
+    <a href="admin.html" class="nav-cta">⚙️ Admin</a>
   </nav>
-  <button class="menu-toggle" id="menuToggle" aria-label="মেনু">☰</button>
+  <button class="menu-toggle" id="menuToggle">☰</button>
 </header>
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <div class="eyebrow">লাইভ AI প্রম্পট আর্কাইভ</div>
-      <h1>প্রম্পট খুঁজুন,<br><span class="grad">কপি করুন, তৈরি করুন</span></h1>
-      <p>বাংলাদেশের প্রথম বাংলা ভাষার ফ্রি AI প্রম্পট গ্যালারি — ছবিসহ রেডি-মেইড প্রম্পট, AI টুলস ডিরেক্টরি, এন্টারটেইনমেন্ট — সব একদম বিনামূল্যে।</p>
-      <div class="hero-cta">
-        <a href="#prompts" class="btn btn-primary">প্রম্পট দেখুন</a>
-        <a href="#entertainment" class="btn btn-ghost">🎵 বিনোদন</a>
+<!-- AI CHAT SECTION -->
+<section class="ai-chat-section" id="ai-chat">
+  <div class="chat-hero">
+    <h2>🤖 AI চ্যাট — সরাসরি কথা বলুন</h2>
+    <p>Claude AI দিয়ে কথা বলুন — বাংলা বা English যেকোনো ভাষায় প্রশ্ন করুন</p>
+  </div>
+  <div class="chat-box">
+    <div class="chat-tabs">
+      <button class="chat-tab active" data-ai="claude" onclick="switchAI('claude',this)"><span class="tab-icon">🧠</span>Claude AI</button>
+      <button class="chat-tab" data-ai="gemini" onclick="switchAI('gemini',this)"><span class="tab-icon">✨</span>Gemini</button>
+      <button class="chat-tab" data-ai="chatgpt" onclick="switchAI('chatgpt',this)"><span class="tab-icon">💡</span>ChatGPT</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-welcome">
+        <div class="wi">🤖</div>
+        <p><b>স্বাগতম! Amin AI World-এ!</b><br>আমি Claude AI। আপনার যেকোনো প্রশ্ন করুন — বাংলায় বা English-এ।<br><small style="color:#8B93A7;margin-top:6px;display:block;">Powered by Anthropic Claude</small></p>
       </div>
     </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-        <span class="terminal-title">prompt.txt</span>
-      </div>
-      <div class="terminal-body">
-        <div class="terminal-line"><span class="prompt-sign">&gt;</span>generating prompt...</div>
-        <div class="typed-out" id="typedOut"></div><span class="cursor"></span>
-      </div>
+    <div class="chat-input-row">
+      <input class="chat-input" id="chatInput" placeholder="আপনার প্রশ্ন লিখুন..." onkeypress="if(event.key==='Enter')sendChat()">
+      <button class="chat-send" id="chatSendBtn" onclick="sendChat()">পাঠান ↑</button>
     </div>
-  </section>
+    <div class="chat-api-notice">
+      <span id="chatNotice">Claude AI দিয়ে চ্যাট করছেন। অন্য AI দিয়ে কথা বলতে — <a href="https://gemini.google.com" target="_blank">Gemini</a> | <a href="https://chat.openai.com" target="_blank">ChatGPT</a></span>
+    </div>
+  </div>
+  <div class="ai-quick-links">
+    <a class="ai-quick-btn" href="https://claude.ai" target="_blank"><span class="dot" style="background:#7C5CFF"></span>Claude AI</a>
+    <a class="ai-quick-btn" href="https://gemini.google.com" target="_blank"><span class="dot" style="background:#4285F4"></span>Gemini</a>
+    <a class="ai-quick-btn" href="https://chat.openai.com" target="_blank"><span class="dot" style="background:#10A37F"></span>ChatGPT</a>
+    <a class="ai-quick-btn" href="https://grok.com" target="_blank"><span class="dot" style="background:#1DA1F2"></span>Grok</a>
+    <a class="ai-quick-btn" href="https://www.perplexity.ai" target="_blank"><span class="dot" style="background:#1EAEDB"></span>Perplexity</a>
+  </div>
+</section>
 
-  <!-- PROFILE -->
-  <section class="block" id="profile">
-    <div class="profile-card">
-      <div class="profile-avatar" id="profileAvatar"></div>
-      <div class="profile-info">
-        <h2 id="profileName"></h2>
-        <div class="profile-channel" id="profileChannel"></div>
-        <p id="profileBio"></p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <a id="profileYoutube" class="btn btn-ghost" target="_blank" rel="noopener">📺 ইউটিউব চ্যানেল</a>
-          <a id="profileFacebook" class="btn btn-ghost" target="_blank" rel="noopener">📘 ফেসবুক পেজ</a>
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="eyebrow">লাইভ AI প্রম্পট আর্কাইভ</div>
+    <h1>প্রম্পট খুঁজুন,<br><span class="grad">কপি করুন, তৈরি করুন</span></h1>
+    <p>বাংলাদেশের প্রথম বাংলা ভাষার ফ্রি AI প্ল্যাটফর্ম — চ্যাট, প্রম্পট গ্যালারি, AI টুলস, মুভি, গান — সব একদম বিনামূল্যে।</p>
+    <div class="hero-cta">
+      <a href="#prompts" class="btn btn-primary">প্রম্পট দেখুন</a>
+      <a href="#entertainment" class="btn btn-ghost">🎵 বিনোদন</a>
+    </div>
+  </div>
+  <div class="terminal">
+    <div class="terminal-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="terminal-title">prompt.txt</span></div>
+    <div class="terminal-body">
+      <div class="terminal-line"><span class="prompt-sign">&gt;</span>generating prompt...</div>
+      <div id="typedOut"></div><span class="cursor"></span>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section class="block" id="profile">
+  <div class="profile-card">
+    <div class="profile-avatar" id="profileAvatar"></div>
+    <div class="profile-info">
+      <h2 id="profileName"></h2>
+      <div class="profile-channel" id="profileChannel"></div>
+      <p id="profileBio"></p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+        <a id="profileYoutube" class="btn btn-ghost" target="_blank" rel="noopener">📺 ইউটিউব</a>
+        <a id="profileFacebook" class="btn btn-ghost" target="_blank" rel="noopener">📘 ফেসবুক প্রোফাইল</a>
+        <a id="profileFbPage" class="btn btn-ghost" target="_blank" rel="noopener">📄 ফেসবুক পেজ</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- AD SLOT 1 -->
-  <div class="ad-slot">বিজ্ঞাপন স্থান — Google AdSense</div>
+<div class="ad-slot">📢 বিজ্ঞাপন স্থান — Google AdSense</div>
 
-  <!-- PROMPTS -->
-  <section class="block" id="prompts">
-    <div class="block-head">
-      <div>
-        <div class="section-num">// ০১ — গ্যালারি</div>
-        <h2>প্রম্পট গ্যালারি</h2>
-        <p>যেকোনো প্রম্পট কপি করে সরাসরি আপনার পছন্দের AI টুলে ব্যবহার করুন।</p>
-      </div>
-    </div>
-    <div class="search-box">
-      <span>🔍</span>
-      <input type="text" id="searchInput" placeholder="প্রম্পট, ট্যাগ বা টুল দিয়ে খুঁজুন...">
-    </div>
-    <div class="filter-bar" id="filterBar"></div>
-    <div class="prompt-grid" id="promptGrid"></div>
-  </section>
+<!-- PROMPTS -->
+<section class="block" id="prompts">
+  <div class="block-head">
+    <div><div class="section-num">// ০১ — গ্যালারি</div><h2>AI প্রম্পট গ্যালারি</h2><p>ছবিসহ রেডি-মেইড প্রম্পট — কপি করে সরাসরি ব্যবহার করুন।</p></div>
+  </div>
+  <div class="search-box"><span>🔍</span><input type="text" id="searchInput" placeholder="প্রম্পট, ট্যাগ বা টুল দিয়ে খুঁজুন..."></div>
+  <div class="filter-bar" id="filterBar"></div>
+  <div class="prompt-grid" id="promptGrid"></div>
+</section>
 
-  <!-- TOOLS -->
-  <section class="block" id="tools">
-    <div class="block-head">
-      <div>
-        <div class="section-num">// ০২ — ডিরেক্টরি</div>
-        <h2>AI টুলস ডিরেক্টরি</h2>
-        <p>লেখা, ছবি, ভিডিও, মিউজিক ও ডিজাইনের জন্য সেরা AI টুলস — ফ্রি ও পেইড দুটোই।</p>
-      </div>
-    </div>
-    <div class="tools-grid" id="toolsGrid"></div>
-  </section>
+<!-- TOOLS -->
+<section class="block" id="tools">
+  <div class="block-head">
+    <div><div class="section-num">// ০২ — AI টুলস</div><h2>AI টুলস ডিরেক্টরি</h2><p>লেখা, ছবি, ভিডিও, মিউজিক ও ডিজাইনের জন্য সেরা AI টুলস।</p></div>
+  </div>
+  <div class="tools-grid" id="toolsGrid"></div>
+</section>
 
-  <!-- AD SLOT 2 -->
-  <div class="ad-slot">বিজ্ঞাপন স্থান — Google AdSense</div>
+<div class="ad-slot">📢 বিজ্ঞাপন স্থান — Google AdSense</div>
 
-  <!-- ENTERTAINMENT -->
-  <section class="block" id="entertainment">
-    <div class="block-head">
-      <div>
-        <div class="section-num">// ০৩ — বিনোদন</div>
-        <h2>🎵 বিনোদন কর্নার</h2>
-        <p>"চারপাশে যা দেখছি" চ্যানেলের সেরা গানগুলো এখানে উপভোগ করুন।</p>
-      </div>
-    </div>
-    <div class="music-filter" id="musicFilter"></div>
-    <div class="music-grid" id="musicGrid"></div>
-  </section>
+<!-- SOCIAL LINKS -->
+<section class="block" id="social">
+  <div class="block-head">
+    <div><div class="section-num">// ০৩ — সোশ্যাল</div><h2>সোশ্যাল মিডিয়া লিংক</h2><p>সব সোশ্যাল প্ল্যাটফর্মে কানেক্ট থাকুন।</p></div>
+  </div>
+  <div class="social-grid" id="socialGrid"></div>
+</section>
 
-  <!-- ARTICLES -->
-  <section class="block" id="articles">
-    <div class="block-head">
-      <div>
-        <div class="section-num">// ০৪ — লেখার ঘর</div>
-        <h2>লেখার ঘর</h2>
-        <p>AI, প্রযুক্তি ও সৃজনশীলতা নিয়ে লেখা — অভিজ্ঞতা, গাইড ও মতামত।</p>
-      </div>
-    </div>
-    <div class="article-grid" id="articleGrid"></div>
-  </section>
+<!-- MOVIES -->
+<section class="block" id="movies">
+  <div class="block-head">
+    <div><div class="section-num">// ০৪ — মুভি</div><h2>🎬 ফ্রি মুভি দেখুন</h2><p>নতুন বাংলা, হিন্দি ও হলিউড মুভির সেরা ফ্রি সাইটগুলো।</p></div>
+  </div>
+  <div class="movie-grid" id="movieGrid"></div>
+</section>
 
-  <!-- SUPPORT -->
-  <section class="block" id="support">
-    <div class="support-panel">
-      <h2>এই প্ল্যাটফর্মকে সাপোর্ট করুন</h2>
-      <p>Amin AI World সম্পূর্ণ ফ্রি রাখার জন্য পরিশ্রম করি। শেয়ার করে পাশে থাকুন।</p>
-      <div class="hero-cta" style="justify-content:center;">
-        <a href="https://www.facebook.com/share/17jjS1diVA/" target="_blank" class="btn btn-primary">📘 শেয়ার করুন</a>
-        <a href="https://youtube.com/@charpashezadekhchi" target="_blank" class="btn btn-ghost">📺 চ্যানেল সাবস্ক্রাইব করুন</a>
-      </div>
-    </div>
-  </section>
+<!-- ONLINE TV -->
+<section class="block" id="tv">
+  <div class="block-head">
+    <div><div class="section-num">// ০৫ — লাইভ টিভি</div><h2>📺 অনলাইন টেলিভিশন</h2><p>বাংলাদেশের সব টিভি চ্যানেল অনলাইনে দেখুন।</p></div>
+  </div>
+  <div class="tv-grid" id="tvGrid"></div>
+</section>
 
-  <!-- UPLOAD -->
-  <section class="block" id="upload">
-    <div class="block-head">
-      <div>
-        <div class="section-num">// ০৫ — কন্ট্রিবিউট</div>
-        <h2>নতুন প্রম্পট যোগ করুন</h2>
-      </div>
+<!-- INCOME APPS -->
+<section class="block" id="income">
+  <div class="block-head">
+    <div><div class="section-num">// ০৬ — ইনকাম</div><h2>💰 অনলাইন ইনকাম অ্যাপ</h2><p>ঘরে বসেই আয় করুন — বিশ্বস্ত অ্যাপগুলো দেখুন।</p></div>
+  </div>
+  <div class="income-grid" id="incomeGrid"></div>
+</section>
+
+<!-- ENTERTAINMENT -->
+<section class="block" id="entertainment">
+  <div class="block-head">
+    <div><div class="section-num">// ০৭ — বিনোদন</div><h2>🎵 বিনোদন কর্নার</h2><p>"চারপাশে যা দেখছি" চ্যানেলের সেরা গানগুলো।</p></div>
+  </div>
+  <div class="music-filter" id="musicFilter"></div>
+  <div class="music-grid" id="musicGrid"></div>
+</section>
+
+<!-- ARTICLES -->
+<section class="block" id="articles">
+  <div class="block-head">
+    <div><div class="section-num">// ০৮ — লেখার ঘর</div><h2>লেখার ঘর</h2><p>AI ও প্রযুক্তি নিয়ে লেখা।</p></div>
+  </div>
+  <div class="article-grid" id="articleGrid"></div>
+</section>
+
+<!-- SUPPORT -->
+<section class="block">
+  <div class="support-panel">
+    <h2>🙏 এই প্ল্যাটফর্মকে সাপোর্ট করুন</h2>
+    <p>Amin AI World সম্পূর্ণ ফ্রি রাখতে পরিশ্রম করি। শেয়ার করে পাশে থাকুন।</p>
+    <div class="hero-cta" style="justify-content:center;">
+      <a href="https://www.facebook.com/share/1DRgjnsLRv/" target="_blank" class="btn btn-primary">📘 শেয়ার করুন</a>
+      <a href="https://youtube.com/@charpashezadekhchi" target="_blank" class="btn btn-ghost">📺 সাবস্ক্রাইব করুন</a>
     </div>
-    <div class="upload-panel">
-      <div class="note-box"><b>মনে রাখবেন:</b> এই ফর্মে যোগ করা প্রম্পট শুধু আপনার ব্রাউজারে সংরক্ষিত হবে। স্থায়ীভাবে যোগ করতে data.js আপডেট করতে হবে।</div>
-      <form id="uploadForm">
-        <div class="form-grid">
-          <div class="form-row"><label>শিরোনাম (বাংলা)</label><input type="text" name="title" required placeholder="যেমন: রাতের শহর"></div>
-          <div class="form-row"><label>Title (English)</label><input type="text" name="titleEn" placeholder="Night City"></div>
-        </div>
-        <div class="form-row"><label>পূর্ণ প্রম্পট টেক্সট</label><textarea name="prompt" required placeholder="পুরো প্রম্পটটি এখানে লিখুন..."></textarea></div>
-        <div class="form-grid">
-          <div class="form-row"><label>AI টুল</label><select name="tool"><option>Midjourney</option><option>DALL·E 3</option><option>Stable Diffusion</option><option>Leonardo AI</option><option>অন্যান্য</option></select></div>
-          <div class="form-row"><label>ট্যাগ (কমা দিয়ে)</label><input type="text" name="tags" placeholder="fantasy, city, night"></div>
-        </div>
-        <div class="form-row"><label>ছবির লিংক (ঐচ্ছিক)</label><input type="url" name="image" placeholder="https://..."></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">প্রম্পট যোগ করুন</button>
-        <p id="formStatus" style="margin-top:12px;color:#27C93F;font-size:0.88rem;text-align:center;"></p>
-      </form>
-    </div>
-  </section>
+  </div>
+</section>
 
 </main>
 
+<!-- Music Modal -->
+<div class="music-modal" id="musicModal">
+  <div class="modal-inner">
+    <div class="modal-top"><h3 id="modalTitle"></h3><button class="modal-close" onclick="closeMusicModal()">✕</button></div>
+    <div class="modal-video"><iframe id="modalIframe" allowfullscreen allow="autoplay"></iframe></div>
+  </div>
+</div>
+
 <footer>
   <span>© <span id="year"></span> Amin AI World — সকলের জন্য ফ্রি</span>
-  <span>বাংলায় তৈরি, AI ভালোবাসীদের জন্য ❤️</span>
+  <span>Made with ❤️ in Bangladesh</span>
 </footer>
 
 <script src="data.js"></script>
