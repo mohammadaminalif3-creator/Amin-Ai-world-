@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amin AI World — AI চ্যাট, প্রম্পট, ইসলামিক বাণী ও প্রেরণা</title>
-<meta name="description" content="বাংলায় ফ্রি AI চ্যাট, প্রম্পট গ্যালারি, কোরআন ও হাদিসের বাণী, প্রেরণামূলক উক্তি — Amin AI World">
+<title>Amin AI World — প্রম্পট, ইসলামিক বাণী, প্রেরণা ও বিনোদন</title>
+<meta name="description" content="আপনার প্রয়োজনীয় সকল অনলাইন স্মার্ট প্রজেক্ট, তথ্য ও বিনোদন — Amin AI World">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,11 +16,11 @@
 <header>
   <a href="#top" class="logo"><span class="logo-mark">A</span>Amin AI <span>World</span></a>
   <nav id="mainNav">
-    <a href="#ai-chat">🤖 AI চ্যাট</a>
     <a href="#prompts">📸 প্রম্পট</a>
     <a href="#tools">🛠️ AI টুলস</a>
     <a href="#islamic">🕌 ইসলামিক</a>
     <a href="#inspiration">✨ প্রেরণা</a>
+    <a href="#blog">📝 ব্লগ</a>
     <a href="#entertainment">🎵 বিনোদন</a>
     <a href="#social">📱 সোশ্যাল</a>
     <a href="#movies">🎬 মুভি</a>
@@ -32,50 +32,83 @@
 
 <main id="top">
 
-<!-- AI CHAT -->
-<section class="ai-chat-section" id="ai-chat">
-  <div class="chat-hero">
-    <h2>🤖 AI চ্যাট — সরাসরি কথা বলুন</h2>
-    <p>Claude AI দিয়ে কথা বলুন — বাংলা বা English যেকোনো ভাষায়</p>
+<!-- ===== WELCOME HERO ===== -->
+<section class="welcome-hero" id="welcome">
+  <div class="particles" id="particles"></div>
+  <div class="welcome-content">
+    <div class="welcome-badge">🌟 Bangladesh's #1 AI & Smart Platform</div>
+    <h1 class="welcome-title">
+      WELCOME TO
+      <span class="heart-icon">❤️</span>
+      <span class="brand-name">Amin AI World</span>
+    </h1>
+    <p class="welcome-bn">আপনার প্রয়োজনীয় সকল অনলাইন স্মার্ট প্রজেক্ট <span class="highlight">(iDEA)</span><br>এবং তথ্য ও বিনোদন পাবেন এখানে</p>
+    <div class="welcome-stats">
+      <div class="wstat"><div class="wstat-num" data-target="98">0</div><div class="wstat-label">AI প্রম্পট</div></div>
+      <div class="wstat-div"></div>
+      <div class="wstat"><div class="wstat-num" data-target="25">0</div><div class="wstat-label">AI টুলস</div></div>
+      <div class="wstat-div"></div>
+      <div class="wstat"><div class="wstat-num" data-target="24">0</div><div class="wstat-label">ইসলামিক বাণী</div></div>
+      <div class="wstat-div"></div>
+      <div class="wstat"><div class="wstat-num" data-target="10">0</div><div class="wstat-label">গান</div></div>
+    </div>
+    <div class="welcome-cta">
+      <a href="#prompts" class="btn-hero-primary">🚀 শুরু করুন</a>
+      <a href="#islamic" class="btn-hero-ghost">🕌 ইসলামিক বাণী</a>
+    </div>
   </div>
-  <div class="chat-box">
-    <div class="chat-tabs">
-      <button class="chat-tab active" onclick="switchAI('claude',this)"><span class="tab-icon">🧠</span>Claude AI</button>
-      <button class="chat-tab" onclick="switchAI('gemini',this)"><span class="tab-icon">✨</span>Gemini</button>
-      <button class="chat-tab" onclick="switchAI('chatgpt',this)"><span class="tab-icon">💡</span>ChatGPT</button>
-    </div>
-    <div class="chat-messages" id="chatMessages">
-      <div class="chat-welcome"><div class="wi">🤖</div><p><b>স্বাগতম Amin AI World-এ!</b><br>আমি Claude AI। যেকোনো প্রশ্ন করুন বাংলায় বা English-এ।<br><small style="color:#8B93A7;margin-top:6px;display:block;">Powered by Anthropic Claude</small></p></div>
-    </div>
-    <div class="chat-input-row">
-      <input class="chat-input" id="chatInput" placeholder="আপনার প্রশ্ন লিখুন...">
-      <button class="chat-send" id="chatSendBtn" onclick="sendChat()">পাঠান ↑</button>
-    </div>
-    <div class="chat-api-notice"><span id="chatNotice">Claude AI দিয়ে চ্যাট করছেন। অন্য AI — <a href="https://gemini.google.com" target="_blank">Gemini</a> | <a href="https://chat.openai.com" target="_blank">ChatGPT</a></span></div>
-  </div>
-  <div class="ai-quick-links">
-    <a class="ai-quick-btn" href="https://claude.ai" target="_blank"><span class="dot" style="background:#7C5CFF"></span>Claude</a>
-    <a class="ai-quick-btn" href="https://gemini.google.com" target="_blank"><span class="dot" style="background:#4285F4"></span>Gemini</a>
-    <a class="ai-quick-btn" href="https://chat.openai.com" target="_blank"><span class="dot" style="background:#10A37F"></span>ChatGPT</a>
-    <a class="ai-quick-btn" href="https://grok.com" target="_blank"><span class="dot" style="background:#1DA1F2"></span>Grok</a>
-    <a class="ai-quick-btn" href="https://www.perplexity.ai" target="_blank"><span class="dot" style="background:#1EAEDB"></span>Perplexity</a>
+  <!-- Floating cards -->
+  <div class="float-cards">
+    <div class="fcard fcard1"><span>🤖</span><p>AI প্রম্পট</p></div>
+    <div class="fcard fcard2"><span>🕌</span><p>কোরআন ও হাদিস</p></div>
+    <div class="fcard fcard3"><span>✨</span><p>প্রেরণা</p></div>
+    <div class="fcard fcard4"><span>🎵</span><p>বিনোদন</p></div>
   </div>
 </section>
 
-<!-- HERO -->
-<section class="hero">
-  <div>
-    <div class="eyebrow">লাইভ AI প্রম্পট আর্কাইভ</div>
-    <h1>প্রম্পট খুঁজুন,<br><span class="grad">কপি করুন, তৈরি করুন</span></h1>
-    <p>বাংলাদেশের প্রথম বাংলা ভাষার ফ্রি AI প্ল্যাটফর্ম — চ্যাট, প্রম্পট, কোরআন-হাদিসের বাণী, প্রেরণা, মুভি, গান — সব বিনামূল্যে।</p>
-    <div class="hero-cta">
-      <a href="#prompts" class="btn btn-primary">প্রম্পট দেখুন</a>
-      <a href="#islamic" class="btn btn-ghost">🕌 ইসলামিক বাণী</a>
-    </div>
-  </div>
-  <div class="terminal">
-    <div class="terminal-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="terminal-title">prompt.txt</span></div>
-    <div class="terminal-body"><div class="terminal-line"><span class="prompt-sign">&gt;</span>generating prompt...</div><div id="typedOut"></div><span class="cursor"></span></div>
+<!-- QUICK NAV CARDS -->
+<section class="quick-nav">
+  <div class="qnav-grid">
+    <a href="#prompts" class="qnav-card" style="--qc:#7C5CFF">
+      <span class="qnav-icon">🤖</span>
+      <h3>AI প্রম্পট</h3>
+      <p>৯৮+ ছবিসহ রেডি প্রম্পট</p>
+    </a>
+    <a href="#tools" class="qnav-card" style="--qc:#4DE8FF">
+      <span class="qnav-icon">🛠️</span>
+      <h3>AI টুলস</h3>
+      <p>২৫+ সেরা AI টুলসের তালিকা</p>
+    </a>
+    <a href="#islamic" class="qnav-card" style="--qc:#10B981">
+      <span class="qnav-icon">🕌</span>
+      <h3>ইসলামিক বাণী</h3>
+      <p>কোরআন ও হাদিসের আলো</p>
+    </a>
+    <a href="#inspiration" class="qnav-card" style="--qc:#F97316">
+      <span class="qnav-icon">✨</span>
+      <h3>প্রেরণা</h3>
+      <p>জীবন, স্বপ্ন ও অনুপ্রেরণা</p>
+    </a>
+    <a href="#blog" class="qnav-card" style="--qc:#EC4899">
+      <span class="qnav-icon">📝</span>
+      <h3>ব্লগ</h3>
+      <p>লেখা, ছবি ও ক্যাপশন</p>
+    </a>
+    <a href="#entertainment" class="qnav-card" style="--qc:#FF6B6B">
+      <span class="qnav-icon">🎵</span>
+      <h3>বিনোদন</h3>
+      <p>গান ও মিউজিক ভিডিও</p>
+    </a>
+    <a href="#movies" class="qnav-card" style="--qc:#FACC15">
+      <span class="qnav-icon">🎬</span>
+      <h3>মুভি</h3>
+      <p>ফ্রি মুভি দেখুন</p>
+    </a>
+    <a href="#income" class="qnav-card" style="--qc:#27C93F">
+      <span class="qnav-icon">💰</span>
+      <h3>ইনকাম</h3>
+      <p>অনলাইনে আয় করুন</p>
+    </a>
   </div>
 </section>
 
@@ -100,7 +133,7 @@
 
 <!-- PROMPTS -->
 <section class="block" id="prompts">
-  <div class="block-head"><div><div class="section-num">// ০১ — গ্যালারি</div><h2>AI প্রম্পট গ্যালারি</h2><p>ছবিসহ রেডি-মেইড প্রম্পট — কপি করে ব্যবহার করুন।</p></div></div>
+  <div class="block-head"><div><div class="section-num">// ০১</div><h2>📸 AI প্রম্পট গ্যালারি</h2><p>ছবিসহ রেডি-মেইড প্রম্পট — কপি করে সরাসরি AI টুলে ব্যবহার করুন।</p></div></div>
   <div class="search-box"><span>🔍</span><input type="text" id="searchInput" placeholder="প্রম্পট, ট্যাগ বা টুল দিয়ে খুঁজুন..."></div>
   <div class="filter-bar" id="filterBar"></div>
   <div class="prompt-grid" id="promptGrid"></div>
@@ -108,78 +141,73 @@
 
 <!-- TOOLS -->
 <section class="block" id="tools">
-  <div class="block-head"><div><div class="section-num">// ০২ — AI টুলস</div><h2>AI টুলস ডিরেক্টরি</h2><p>লেখা, ছবি, ভিডিও, মিউজিক ও ডিজাইনের সেরা AI টুলস।</p></div></div>
+  <div class="block-head"><div><div class="section-num">// ০২</div><h2>🛠️ AI টুলস ডিরেক্টরি</h2><p>লেখা, ছবি, ভিডিও, মিউজিক ও ডিজাইনের সেরা AI টুলস।</p></div></div>
   <div class="tools-grid" id="toolsGrid"></div>
 </section>
 
 <div class="ad-slot">📢 বিজ্ঞাপন স্থান — Google AdSense</div>
 
-<!-- ISLAMIC SECTION -->
+<!-- ISLAMIC -->
 <section class="block" id="islamic">
-  <div class="block-head">
-    <div><div class="section-num">// ০৩ — কোরআন ও হাদিস</div><h2>🕌 ইসলামিক বাণী ও প্রেরণা</h2><p>পবিত্র কোরআন ও হাদিসের আলোকে জীবন গড়ুন।</p></div>
-  </div>
+  <div class="block-head"><div><div class="section-num">// ০৩</div><h2>🕌 ইসলামিক বাণী ও প্রেরণা</h2><p>পবিত্র কোরআন ও হাদিসের আলোকে জীবন গড়ুন।</p></div></div>
   <div class="quote-filter" id="islamicFilter"></div>
   <div class="quote-grid" id="islamicGrid"></div>
-
-  <!-- Islamic Links -->
   <div style="margin-top:32px;">
-    <h3 style="font-family:'Space Grotesk';font-size:1.1rem;margin-bottom:16px;color:#E9EBF2;">📖 ইসলামিক রিসোর্স লিংক</h3>
+    <h3 style="font-family:'Space Grotesk';font-size:1.1rem;margin-bottom:16px;">📖 ইসলামিক রিসোর্স লিংক</h3>
     <div class="islamic-links-grid" id="islamicLinksGrid"></div>
   </div>
 </section>
 
-<!-- INSPIRATION SECTION -->
+<!-- INSPIRATION -->
 <section class="block" id="inspiration">
-  <div class="block-head">
-    <div><div class="section-num">// ০৪ — প্রেরণা</div><h2>✨ জীবন, স্বপ্ন ও প্রেরণা</h2><p>জীবনকে অর্থবহ করে তুলুন — প্রেরণামূলক বাণী ও উক্তি।</p></div>
-  </div>
+  <div class="block-head"><div><div class="section-num">// ০৪</div><h2>✨ জীবন, স্বপ্ন ও প্রেরণা</h2><p>জীবনকে অর্থবহ করে তুলুন — প্রেরণামূলক বাণী ও উক্তি।</p></div></div>
   <div class="quote-filter" id="inspirationFilter"></div>
   <div class="quote-grid" id="inspirationGrid"></div>
 </section>
 
+<!-- BLOG -->
+<section class="block" id="blog">
+  <div class="block-head"><div><div class="section-num">// ০৫</div><h2>📝 ব্লগ ও লেখার ঘর</h2><p>ছবি ও ক্যাপশন সহ লেখা — ইসলামিক, প্রেরণামূলক, দেশপ্রেম ও সাধারণ বিষয়।</p></div></div>
+  <div class="filter-bar" id="blogFilter"></div>
+  <div class="blog-grid" id="blogGrid"></div>
+</section>
+
 <!-- ENTERTAINMENT -->
 <section class="block" id="entertainment">
-  <div class="block-head"><div><div class="section-num">// ০৫ — বিনোদন</div><h2>🎵 বিনোদন কর্নার</h2><p>"চারপাশে যা দেখছি" চ্যানেলের সেরা গানগুলো।</p></div></div>
+  <div class="block-head"><div><div class="section-num">// ০৬</div><h2>🎵 বিনোদন কর্নার</h2><p>"চারপাশে যা দেখছি" চ্যানেলের সেরা গানগুলো।</p></div></div>
   <div class="music-filter" id="musicFilter"></div>
   <div class="music-grid" id="musicGrid"></div>
 </section>
 
 <!-- SOCIAL -->
 <section class="block" id="social">
-  <div class="block-head"><div><div class="section-num">// ০৬ — সোশ্যাল</div><h2>📱 সোশ্যাল মিডিয়া</h2><p>সব প্ল্যাটফর্মে কানেক্ট থাকুন।</p></div></div>
+  <div class="block-head"><div><div class="section-num">// ০৭</div><h2>📱 সোশ্যাল মিডিয়া</h2></div></div>
   <div class="social-grid" id="socialGrid"></div>
 </section>
 
 <!-- MOVIES -->
 <section class="block" id="movies">
-  <div class="block-head"><div><div class="section-num">// ০৭ — মুভি</div><h2>🎬 ফ্রি মুভি দেখুন</h2><p>নতুন বাংলা, হিন্দি ও হলিউড মুভির ফ্রি সাইট।</p></div></div>
+  <div class="block-head"><div><div class="section-num">// ০৮</div><h2>🎬 ফ্রি মুভি দেখুন</h2></div></div>
   <div class="movie-grid" id="movieGrid"></div>
 </section>
 
 <!-- TV -->
 <section class="block" id="tv">
-  <div class="block-head"><div><div class="section-num">// ০৮ — লাইভ টিভি</div><h2>📺 অনলাইন টেলিভিশন</h2><p>বাংলাদেশের সব চ্যানেল অনলাইনে দেখুন।</p></div></div>
+  <div class="block-head"><div><div class="section-num">// ০৯</div><h2>📺 অনলাইন টেলিভিশন</h2></div></div>
   <div class="tv-grid" id="tvGrid"></div>
 </section>
 
 <!-- INCOME -->
 <section class="block" id="income">
-  <div class="block-head"><div><div class="section-num">// ০৯ — ইনকাম</div><h2>💰 অনলাইন ইনকাম অ্যাপ</h2><p>ঘরে বসেই আয় করুন।</p></div></div>
+  <div class="block-head"><div><div class="section-num">// ১০</div><h2>💰 অনলাইন ইনকাম অ্যাপ</h2></div></div>
   <div class="income-grid" id="incomeGrid"></div>
-</section>
-
-<!-- ARTICLES -->
-<section class="block" id="articles">
-  <div class="block-head"><div><div class="section-num">// ১০ — লেখার ঘর</div><h2>লেখার ঘর</h2></div></div>
-  <div class="article-grid" id="articleGrid"></div>
 </section>
 
 <!-- SUPPORT -->
 <section class="block">
   <div class="support-panel">
     <h2>🙏 এই প্ল্যাটফর্মকে সাপোর্ট করুন</h2>
-    <p>Amin AI World সম্পূর্ণ ফ্রি রাখতে পরিশ্রম করি।</p>
+    <p>Amin AI World সম্পূর্ণ ফ্রি রাখতে পরিশ্রম করি। শেয়ার করে পাশে থাকুন।</p>
     <div class="hero-cta" style="justify-content:center;">
       <a href="https://www.facebook.com/share/1DRgjnsLRv/" target="_blank" class="btn btn-primary">📘 শেয়ার করুন</a>
       <a href="https://youtube.com/@charpashezadekhchi" target="_blank" class="btn btn-ghost">📺 সাবস্ক্রাইব করুন</a>
@@ -188,6 +216,12 @@
 </section>
 
 </main>
+
+<!-- Blog Modal -->
+<div class="blog-modal" id="blogModal">
+  <button class="blog-modal-close" onclick="closeBlogModal()">✕</button>
+  <div class="blog-modal-inner" id="blogModalInner"></div>
+</div>
 
 <!-- Music Modal -->
 <div class="music-modal" id="musicModal">
