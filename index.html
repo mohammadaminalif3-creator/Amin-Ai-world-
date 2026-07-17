@@ -3,240 +3,564 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amin AI World — প্রম্পট, ইসলামিক বাণী, প্রেরণা ও বিনোদন</title>
-<meta name="description" content="আপনার প্রয়োজনীয় সকল অনলাইন স্মার্ট প্রজেক্ট, তথ্য ও বিনোদন — Amin AI World">
+<title>Amin AI World — প্রম্পট, AI টুলস, ইসলামিক বাণী, প্রেরণা ও বিনোদন</title>
+<meta name="description" content="আপনার প্রয়োজনীয় সকল অনলাইন স্মার্ট প্রজেক্ট, AI টুলস, তথ্য ও বিনোদন — Amin AI World">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#0F3D2E;
+    --green-mid:#175C43;
+    --gold:#E8A93B;
+    --gold-soft:#F3D9A0;
+    --cream:#FBF7ED;
+    --paper:#FFFDF7;
+    --maroon:#7A2331;
+    --ink:#1B1B18;
+    --ink-soft:#4A4A44;
+    --line:#E7DFC9;
+    --radius:16px;
+    --shadow:0 10px 30px rgba(15,61,46,0.10);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo Da 2','Hind Siliguri',sans-serif;
+    color:var(--green-deep);
+    margin:0;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 20px;}
+
+  /* Header */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,247,237,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{display:flex; align-items:center; justify-content:space-between; padding:14px 20px; gap:16px;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Baloo Da 2'; font-weight:800; font-size:1.25rem; color:var(--green-deep);}
+  .brand .mark{
+    width:38px; height:38px; border-radius:11px;
+    background:linear-gradient(135deg,var(--gold),var(--green-mid));
+    display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.1rem;
+  }
+  nav.links{display:flex; gap:4px; flex-wrap:wrap;}
+  nav.links a{
+    font-size:0.92rem; padding:8px 12px; border-radius:999px; color:var(--ink-soft); font-weight:600;
+    transition:background .2s,color .2s;
+  }
+  nav.links a:hover{background:var(--gold-soft); color:var(--green-deep);}
+  .menu-toggle{display:none; background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--green-deep);}
+
+  /* Hero */
+  .hero{
+    position:relative; overflow:hidden;
+    background:radial-gradient(circle at 20% 20%,var(--green-mid),var(--green-deep) 65%);
+    color:#fff; padding:70px 20px 90px; text-align:center;
+  }
+  .hero .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; background:rgba(232,169,59,0.18);
+    border:1px solid rgba(232,169,59,0.5); color:var(--gold-soft);
+    padding:6px 16px; border-radius:999px; font-size:0.85rem; font-weight:600; margin-bottom:18px;
+  }
+  .hero h1{color:#fff; font-size:clamp(2rem,5vw,3.2rem); font-weight:800; line-height:1.2;}
+  .hero p{max-width:640px; margin:16px auto 0; opacity:.92; font-size:1.05rem;}
+  .hero-stats{display:flex; justify-content:center; gap:32px; flex-wrap:wrap; margin-top:38px;}
+  .stat{min-width:100px;}
+  .stat b{display:block; font-size:1.8rem; color:var(--gold); font-family:'Baloo Da 2';}
+  .stat span{font-size:0.85rem; opacity:.85;}
+  .hero-cta{margin-top:34px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:999px;
+    font-weight:700; font-size:0.95rem; cursor:pointer; border:none; transition:transform .15s, box-shadow .15s;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-gold{background:var(--gold); color:var(--green-deep);}
+  .btn-outline{background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,.5);}
+
+  /* Bead divider — signature element */
+  .bead-divider{display:flex; align-items:center; justify-content:center; gap:10px; padding:26px 20px;}
+  .bead-divider .line{flex:1; max-width:220px; height:1px; background:repeating-linear-gradient(90deg,var(--gold) 0 6px, transparent 6px 12px);}
+  .bead-divider .bead{width:9px; height:9px; border-radius:50%; background:var(--green-mid);}
+  .bead-divider .bead.g{background:var(--gold);}
+
+  /* Sections */
+  section{padding:52px 0;}
+  .sec-head{margin-bottom:28px;}
+  .sec-head .num{font-size:0.8rem; color:var(--gold); font-weight:700; letter-spacing:.08em;}
+  .sec-head h2{font-size:1.7rem; margin-top:4px;}
+  .sec-head p{color:var(--ink-soft); margin-top:6px; max-width:540px;}
+  .alt{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+
+  /* AI Tools */
+  .tool-filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px;}
+  .chip{
+    padding:7px 14px; border-radius:999px; background:#fff; border:1px solid var(--line);
+    font-size:0.85rem; font-weight:600; cursor:pointer; color:var(--ink-soft);
+  }
+  .chip.active{background:var(--green-deep); color:#fff; border-color:var(--green-deep);}
+  .grid{display:grid; gap:16px;}
+  .grid.tools{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));}
+  .tool-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:18px;
+    display:flex; flex-direction:column; gap:8px; transition:box-shadow .2s, transform .2s;
+  }
+  .tool-card:hover{box-shadow:var(--shadow); transform:translateY(-3px);}
+  .tool-card .icon{font-size:1.7rem;}
+  .tool-card h3{font-size:1.02rem; color:var(--ink);}
+  .tool-card .cat{font-size:0.75rem; color:var(--gold); font-weight:700;}
+  .tool-card p{font-size:0.85rem; color:var(--ink-soft); margin:0; flex:1;}
+  .tool-card .go{font-size:0.8rem; font-weight:700; color:var(--green-mid);}
+
+  /* Prompts */
+  .grid.prompts{grid-template-columns:repeat(auto-fill,minmax(250px,1fr));}
+  .prompt-card{
+    border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); background:#fff;
+    display:flex; flex-direction:column;
+  }
+  .prompt-media{
+    aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; font-size:2.4rem; color:#fff;
+  }
+  .prompt-media.pink{background:linear-gradient(135deg,#e88ea6,#c65a78);}
+  .prompt-media.blue{background:linear-gradient(135deg,#4a7fa8,#22415c);}
+  .prompt-media.violet{background:linear-gradient(135deg,#9b7fd4,#5b3f96);}
+  .prompt-media.green{background:linear-gradient(135deg,#5aa87d,#1f5c40);}
+  .prompt-media.red{background:linear-gradient(135deg,#d3665a,#7a2331);}
+  .prompt-media.dark{background:linear-gradient(135deg,#3a3a45,#14141a);}
+  .prompt-body{padding:14px 16px 18px; display:flex; flex-direction:column; gap:8px; flex:1;}
+  .prompt-body h3{font-size:1rem;}
+  .prompt-body .tag-row{display:flex; gap:6px; flex-wrap:wrap;}
+  .tag{font-size:0.72rem; padding:3px 9px; border-radius:999px; background:var(--cream); color:var(--ink-soft); font-weight:600;}
+  .prompt-text{font-size:0.82rem; color:var(--ink-soft); background:var(--cream); padding:10px; border-radius:10px; max-height:70px; overflow:auto;}
+  .copy-btn{align-self:flex-start; font-size:0.8rem; font-weight:700; color:var(--green-mid); background:none; border:none; cursor:pointer; padding:0;}
+
+  /* Quotes */
+  .grid.quotes{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
+  .quote-card{border-radius:var(--radius); padding:22px; color:#fff; position:relative; min-height:150px; display:flex; flex-direction:column; justify-content:space-between;}
+  .quote-card.green{background:linear-gradient(150deg,#1c6b4c,#0F3D2E);}
+  .quote-card.blue{background:linear-gradient(150deg,#2f6fa3,#173b57);}
+  .quote-card.gold{background:linear-gradient(150deg,#e8b95e,#b9791f);}
+  .quote-card.violet{background:linear-gradient(150deg,#8a6fce,#4c3583);}
+  .quote-card .qmark{font-size:2rem; opacity:.5; font-family:Georgia,serif;}
+  .quote-card p.qtext{font-size:1.02rem; font-weight:600; margin:6px 0;}
+  .quote-card .src{font-size:0.78rem; opacity:.85;}
+
+  /* Songs */
+  .grid.songs{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));}
+  .song-card{border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); background:#fff; cursor:pointer;}
+  .song-thumb{position:relative; aspect-ratio:16/9; background:#111;}
+  .song-thumb img{width:100%; height:100%; object-fit:cover;}
+  .play-overlay{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.25);}
+  .play-overlay span{width:52px; height:52px; border-radius:50%; background:var(--gold); color:var(--green-deep); display:flex; align-items:center; justify-content:center; font-size:1.3rem;}
+  .song-title{padding:12px 14px; font-weight:600; font-size:0.92rem;}
+
+  /* Movies */
+  .grid.movies{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}
+  .movie-card{
+    background:linear-gradient(150deg,#1a1a22,#302233); color:#fff; border-radius:var(--radius); padding:24px 18px;
+    display:flex; flex-direction:column; gap:10px; align-items:flex-start;
+  }
+  .movie-card .icon{font-size:1.6rem;}
+  .movie-card h3{color:#fff; font-size:1.05rem;}
+  .movie-card .visit{font-size:0.8rem; font-weight:700; color:var(--gold);}
+
+  /* Income */
+  .grid.income{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));}
+  .income-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px; display:flex; flex-direction:column; gap:10px;}
+  .income-card h3{font-size:1.05rem;}
+  .income-card .row{display:flex; gap:8px; flex-wrap:wrap;}
+  .income-card .btn{padding:9px 16px; font-size:0.85rem;}
+
+  /* Blog */
+  .grid.blog{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
+  .blog-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .blog-cover{aspect-ratio:16/9; background:linear-gradient(135deg,var(--gold-soft),var(--green-mid)); display:flex; align-items:center; justify-content:center; font-size:2rem;}
+  .blog-cover img{width:100%; height:100%; object-fit:cover;}
+  .blog-body{padding:14px 16px;}
+  .blog-cat{font-size:0.72rem; color:var(--gold); font-weight:700;}
+  .blog-body h3{font-size:1rem; margin:6px 0;}
+  .blog-body p{font-size:0.85rem; color:var(--ink-soft); margin:0;}
+  .empty-note{color:var(--ink-soft); font-size:0.9rem; padding:20px; border:1px dashed var(--line); border-radius:12px; background:#fff;}
+
+  /* Social & footer */
+  .social-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .social-pill{display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--line); border-radius:999px; padding:10px 18px; font-weight:600; font-size:0.9rem;}
+  footer{background:var(--green-deep); color:rgba(255,255,255,.85); padding:36px 20px; text-align:center; font-size:0.88rem;}
+  footer a{color:var(--gold);}
+
+  /* Modal */
+  .modal-bg{position:fixed; inset:0; background:rgba(10,20,15,.75); display:none; align-items:center; justify-content:center; z-index:200; padding:20px;}
+  .modal-bg.open{display:flex;}
+  .modal-box{background:#000; border-radius:14px; overflow:hidden; width:100%; max-width:800px; aspect-ratio:16/9; position:relative;}
+  .modal-close{position:absolute; top:-40px; right:0; background:none; border:none; color:#fff; font-size:1.6rem; cursor:pointer;}
+
+  @media(max-width:820px){
+    nav.links{
+      position:fixed; top:64px; left:0; right:0; background:var(--paper); flex-direction:column;
+      padding:14px; border-bottom:1px solid var(--line); display:none;
+    }
+    nav.links.open{display:flex;}
+    .menu-toggle{display:block;}
+    .hero-stats{gap:20px;}
+  }
+</style>
 </head>
 <body>
-<div class="bg-mesh"></div>
-<div class="noise"></div>
 
-<header>
-  <a href="#top" class="logo"><span class="logo-mark">A</span>Amin AI <span>World</span></a>
-  <nav id="mainNav">
-    <a href="#prompts">📸 প্রম্পট</a>
-    <a href="#tools">🛠️ AI টুলস</a>
-    <a href="#islamic">🕌 ইসলামিক</a>
-    <a href="#inspiration">✨ প্রেরণা</a>
-    <a href="#blog">📝 ব্লগ</a>
-    <a href="#entertainment">🎵 বিনোদন</a>
-    <a href="#social">📱 সোশ্যাল</a>
-    <a href="#movies">🎬 মুভি</a>
-    <a href="#income">💰 ইনকাম</a>
-    <a href="admin.html" class="nav-cta">⚙️ Admin</a>
-  </nav>
-  <button class="menu-toggle" id="menuToggle">☰</button>
+<header class="site">
+  <div class="nav-row wrap">
+    <div class="brand"><span class="mark">A</span> Amin AI World</div>
+    <nav class="links" id="navLinks">
+      <a href="#tools">🛠️ AI টুলস</a>
+      <a href="#prompts">📸 প্রম্পট</a>
+      <a href="#islamic">🕌 ইসলামিক</a>
+      <a href="#inspiration">✨ প্রেরণা</a>
+      <a href="#blog">📝 ব্লগ</a>
+      <a href="#entertainment">🎵 বিনোদন</a>
+      <a href="#movies">🎬 মুভি</a>
+      <a href="#income">💰 ইনকাম</a>
+      <a href="#social">📱 সোশ্যাল</a>
+      <a href="admin.html">⚙️ Admin</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </div>
 </header>
 
-<main id="top">
-
-<!-- ===== WELCOME HERO ===== -->
-<section class="welcome-hero" id="welcome">
-  <div class="particles" id="particles"></div>
-  <div class="welcome-content">
-    <div class="welcome-badge">🌟 Bangladesh's #1 AI & Smart Platform</div>
-    <h1 class="welcome-title">
-      WELCOME TO
-      <span class="heart-icon">❤️</span>
-      <span class="brand-name">Amin AI World</span>
-    </h1>
-    <p class="welcome-bn">আপনার প্রয়োজনীয় সকল অনলাইন স্মার্ট প্রজেক্ট <span class="highlight">(iDEA)</span><br>এবং তথ্য ও বিনোদন পাবেন এখানে</p>
-    <div class="welcome-stats">
-      <div class="wstat"><div class="wstat-num" data-target="98">0</div><div class="wstat-label">AI প্রম্পট</div></div>
-      <div class="wstat-div"></div>
-      <div class="wstat"><div class="wstat-num" data-target="25">0</div><div class="wstat-label">AI টুলস</div></div>
-      <div class="wstat-div"></div>
-      <div class="wstat"><div class="wstat-num" data-target="24">0</div><div class="wstat-label">ইসলামিক বাণী</div></div>
-      <div class="wstat-div"></div>
-      <div class="wstat"><div class="wstat-num" data-target="10">0</div><div class="wstat-label">গান</div></div>
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">🌟 Bangladesh's #1 AI &amp; Smart Platform</span>
+    <h1>WELCOME TO ❤️ Amin AI World</h1>
+    <p>আপনার প্রয়োজনীয় সকল AI টুলস, রেডি প্রম্পট, ইসলামিক বাণী, প্রেরণা ও বিনোদন — সব একসাথে, একদম ফ্রি।</p>
+    <div class="hero-stats">
+      <div class="stat"><b id="cntTools">0</b><span>AI টুলস</span></div>
+      <div class="stat"><b id="cntPrompts">0</b><span>প্রম্পট</span></div>
+      <div class="stat"><b id="cntQuotes">0</b><span>ইসলামিক বাণী</span></div>
+      <div class="stat"><b id="cntSongs">0</b><span>গান</span></div>
     </div>
-    <div class="welcome-cta">
-      <a href="#prompts" class="btn-hero-primary">🚀 শুরু করুন</a>
-      <a href="#islamic" class="btn-hero-ghost">🕌 ইসলামিক বাণী</a>
-    </div>
-  </div>
-  <!-- Floating cards -->
-  <div class="float-cards">
-    <div class="fcard fcard1"><span>🤖</span><p>AI প্রম্পট</p></div>
-    <div class="fcard fcard2"><span>🕌</span><p>কোরআন ও হাদিস</p></div>
-    <div class="fcard fcard3"><span>✨</span><p>প্রেরণা</p></div>
-    <div class="fcard fcard4"><span>🎵</span><p>বিনোদন</p></div>
-  </div>
-</section>
-
-<!-- QUICK NAV CARDS -->
-<section class="quick-nav">
-  <div class="qnav-grid">
-    <a href="#prompts" class="qnav-card" style="--qc:#7C5CFF">
-      <span class="qnav-icon">🤖</span>
-      <h3>AI প্রম্পট</h3>
-      <p>৯৮+ ছবিসহ রেডি প্রম্পট</p>
-    </a>
-    <a href="#tools" class="qnav-card" style="--qc:#4DE8FF">
-      <span class="qnav-icon">🛠️</span>
-      <h3>AI টুলস</h3>
-      <p>২৫+ সেরা AI টুলসের তালিকা</p>
-    </a>
-    <a href="#islamic" class="qnav-card" style="--qc:#10B981">
-      <span class="qnav-icon">🕌</span>
-      <h3>ইসলামিক বাণী</h3>
-      <p>কোরআন ও হাদিসের আলো</p>
-    </a>
-    <a href="#inspiration" class="qnav-card" style="--qc:#F97316">
-      <span class="qnav-icon">✨</span>
-      <h3>প্রেরণা</h3>
-      <p>জীবন, স্বপ্ন ও অনুপ্রেরণা</p>
-    </a>
-    <a href="#blog" class="qnav-card" style="--qc:#EC4899">
-      <span class="qnav-icon">📝</span>
-      <h3>ব্লগ</h3>
-      <p>লেখা, ছবি ও ক্যাপশন</p>
-    </a>
-    <a href="#entertainment" class="qnav-card" style="--qc:#FF6B6B">
-      <span class="qnav-icon">🎵</span>
-      <h3>বিনোদন</h3>
-      <p>গান ও মিউজিক ভিডিও</p>
-    </a>
-    <a href="#movies" class="qnav-card" style="--qc:#FACC15">
-      <span class="qnav-icon">🎬</span>
-      <h3>মুভি</h3>
-      <p>ফ্রি মুভি দেখুন</p>
-    </a>
-    <a href="#income" class="qnav-card" style="--qc:#27C93F">
-      <span class="qnav-icon">💰</span>
-      <h3>ইনকাম</h3>
-      <p>অনলাইনে আয় করুন</p>
-    </a>
-  </div>
-</section>
-
-<!-- PROFILE -->
-<section class="block" id="profile">
-  <div class="profile-card">
-    <div class="profile-avatar" id="profileAvatar"></div>
-    <div class="profile-info">
-      <h2 id="profileName"></h2>
-      <div class="profile-channel" id="profileChannel"></div>
-      <p id="profileBio"></p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <a id="profileYoutube" class="btn btn-ghost" target="_blank" rel="noopener">📺 ইউটিউব</a>
-        <a id="profileFacebook" class="btn btn-ghost" target="_blank" rel="noopener">📘 ফেসবুক</a>
-        <a id="profileFbPage" class="btn btn-ghost" target="_blank" rel="noopener">📄 পেজ</a>
-      </div>
+    <div class="hero-cta">
+      <a href="#tools" class="btn btn-gold">🛠️ AI টুলস দেখুন</a>
+      <a href="#islamic" class="btn btn-outline">🕌 ইসলামিক বাণী</a>
     </div>
   </div>
 </section>
 
-<div class="ad-slot">📢 বিজ্ঞাপন স্থান — Google AdSense</div>
+<div class="bead-divider"><div class="line"></div><div class="bead g"></div><div class="bead"></div><div class="bead g"></div><div class="line"></div></div>
+
+<!-- AI TOOLS -->
+<section id="tools">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">// ০১</div>
+      <h2>🛠️ জনপ্রিয় AI টুলস ডিরেক্টরি</h2>
+      <p>লেখা, ছবি, ভিডিও ও মিউজিকের সেরা AI টুলগুলো — এক ক্লিকে ব্যবহার করুন।</p>
+    </div>
+    <div class="tool-filters" id="toolFilters"></div>
+    <div class="grid tools" id="toolsGrid"></div>
+  </div>
+</section>
+
+<div class="bead-divider"><div class="line"></div><div class="bead"></div><div class="bead g"></div><div class="bead"></div><div class="line"></div></div>
 
 <!-- PROMPTS -->
-<section class="block" id="prompts">
-  <div class="block-head"><div><div class="section-num">// ০১</div><h2>📸 AI প্রম্পট গ্যালারি</h2><p>ছবিসহ রেডি-মেইড প্রম্পট — কপি করে সরাসরি AI টুলে ব্যবহার করুন।</p></div></div>
-  <div class="search-box"><span>🔍</span><input type="text" id="searchInput" placeholder="প্রম্পট, ট্যাগ বা টুল দিয়ে খুঁজুন..."></div>
-  <div class="filter-bar" id="filterBar"></div>
-  <div class="prompt-grid" id="promptGrid"></div>
-</section>
-
-<!-- TOOLS -->
-<section class="block" id="tools">
-  <div class="block-head"><div><div class="section-num">// ০২</div><h2>🛠️ AI টুলস ডিরেক্টরি</h2><p>লেখা, ছবি, ভিডিও, মিউজিক ও ডিজাইনের সেরা AI টুলস।</p></div></div>
-  <div class="tools-grid" id="toolsGrid"></div>
-</section>
-
-<div class="ad-slot">📢 বিজ্ঞাপন স্থান — Google AdSense</div>
-
-<!-- ISLAMIC -->
-<section class="block" id="islamic">
-  <div class="block-head"><div><div class="section-num">// ০৩</div><h2>🕌 ইসলামিক বাণী ও প্রেরণা</h2><p>পবিত্র কোরআন ও হাদিসের আলোকে জীবন গড়ুন।</p></div></div>
-  <div class="quote-filter" id="islamicFilter"></div>
-  <div class="quote-grid" id="islamicGrid"></div>
-  <div style="margin-top:32px;">
-    <h3 style="font-family:'Space Grotesk';font-size:1.1rem;margin-bottom:16px;">📖 ইসলামিক রিসোর্স লিংক</h3>
-    <div class="islamic-links-grid" id="islamicLinksGrid"></div>
+<section id="prompts" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">// ০২</div>
+      <h2>📸 AI প্রম্পট গ্যালারি</h2>
+      <p>ছবিসহ রেডি-মেইড প্রম্পট — কপি করে সরাসরি AI টুলে ব্যবহার করুন।</p>
+    </div>
+    <div class="tool-filters" id="promptFilters"></div>
+    <div class="grid prompts" id="promptsGrid"></div>
   </div>
 </section>
 
+<!-- ISLAMIC -->
+<section id="islamic">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">// ০৩</div>
+      <h2>🕌 ইসলামিক বাণী ও প্রেরণা</h2>
+      <p>পবিত্র কোরআন ও হাদিসের আলোকে জীবন গড়ুন।</p>
+    </div>
+    <div class="grid quotes" id="islamicGrid"></div>
+  </div>
+</section>
+
+<div class="bead-divider"><div class="line"></div><div class="bead g"></div><div class="bead"></div><div class="line"></div></div>
+
 <!-- INSPIRATION -->
-<section class="block" id="inspiration">
-  <div class="block-head"><div><div class="section-num">// ০৪</div><h2>✨ জীবন, স্বপ্ন ও প্রেরণা</h2><p>জীবনকে অর্থবহ করে তুলুন — প্রেরণামূলক বাণী ও উক্তি।</p></div></div>
-  <div class="quote-filter" id="inspirationFilter"></div>
-  <div class="quote-grid" id="inspirationGrid"></div>
+<section id="inspiration" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">// ০৪</div>
+      <h2>✨ জীবন, স্বপ্ন ও প্রেরণা</h2>
+      <p>জীবনকে অর্থবহ করে তুলুন — প্রেরণামূলক বাণী ও উক্তি।</p>
+    </div>
+    <div class="grid quotes" id="inspirationGrid"></div>
+  </div>
 </section>
 
 <!-- BLOG -->
-<section class="block" id="blog">
-  <div class="block-head"><div><div class="section-num">// ০৫</div><h2>📝 ব্লগ ও লেখার ঘর</h2><p>ছবি ও ক্যাপশন সহ লেখা — ইসলামিক, প্রেরণামূলক, দেশপ্রেম ও সাধারণ বিষয়।</p></div></div>
-  <div class="filter-bar" id="blogFilter"></div>
-  <div class="blog-grid" id="blogGrid"></div>
+<section id="blog">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">// ০৫</div>
+      <h2>📝 ব্লগ ও লেখার ঘর</h2>
+      <p>ছবি ও ক্যাপশন সহ লেখা — ইসলামিক, প্রেরণামূলক, দেশপ্রেম ও সাধারণ বিষয়।</p>
+    </div>
+    <div class="grid blog" id="blogGrid"></div>
+  </div>
 </section>
 
+<div class="bead-divider"><div class="line"></div><div class="bead"></div><div class="bead g"></div><div class="bead"></div><div class="line"></div></div>
+
 <!-- ENTERTAINMENT -->
-<section class="block" id="entertainment">
-  <div class="block-head"><div><div class="section-num">// ০৬</div><h2>🎵 বিনোদন কর্নার</h2><p>"চারপাশে যা দেখছি" চ্যানেলের সেরা গানগুলো।</p></div></div>
-  <div class="music-filter" id="musicFilter"></div>
-  <div class="music-grid" id="musicGrid"></div>
+<section id="entertainment" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">// ০৬</div>
+      <h2>🎵 বিনোদন কর্নার</h2>
+      <p>"চারপাশে যা দেখছি" চ্যানেলের সেরা গানগুলো — ক্লিক করে দেখুন ও শুনুন।</p>
+    </div>
+    <div class="grid songs" id="songsGrid"></div>
+  </div>
 </section>
 
 <!-- SOCIAL -->
-<section class="block" id="social">
-  <div class="block-head"><div><div class="section-num">// ০৭</div><h2>📱 সোশ্যাল মিডিয়া</h2></div></div>
-  <div class="social-grid" id="socialGrid"></div>
-</section>
-
-<!-- MOVIES -->
-<section class="block" id="movies">
-  <div class="block-head"><div><div class="section-num">// ০৮</div><h2>🎬 ফ্রি মুভি দেখুন</h2></div></div>
-  <div class="movie-grid" id="movieGrid"></div>
-</section>
-
-<!-- TV -->
-<section class="block" id="tv">
-  <div class="block-head"><div><div class="section-num">// ০৯</div><h2>📺 অনলাইন টেলিভিশন</h2></div></div>
-  <div class="tv-grid" id="tvGrid"></div>
-</section>
-
-<!-- INCOME -->
-<section class="block" id="income">
-  <div class="block-head"><div><div class="section-num">// ১০</div><h2>💰 অনলাইন ইনকাম অ্যাপ</h2></div></div>
-  <div class="income-grid" id="incomeGrid"></div>
-</section>
-
-<!-- SUPPORT -->
-<section class="block">
-  <div class="support-panel">
-    <h2>🙏 এই প্ল্যাটফর্মকে সাপোর্ট করুন</h2>
-    <p>Amin AI World সম্পূর্ণ ফ্রি রাখতে পরিশ্রম করি। শেয়ার করে পাশে থাকুন।</p>
-    <div class="hero-cta" style="justify-content:center;">
-      <a href="https://www.facebook.com/share/1DRgjnsLRv/" target="_blank" class="btn btn-primary">📘 শেয়ার করুন</a>
-      <a href="https://youtube.com/@charpashezadekhchi" target="_blank" class="btn btn-ghost">📺 সাবস্ক্রাইব করুন</a>
+<section id="social">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">// ০৭</div>
+      <h2>📱 সোশ্যাল মিডিয়া</h2>
+    </div>
+    <div class="social-row">
+      <a class="social-pill" href="https://youtube.com/@charpashezadekhchi" target="_blank" rel="noopener">📺 ইউটিউব</a>
+      <a class="social-pill" href="https://www.facebook.com/share/1DRgjnsLRv/" target="_blank" rel="noopener">📘 ফেসবুক</a>
     </div>
   </div>
 </section>
 
-</main>
+<div class="bead-divider"><div class="line"></div><div class="bead g"></div><div class="bead"></div><div class="bead g"></div><div class="line"></div></div>
 
-<!-- Blog Modal -->
-<div class="blog-modal" id="blogModal">
-  <button class="blog-modal-close" onclick="closeBlogModal()">✕</button>
-  <div class="blog-modal-inner" id="blogModalInner"></div>
-</div>
+<!-- MOVIES -->
+<section id="movies" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">// ০৮</div>
+      <h2>🎬 ফ্রি মুভি দেখুন</h2>
+      <p>নিচের যেকোনো লিংকে ক্লিক করে সরাসরি মুভি দেখুন।</p>
+    </div>
+    <div class="grid movies" id="moviesGrid"></div>
+  </div>
+</section>
 
-<!-- Music Modal -->
-<div class="music-modal" id="musicModal">
-  <div class="modal-inner">
-    <div class="modal-top"><h3 id="modalTitle"></h3><button class="modal-close" onclick="closeMusicModal()">✕</button></div>
-    <div class="modal-video"><iframe id="modalIframe" allowfullscreen allow="autoplay"></iframe></div>
+<div class="bead-divider"><div class="line"></div><div class="bead"></div><div class="bead g"></div><div class="line"></div></div>
+
+<!-- INCOME -->
+<section id="income">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">// ০৯</div>
+      <h2>💰 অনলাইন ইনকাম অ্যাপ</h2>
+      <p>বিশ্বস্ত ইনকাম অ্যাপ ও তার ব্যবহার-ভিডিও — ডাউনলোড করুন ও ভিডিও দেখে শুরু করুন।</p>
+    </div>
+    <div class="grid income" id="incomeGrid"></div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support">
+  <div class="wrap" style="text-align:center;">
+    <h2 style="margin-bottom:10px;">🙏 এই প্ল্যাটফর্মকে সাপোর্ট করুন</h2>
+    <p style="color:var(--ink-soft); max-width:520px; margin:0 auto 20px;">Amin AI World সম্পূর্ণ ফ্রি রাখতে পরিশ্রম করি। শেয়ার করে পাশে থাকুন।</p>
+    <div class="hero-cta">
+      <a class="btn btn-gold" href="https://www.facebook.com/share/1DRgjnsLRv/" target="_blank" rel="noopener">📘 শেয়ার করুন</a>
+      <a class="btn" style="background:var(--green-deep); color:#fff;" href="https://youtube.com/@charpashezadekhchi" target="_blank" rel="noopener">📺 সাবস্ক্রাইব করুন</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Amin AI World — সকলের জন্য ফ্রি · Made with ❤️ in Bangladesh
+  <br><a href="admin.html">⚙️ Admin Panel</a>
+</footer>
+
+<div class="modal-bg" id="videoModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">✕</button>
+    <iframe id="videoFrame" width="100%" height="100%" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
 </div>
 
-<footer>
-  <span>© <span id="year"></span> Amin AI World — সকলের জন্য ফ্রি</span>
-  <span>Made with ❤️ in Bangladesh</span>
-</footer>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
 
-<script src="data.js"></script>
-<script src="script.js"></script>
+document.getElementById('menuToggle').addEventListener('click', ()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+let DATA = null;
+
+async function loadData(){
+  try{
+    const res = await fetch('data.json?v=' + Date.now());
+    DATA = await res.json();
+  }catch(e){
+    console.error('data.json লোড করা যায়নি', e);
+    DATA = {aiTools:[],songs:[],movies:[],prompts:[],islamicQuotes:[],inspirationQuotes:[],blogPosts:[],income:[]};
+  }
+  render();
+}
+
+function render(){
+  // stats
+  document.getElementById('cntTools').textContent = DATA.aiTools.length;
+  document.getElementById('cntPrompts').textContent = DATA.prompts.length;
+  document.getElementById('cntQuotes').textContent = DATA.islamicQuotes.length;
+  document.getElementById('cntSongs').textContent = DATA.songs.length;
+
+  renderTools('সব');
+  renderPrompts('all');
+  renderQuotes('islamicGrid', DATA.islamicQuotes);
+  renderQuotes('inspirationGrid', DATA.inspirationQuotes);
+  renderSongs();
+  renderMovies();
+  renderIncome();
+  renderBlog();
+}
+
+// ---- AI TOOLS ----
+function renderTools(activeCat){
+  const cats = ['সব', ...new Set(DATA.aiTools.map(t=>t.category))];
+  const filterBar = document.getElementById('toolFilters');
+  filterBar.innerHTML = cats.map(c => `<button class="chip ${c===activeCat?'active':''}" data-cat="${c}">${c}</button>`).join('');
+  filterBar.querySelectorAll('.chip').forEach(btn=>{
+    btn.addEventListener('click', ()=> renderTools(btn.dataset.cat));
+  });
+  const list = activeCat==='সব' ? DATA.aiTools : DATA.aiTools.filter(t=>t.category===activeCat);
+  document.getElementById('toolsGrid').innerHTML = list.map(t=>`
+    <a class="tool-card" href="${escAttr(t.url)}" target="_blank" rel="noopener">
+      <div class="icon">${t.icon||'🤖'}</div>
+      <h3>${esc(t.name)}</h3>
+      <div class="cat">${esc(t.category)}</div>
+      <p>${esc(t.desc||'')}</p>
+      <div class="go">ব্যবহার করুন →</div>
+    </a>`).join('') || `<div class="empty-note">এখনো কোনো AI টুল যোগ করা হয়নি।</div>`;
+}
+
+// ---- PROMPTS ----
+const promptCatLabels = {all:'সব', romantic:'💑 রোমান্টিক', man:'🧔 পুরুষ', woman:'👩 নারী', others:'🎨 অন্যান্য'};
+function renderPrompts(activeCat){
+  const filterBar = document.getElementById('promptFilters');
+  filterBar.innerHTML = Object.keys(promptCatLabels).map(c=>`<button class="chip ${c===activeCat?'active':''}" data-cat="${c}">${promptCatLabels[c]}</button>`).join('');
+  filterBar.querySelectorAll('.chip').forEach(btn=>{
+    btn.addEventListener('click', ()=> renderPrompts(btn.dataset.cat));
+  });
+  const list = activeCat==='all' ? DATA.prompts : DATA.prompts.filter(p=>p.category===activeCat);
+  document.getElementById('promptsGrid').innerHTML = list.map(p=>`
+    <div class="prompt-card">
+      <div class="prompt-media ${p.themeColor||'green'}">${p.image ? `<img src="${escAttr(p.image)}" style="width:100%;height:100%;object-fit:cover;">` : '🖼️'}</div>
+      <div class="prompt-body">
+        <h3>${esc(p.title)}</h3>
+        <div class="tag-row"><span class="tag">${esc(p.tool||'AI Tool')}</span><span class="tag">${promptCatLabels[p.category]||''}</span></div>
+        <div class="prompt-text">${esc(p.text)}</div>
+        <button class="copy-btn" onclick="copyPrompt('${p.id}')">📋 কপি করুন</button>
+      </div>
+    </div>`).join('') || `<div class="empty-note">এই ক্যাটাগরিতে এখনো কোনো প্রম্পট নেই।</div>`;
+}
+function copyPrompt(id){
+  const p = DATA.prompts.find(x=>x.id===id);
+  if(!p) return;
+  navigator.clipboard.writeText(p.text).then(()=>alert('প্রম্পট কপি হয়েছে ✅'));
+}
+
+// ---- QUOTES ----
+function renderQuotes(elId, list){
+  document.getElementById(elId).innerHTML = list.map(q=>`
+    <div class="quote-card ${q.themeColor||'green'}">
+      <div>
+        <div class="qmark">"</div>
+        <p class="qtext">${esc(q.text)}</p>
+      </div>
+      <div class="src">${esc(q.source||q.category||'')}</div>
+    </div>`).join('') || `<div class="empty-note">এখনো কোনো বাণী যোগ করা হয়নি।</div>`;
+}
+
+// ---- SONGS ----
+function renderSongs(){
+  document.getElementById('songsGrid').innerHTML = DATA.songs.map(s=>`
+    <div class="song-card" onclick="playSong('${s.youtubeId}')">
+      <div class="song-thumb">
+        <img src="https://img.youtube.com/vi/${s.youtubeId}/hqdefault.jpg" alt="${escAttr(s.title)}" loading="lazy">
+        <div class="play-overlay"><span>▶</span></div>
+      </div>
+      <div class="song-title">${esc(s.title)}</div>
+    </div>`).join('') || `<div class="empty-note">এখনো কোনো গান যোগ করা হয়নি।</div>`;
+}
+function playSong(ytId){
+  document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
+  document.getElementById('videoModal').classList.add('open');
+}
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('videoModal').addEventListener('click', (e)=>{ if(e.target.id==='videoModal') closeModal(); });
+function closeModal(){
+  document.getElementById('videoModal').classList.remove('open');
+  document.getElementById('videoFrame').src = '';
+}
+
+// ---- MOVIES ----
+function renderMovies(){
+  document.getElementById('moviesGrid').innerHTML = DATA.movies.map(m=>`
+    <a class="movie-card" href="${escAttr(m.url)}" target="_blank" rel="noopener">
+      <div class="icon">🎬</div>
+      <h3>${esc(m.name)}</h3>
+      <div class="visit">ভিজিট করুন →</div>
+    </a>`).join('') || `<div class="empty-note">এখনো কোনো মুভি লিংক যোগ করা হয়নি।</div>`;
+}
+
+// ---- INCOME ----
+function renderIncome(){
+  const list = DATA.income || [];
+  document.getElementById('incomeGrid').innerHTML = list.map(ic=>`
+    <div class="income-card">
+      <h3>💰 ${esc(ic.name)}</h3>
+      <div class="row">
+        <a class="btn btn-gold" href="${escAttr(ic.url)}" target="_blank" rel="noopener">📲 অ্যাপ ইনস্টল করুন</a>
+        ${ic.video ? `<button class="btn" style="background:var(--green-deep); color:#fff;" onclick="playSong('${esc(ic.video)}')">▶️ ভিডিও দেখুন</button>` : ''}
+      </div>
+    </div>`).join('') || `<div class="empty-note">এখনো কোনো ইনকাম অ্যাপ যোগ করা হয়নি।</div>`;
+}
+
+// ---- BLOG ----
+function renderBlog(){
+  const list = DATA.blogPosts||[];
+  document.getElementById('blogGrid').innerHTML = list.map(b=>`
+    <div class="blog-card">
+      <div class="blog-cover">${b.image ? `<img src="${escAttr(b.image)}">` : (b.emoji||'📝')}</div>
+      <div class="blog-body">
+        <div class="blog-cat">${esc(b.category||'')}</div>
+        <h3>${esc(b.title)}</h3>
+        <p>${esc((b.content||'').slice(0,90))}${(b.content||'').length>90?'…':''}</p>
+      </div>
+    </div>`).join('') || `<div class="empty-note">এখনো কোনো ব্লগ পোস্ট প্রকাশিত হয়নি।</div>`;
+}
+
+function esc(str){
+  return String(str==null?'':str).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function escAttr(str){ return esc(str); }
+
+loadData();
+</script>
 </body>
 </html>
