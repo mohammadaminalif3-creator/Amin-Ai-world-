@@ -113,7 +113,6 @@
     <button class="tab-btn" data-tab="tools">🛠️ AI টুলস</button>
     <button class="tab-btn" data-tab="prompts">📸 প্রম্পট</button>
     <button class="tab-btn" data-tab="songs">🎵 গান</button>
-    <button class="tab-btn" data-tab="movies">🎬 মুভি</button>
     <button class="tab-btn" data-tab="income">💰 ইনকাম</button>
     <button class="tab-btn" data-tab="blog">📝 ব্লগ পোস্ট</button>
     <button class="tab-btn" data-tab="islamic">🕌 ইসলামিক</button>
@@ -140,7 +139,6 @@
       <div class="stat-pill"><b id="statTools">0</b><span>AI টুলস</span></div>
       <div class="stat-pill"><b id="statPrompts">0</b><span>প্রম্পট</span></div>
       <div class="stat-pill"><b id="statSongs">0</b><span>গান</span></div>
-      <div class="stat-pill"><b id="statMovies">0</b><span>মুভি</span></div>
       <div class="stat-pill"><b id="statIncome">0</b><span>ইনকাম অ্যাপ</span></div>
       <div class="stat-pill"><b id="statIslamic">0</b><span>ইসলামিক বাণী</span></div>
       <div class="stat-pill"><b id="statBlog">0</b><span>ব্লগ পোস্ট</span></div>
@@ -233,20 +231,6 @@
       </div>
       <h3 style="margin:20px 0 10px;">বর্তমান তালিকা</h3>
       <div id="songsList"></div>
-    </div>
-
-    <!-- MOVIES -->
-    <div class="tab-panel" id="tab-movies">
-      <div class="card">
-        <h3>🎬 নতুন মুভি লিংক যোগ করুন</h3>
-        <label>নাম *</label>
-        <input id="movieName" placeholder="যেমন: Fojik">
-        <label>লিংক (URL) *</label>
-        <input id="movieUrl" placeholder="https://example.com">
-        <button class="btn btn-gold" style="margin-top:14px;" onclick="addMovie()">✅ মুভি যোগ করুন</button>
-      </div>
-      <h3 style="margin:20px 0 10px;">বর্তমান তালিকা</h3>
-      <div id="moviesList"></div>
     </div>
 
     <!-- INCOME -->
@@ -381,7 +365,7 @@ const DATA_PATH = 'data.json';
 const AUTH_KEY = 'aaw_admin_auth_v1';
 const DRAFT_KEY = 'aaw_admin_draft_v1';
 
-let DATA = { aiTools:[], songs:[], movies:[], prompts:[], islamicQuotes:[], inspirationQuotes:[], blogPosts:[], income:[] };
+let DATA = { aiTools:[], songs:[], prompts:[], islamicQuotes:[], inspirationQuotes:[], blogPosts:[], income:[] };
 
 // ---------- crypto helpers ----------
 async function sha256(text){
@@ -578,16 +562,6 @@ function addSong(){
   saveDraft();
 }
 
-// ---------- Movies ----------
-function addMovie(){
-  const name = document.getElementById('movieName').value.trim();
-  const url = document.getElementById('movieUrl').value.trim();
-  if(!name || !url){ alert('নাম ও লিংক আবশ্যক।'); return; }
-  DATA.movies.push({ id: uid('m'), name, url });
-  document.getElementById('movieName').value=''; document.getElementById('movieUrl').value='';
-  saveDraft();
-}
-
 // ---------- Income ----------
 function addIncome(){
   const name = document.getElementById('incomeName').value.trim();
@@ -653,7 +627,6 @@ function renderAll(){
   document.getElementById('statTools').textContent = DATA.aiTools.length;
   document.getElementById('statPrompts').textContent = DATA.prompts.length;
   document.getElementById('statSongs').textContent = DATA.songs.length;
-  document.getElementById('statMovies').textContent = DATA.movies.length;
   document.getElementById('statIncome').textContent = DATA.income.length;
   document.getElementById('statIslamic').textContent = DATA.islamicQuotes.length;
   document.getElementById('statBlog').textContent = DATA.blogPosts.length;
@@ -661,7 +634,6 @@ function renderAll(){
   document.getElementById('toolsList').innerHTML = rowList(DATA.aiTools, t=>`<b>${esc(t.icon)} ${esc(t.name)}</b><span>${esc(t.category)} · ${esc(t.url)}</span>`, 'aiTools');
   document.getElementById('promptsList').innerHTML = rowList(DATA.prompts, p=>`<b>${esc(p.title)}</b><span>${p.category} · ${esc(p.tool)}</span>`, 'prompts');
   document.getElementById('songsList').innerHTML = rowList(DATA.songs, s=>`<b>${esc(s.title)}</b><span>${esc(s.youtubeId)}</span>`, 'songs');
-  document.getElementById('moviesList').innerHTML = rowList(DATA.movies, m=>`<b>${esc(m.name)}</b><span>${esc(m.url)}</span>`, 'movies');
   document.getElementById('incomeList').innerHTML = rowList(DATA.income, ic=>`<b>${esc(ic.name)}</b><span>${esc(ic.url)}${ic.video?' · 🎬 ভিডিও যুক্ত':''}</span>`, 'income');
   document.getElementById('blogList').innerHTML = rowList(DATA.blogPosts, b=>`<b>${esc(b.title)}</b><span>${esc(b.category)} · ${esc(b.date||'')}</span>`, 'blogPosts');
   document.getElementById('islamicList').innerHTML = rowList(DATA.islamicQuotes, q=>`<b>${esc(q.title)}</b><span>${esc(q.category)}</span>`, 'islamicQuotes');
