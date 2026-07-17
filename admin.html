@@ -331,6 +331,20 @@
     <!-- SETTINGS -->
     <div class="tab-panel" id="tab-settings">
       <div class="card">
+        <h3>📢 Google AdSense ও যোগাযোগ তথ্য</h3>
+        <p style="color:var(--ink-soft); font-size:0.85rem;">AdSense-এ আবেদন করে অনুমোদন পাওয়ার পর নিচে আপনার Publisher ID ও Ad Slot ID বসিয়ে সেভ করুন — সাইটে বিজ্ঞাপন স্বয়ংক্রিয়ভাবে চালু হয়ে যাবে, কোনো কোড এডিট করা লাগবে না। এখন খালি রাখলে সাইটে কোনো বিজ্ঞাপন দেখাবে না।</p>
+        <label>Publisher ID (ca-pub-দিয়ে শুরু)</label>
+        <input id="setAdsPub" placeholder="ca-pub-XXXXXXXXXXXXXXXX">
+        <div class="two-col">
+          <div><label>Ad Slot — হোমপেজের উপরে</label><input id="setAdsSlotTop" placeholder="1234567890"></div>
+          <div><label>Ad Slot — কনটেন্টের মাঝে</label><input id="setAdsSlotMid" placeholder="1234567890"></div>
+        </div>
+        <label>যোগাযোগ ইমেইল (About পেজ ও ফুটারে দেখাবে)</label>
+        <input id="setContactEmail" placeholder="you@example.com">
+        <button class="btn btn-gold" style="margin-top:14px;" onclick="saveSiteSettings()">✅ সেটিংস সেভ করুন</button>
+        <div id="settingsMsg"></div>
+      </div>
+      <div class="card" style="margin-top:16px;">
         <h3>🔐 লগইন তথ্য পরিবর্তন</h3>
         <label>নতুন ইমেইল</label><input id="newEmail" placeholder="বর্তমান ইমেইল অপরিবর্তিত রাখতে খালি রাখুন">
         <label>নতুন পাসওয়ার্ড</label><input type="password" id="newPass" placeholder="বর্তমান পাসওয়ার্ড অপরিবর্তিত রাখতে খালি রাখুন">
@@ -353,6 +367,7 @@
         <div class="guide-step"><div class="n">২</div><div><b>কনটেন্ট যোগ করুন</b><br><span style="color:var(--ink-soft); font-size:0.9rem;">বাম মেনু থেকে যেকোনো ট্যাবে গিয়ে ফর্ম পূরণ করে "যোগ করুন" চাপুন। এটি এখনো শুধু খসড়া — লাইভ সাইটে দেখা যাবে না।</span></div></div>
         <div class="guide-step"><div class="n">৩</div><div><b>প্রকাশ করুন</b><br><span style="color:var(--ink-soft); font-size:0.9rem;">উপরে GitHub Token বসিয়ে "🚀 সবার জন্য প্রকাশ করুন" চাপুন। ১-২ মিনিটের মধ্যে পরিবর্তন লাইভ সাইটে দেখা যাবে।</span></div></div>
         <div class="guide-step"><div class="n">৪</div><div><b>Admin লিংক</b><br><span style="color:var(--ink-soft); font-size:0.9rem;"><code>mohammadaminalif3-creator.github.io/Amin-Ai-world-/admin.html</code></span></div></div>
+        <div class="guide-step"><div class="n">৫</div><div><b>Google AdSense-এ আবেদন</b><br><span style="color:var(--ink-soft); font-size:0.9rem;"><a href="https://www.google.com/adsense/start/" target="_blank">google.com/adsense</a>-এ গিয়ে আপনার সাইটের লিংক দিয়ে আবেদন করুন। অনুমোদনের পর যে Publisher ID (ca-pub-...) পাবেন সেটা "⚙️ সেটিংস" ট্যাবে বসিয়ে সেভ ও প্রকাশ করলেই সাইটে বিজ্ঞাপন চালু হয়ে যাবে। অনুমোদন পেতে সাধারণত মৌলিক/অরিজিনাল কনটেন্ট, নিয়মিত আপডেট ও কিছুদিনের পুরনো সাইট থাকা দরকার — তাই ব্লগ পোস্ট নিয়মিত লেখা জরুরি।</span></div></div>
       </div>
     </div>
   </div>
@@ -364,8 +379,10 @@ const GH_REPO  = 'Amin-Ai-world-';
 const DATA_PATH = 'data.json';
 const AUTH_KEY = 'aaw_admin_auth_v1';
 const DRAFT_KEY = 'aaw_admin_draft_v1';
+// শুধু এই ইমেইল দিয়েই প্রথমবার Admin অ্যাকাউন্ট সেটআপ করা যাবে
+const ALLOWED_OWNER_EMAIL = 'mohammadaminalif3@gmail.com';
 
-let DATA = { aiTools:[], songs:[], prompts:[], islamicQuotes:[], inspirationQuotes:[], blogPosts:[], income:[] };
+let DATA = { aiTools:[], songs:[], prompts:[], islamicQuotes:[], inspirationQuotes:[], blogPosts:[], income:[], settings:{contactEmail:'',adsensePubId:'',adsenseSlotTop:'',adsenseSlotMid:''} };
 
 // ---------- crypto helpers ----------
 async function sha256(text){
@@ -388,6 +405,9 @@ function initAuthScreen(){
     document.getElementById('authTitle').textContent = '👋 প্রথমবার — অ্যাকাউন্ট তৈরি করুন';
     document.getElementById('loginForm').classList.add('hidden');
     document.getElementById('setupForm').classList.remove('hidden');
+    const se = document.getElementById('setupEmail');
+    se.value = ALLOWED_OWNER_EMAIL;
+    se.readOnly = true;
   } else {
     document.getElementById('authTitle').textContent = '🔐 Admin লগইন';
     document.getElementById('loginForm').classList.remove('hidden');
@@ -401,6 +421,7 @@ async function handleSetup(){
   const pass2 = document.getElementById('setupPass2').value;
   const msg = document.getElementById('setupMsg');
   if(!email || !pass){ msg.innerHTML = '<div class="msg err">ইমেইল ও পাসওয়ার্ড দিন।</div>'; return; }
+  if(email.toLowerCase() !== ALLOWED_OWNER_EMAIL.toLowerCase()){ msg.innerHTML = '<div class="msg err">❌ এই ইমেইল দিয়ে অ্যাকাউন্ট তৈরি করার অনুমতি নেই। শুধু সাইটের মালিকের ইমেইল দিয়েই প্রথম সেটআপ করা যাবে।</div>'; return; }
   if(pass.length < 6){ msg.innerHTML = '<div class="msg err">পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।</div>'; return; }
   if(pass !== pass2){ msg.innerHTML = '<div class="msg err">পাসওয়ার্ড দুটি মিলছে না।</div>'; return; }
   const salt = randomSalt();
@@ -624,6 +645,7 @@ function addInspiration(){
 
 // ---------- render lists ----------
 function renderAll(){
+  DATA.settings = DATA.settings || {contactEmail:'',adsensePubId:'',adsenseSlotTop:'',adsenseSlotMid:''};
   document.getElementById('statTools').textContent = DATA.aiTools.length;
   document.getElementById('statPrompts').textContent = DATA.prompts.length;
   document.getElementById('statSongs').textContent = DATA.songs.length;
@@ -638,6 +660,21 @@ function renderAll(){
   document.getElementById('blogList').innerHTML = rowList(DATA.blogPosts, b=>`<b>${esc(b.title)}</b><span>${esc(b.category)} · ${esc(b.date||'')}</span>`, 'blogPosts');
   document.getElementById('islamicList').innerHTML = rowList(DATA.islamicQuotes, q=>`<b>${esc(q.title)}</b><span>${esc(q.category)}</span>`, 'islamicQuotes');
   document.getElementById('inspirationList').innerHTML = rowList(DATA.inspirationQuotes, q=>`<b>${esc(q.title)}</b><span>${esc(q.category)}</span>`, 'inspirationQuotes');
+
+  document.getElementById('setAdsPub').value = DATA.settings.adsensePubId || '';
+  document.getElementById('setAdsSlotTop').value = DATA.settings.adsenseSlotTop || '';
+  document.getElementById('setAdsSlotMid').value = DATA.settings.adsenseSlotMid || '';
+  document.getElementById('setContactEmail').value = DATA.settings.contactEmail || '';
+}
+function saveSiteSettings(){
+  DATA.settings = {
+    adsensePubId: document.getElementById('setAdsPub').value.trim(),
+    adsenseSlotTop: document.getElementById('setAdsSlotTop').value.trim(),
+    adsenseSlotMid: document.getElementById('setAdsSlotMid').value.trim(),
+    contactEmail: document.getElementById('setContactEmail').value.trim()
+  };
+  document.getElementById('settingsMsg').innerHTML = '<div class="msg ok">✅ সেটিংস সেভ হয়েছে (খসড়া) — লাইভ করতে উপরে "প্রকাশ করুন" চাপুন।</div>';
+  saveDraft();
 }
 function rowList(list, tpl, arrName){
   if(!list.length) return '<div class="msg" style="background:#F3EEDD;">এখনো কিছু যোগ করা হয়নি।</div>';
