@@ -385,5 +385,15 @@
       "video": "VXsjEJfrLXw"
     }
   ],
-  "blogPosts": []
+  "blogPosts": [],
+  "settings": {
+    "contactEmail": "",
+    "adsensePubId": "",
+    "adsenseSlotTop": "",
+    "adsenseSlotMid": ""
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/share/1DRgjnsLRv/",
+    "youtube": "https://youtube.com/@charpashezadekhchi"
+  }
 }
