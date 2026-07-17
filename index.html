@@ -164,16 +164,6 @@
   .play-overlay span{width:52px; height:52px; border-radius:50%; background:var(--gold); color:var(--green-deep); display:flex; align-items:center; justify-content:center; font-size:1.3rem;}
   .song-title{padding:12px 14px; font-weight:600; font-size:0.92rem;}
 
-  /* Movies */
-  .grid.movies{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}
-  .movie-card{
-    background:linear-gradient(150deg,#1a1a22,#302233); color:#fff; border-radius:var(--radius); padding:24px 18px;
-    display:flex; flex-direction:column; gap:10px; align-items:flex-start;
-  }
-  .movie-card .icon{font-size:1.6rem;}
-  .movie-card h3{color:#fff; font-size:1.05rem;}
-  .movie-card .visit{font-size:0.8rem; font-weight:700; color:var(--gold);}
-
   /* Income */
   .grid.income{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));}
   .income-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px; display:flex; flex-direction:column; gap:10px;}
@@ -227,7 +217,6 @@
       <a href="#inspiration">✨ প্রেরণা</a>
       <a href="#blog">📝 ব্লগ</a>
       <a href="#entertainment">🎵 বিনোদন</a>
-      <a href="#movies">🎬 মুভি</a>
       <a href="#income">💰 ইনকাম</a>
       <a href="#social">📱 সোশ্যাল</a>
       <a href="admin.html">⚙️ Admin</a>
@@ -352,25 +341,11 @@
 
 <div class="bead-divider"><div class="line"></div><div class="bead g"></div><div class="bead"></div><div class="bead g"></div><div class="line"></div></div>
 
-<!-- MOVIES -->
-<section id="movies" class="alt">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="num">// ০৮</div>
-      <h2>🎬 ফ্রি মুভি দেখুন</h2>
-      <p>নিচের যেকোনো লিংকে ক্লিক করে সরাসরি মুভি দেখুন।</p>
-    </div>
-    <div class="grid movies" id="moviesGrid"></div>
-  </div>
-</section>
-
-<div class="bead-divider"><div class="line"></div><div class="bead"></div><div class="bead g"></div><div class="line"></div></div>
-
 <!-- INCOME -->
 <section id="income">
   <div class="wrap">
     <div class="sec-head">
-      <div class="num">// ০৯</div>
+      <div class="num">// ০৮</div>
       <h2>💰 অনলাইন ইনকাম অ্যাপ</h2>
       <p>বিশ্বস্ত ইনকাম অ্যাপ ও তার ব্যবহার-ভিডিও — ডাউনলোড করুন ও ভিডিও দেখে শুরু করুন।</p>
     </div>
@@ -417,7 +392,7 @@ async function loadData(){
     DATA = await res.json();
   }catch(e){
     console.error('data.json লোড করা যায়নি', e);
-    DATA = {aiTools:[],songs:[],movies:[],prompts:[],islamicQuotes:[],inspirationQuotes:[],blogPosts:[],income:[]};
+    DATA = {aiTools:[],songs:[],prompts:[],islamicQuotes:[],inspirationQuotes:[],blogPosts:[],income:[]};
   }
   render();
 }
@@ -434,7 +409,6 @@ function render(){
   renderQuotes('islamicGrid', DATA.islamicQuotes);
   renderQuotes('inspirationGrid', DATA.inspirationQuotes);
   renderSongs();
-  renderMovies();
   renderIncome();
   renderBlog();
 }
@@ -516,16 +490,6 @@ document.getElementById('videoModal').addEventListener('click', (e)=>{ if(e.targ
 function closeModal(){
   document.getElementById('videoModal').classList.remove('open');
   document.getElementById('videoFrame').src = '';
-}
-
-// ---- MOVIES ----
-function renderMovies(){
-  document.getElementById('moviesGrid').innerHTML = DATA.movies.map(m=>`
-    <a class="movie-card" href="${escAttr(m.url)}" target="_blank" rel="noopener">
-      <div class="icon">🎬</div>
-      <h3>${esc(m.name)}</h3>
-      <div class="visit">ভিজিট করুন →</div>
-    </a>`).join('') || `<div class="empty-note">এখনো কোনো মুভি লিংক যোগ করা হয়নি।</div>`;
 }
 
 // ---- INCOME ----
