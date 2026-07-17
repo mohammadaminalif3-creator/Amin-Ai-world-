@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>আমাদের সম্পর্কে — Amin AI World</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#0F3D2E; --green-mid:#175C43; --gold:#E8A93B;
+    --cream:#FBF7ED; --ink:#1B1B18; --ink-soft:#4A4A44; --line:#E7DFC9; --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--cream); color:var(--ink); font-family:'Hind Siliguri',sans-serif; line-height:1.8;}
+  h1,h2{font-family:'Baloo Da 2',sans-serif; color:var(--green-deep);}
+  .wrap{max-width:760px; margin:0 auto; padding:40px 20px 80px;}
+  a{color:var(--green-mid); font-weight:600;}
+  .back{display:inline-block; margin-bottom:22px; color:var(--ink-soft); font-weight:600;}
+  header.top{background:var(--green-deep); padding:16px 20px;}
+  header.top a{color:#fff; font-family:'Baloo Da 2'; font-weight:800; text-decoration:none;}
+  section{margin-top:26px;}
+  .card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px; margin-top:14px;}
+  .social-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;}
+  .social-pill{display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--line); border-radius:999px; padding:9px 16px; font-weight:600; font-size:0.9rem;}
+</style>
+</head>
+<body>
+<header class="top"><a href="index.html">🅰️ Amin AI World</a></header>
+<div class="wrap">
+  <a class="back" href="index.html">← হোমে ফিরুন</a>
+  <h1>আমাদের সম্পর্কে</h1>
+
+  <section>
+    <p><b>Amin AI World</b> একটি বাংলাদেশ-ভিত্তিক ফ্রি প্ল্যাটফর্ম, যেখানে একই জায়গায় পাওয়া যায় জনপ্রিয় AI টুলসের ডিরেক্টরি, রেডি-মেইড AI প্রম্পট, ইসলামিক বাণী, প্রেরণামূলক উক্তি, ব্লগ, বিনোদন কনটেন্ট এবং অনলাইন ইনকামের তথ্য। লক্ষ্য হলো — বাংলাভাষী ব্যবহারকারীদের জন্য প্রযুক্তি ও প্রয়োজনীয় তথ্য সহজলভ্য করা।</p>
+  </section>
+
+  <section class="card">
+    <h2>যোগাযোগ</h2>
+    <p id="contactBlock">লোড হচ্ছে...</p>
+  </section>
+
+  <section class="card">
+    <h2>সোশ্যাল মিডিয়া</h2>
+    <div class="social-row" id="socialRow"></div>
+  </section>
+
+  <section>
+    <h2>আরও জানুন</h2>
+    <p><a href="privacy.html">প্রাইভেসি পলিসি</a> ও <a href="terms.html">ব্যবহারের শর্তাবলী</a> পড়ে নিন সাইট সম্পর্কে বিস্তারিত জানতে।</p>
+  </section>
+</div>
+
+<script>
+fetch('data.json?v=' + Date.now())
+  .then(r => r.json())
+  .then(d => {
+    const email = (d.settings && d.settings.contactEmail) ? d.settings.contactEmail : '';
+    document.getElementById('contactBlock').innerHTML = email
+      ? `ইমেইল: <a href="mailto:${email}">${email}</a>`
+      : `নিচের সোশ্যাল মিডিয়া পেজের মাধ্যমে আমাদের সাথে যোগাযোগ করুন।`;
+
+    const social = d.social || {};
+    const items = [];
+    if(social.facebook) items.push(`<a class="social-pill" href="${social.facebook}" target="_blank" rel="noopener">📘 ফেসবুক</a>`);
+    if(social.youtube) items.push(`<a class="social-pill" href="${social.youtube}" target="_blank" rel="noopener">📺 ইউটিউব</a>`);
+    document.getElementById('socialRow').innerHTML = items.join('') || '<span style="color:#4A4A44;">শীঘ্রই যোগ করা হবে।</span>';
+  })
+  .catch(() => {
+    document.getElementById('contactBlock').textContent = 'তথ্য লোড করা যায়নি।';
+  });
+</script>
+</body>
+</html>
