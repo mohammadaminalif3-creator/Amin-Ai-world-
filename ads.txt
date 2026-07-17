@@ -1,0 +1,6 @@
+# Google AdSense অনুমোদনের পর এই ফাইলে নিচের লাইনটি যোগ করুন
+# (আপনার আসল Publisher ID দিয়ে, AdSense ড্যাশবোর্ডের "Sites" অংশে এই লাইনটি দেওয়া থাকবে):
+#
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+#
+# XXXXXXXXXXXXXXXX-এর জায়গায় আপনার নিজের Publisher ID বসিয়ে উপরের # চিহ্ন সরিয়ে দিন।
