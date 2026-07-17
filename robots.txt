@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+
+Sitemap: https://mohammadaminalif3-creator.github.io/Amin-Ai-world-/sitemap.xml
