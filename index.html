@@ -164,6 +164,10 @@
   .play-overlay span{width:52px; height:52px; border-radius:50%; background:var(--gold); color:var(--green-deep); display:flex; align-items:center; justify-content:center; font-size:1.3rem;}
   .song-title{padding:12px 14px; font-weight:600; font-size:0.92rem;}
 
+  /* Ad slots */
+  .ad-slot{min-height:0; overflow:hidden;}
+  .ad-slot:empty{display:none;}
+
   /* Income */
   .grid.income{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));}
   .income-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px; display:flex; flex-direction:column; gap:10px;}
@@ -219,7 +223,6 @@
       <a href="#entertainment">🎵 বিনোদন</a>
       <a href="#income">💰 ইনকাম</a>
       <a href="#social">📱 সোশ্যাল</a>
-      <a href="admin.html">⚙️ Admin</a>
     </nav>
     <button class="menu-toggle" id="menuToggle">☰</button>
   </div>
@@ -244,6 +247,10 @@
 </section>
 
 <div class="bead-divider"><div class="line"></div><div class="bead g"></div><div class="bead"></div><div class="bead g"></div><div class="line"></div></div>
+
+<div class="wrap" style="text-align:center;">
+  <div class="ad-slot" id="adSlotTop" style="max-width:728px; margin:0 auto;"></div>
+</div>
 
 <!-- AI TOOLS -->
 <section id="tools">
@@ -365,9 +372,18 @@
   </div>
 </section>
 
+<section id="ad-mid-section" style="padding:20px 0 40px;">
+  <div class="wrap" style="text-align:center;">
+    <div class="ad-slot" id="adSlotMid" style="max-width:520px; margin:0 auto;"></div>
+  </div>
+</section>
+
 <footer>
   © <span id="year"></span> Amin AI World — সকলের জন্য ফ্রি · Made with ❤️ in Bangladesh
-  <br><a href="admin.html">⚙️ Admin Panel</a>
+  <br>
+  <a href="about.html">আমাদের সম্পর্কে</a> ·
+  <a href="privacy.html">প্রাইভেসি পলিসি</a> ·
+  <a href="terms.html">শর্তাবলী</a>
 </footer>
 
 <div class="modal-bg" id="videoModal">
@@ -392,7 +408,7 @@ async function loadData(){
     DATA = await res.json();
   }catch(e){
     console.error('data.json লোড করা যায়নি', e);
-    DATA = {aiTools:[],songs:[],prompts:[],islamicQuotes:[],inspirationQuotes:[],blogPosts:[],income:[]};
+    DATA = {aiTools:[],songs:[],prompts:[],islamicQuotes:[],inspirationQuotes:[],blogPosts:[],income:[],settings:{}};
   }
   render();
 }
@@ -411,6 +427,7 @@ function render(){
   renderSongs();
   renderIncome();
   renderBlog();
+  initAds();
 }
 
 // ---- AI TOOLS ----
@@ -523,6 +540,32 @@ function esc(str){
   return String(str==null?'':str).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
 function escAttr(str){ return esc(str); }
+
+// ---- ADSENSE (activates only after Publisher ID is set in Admin Settings) ----
+function initAds(){
+  const s = DATA.settings || {};
+  if(!s.adsensePubId){ return; }
+  if(!document.querySelector('script[data-adsbygoogle]')){
+    const sc = document.createElement('script');
+    sc.async = true;
+    sc.dataset.adsbygoogle = '1';
+    sc.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(s.adsensePubId)}`;
+    sc.crossOrigin = 'anonymous';
+    document.head.appendChild(sc);
+  }
+  const slots = [
+    { el: 'adSlotTop', slotId: s.adsenseSlotTop },
+    { el: 'adSlotMid', slotId: s.adsenseSlotMid }
+  ];
+  slots.forEach(({el, slotId})=>{
+    if(!slotId) return;
+    const holder = document.getElementById(el);
+    if(!holder || holder.dataset.filled) return;
+    holder.dataset.filled = '1';
+    holder.innerHTML = `<ins class="adsbygoogle" style="display:block" data-ad-client="${escAttr(s.adsensePubId)}" data-ad-slot="${escAttr(slotId)}" data-ad-format="auto" data-full-width-responsive="true"></ins>`;
+    try{ (window.adsbygoogle = window.adsbygoogle || []).push({}); }catch(e){}
+  });
+}
 
 loadData();
 </script>
