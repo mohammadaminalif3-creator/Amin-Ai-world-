@@ -269,33 +269,6 @@
       "category": "সাধারণ"
     }
   ],
-  "movies": [
-    {
-      "id": "m1",
-      "name": "Fojik",
-      "url": "https://fojik.com/"
-    },
-    {
-      "id": "m2",
-      "name": "MovieLinkBD",
-      "url": "https://movielinkbd.one/"
-    },
-    {
-      "id": "m3",
-      "name": "MoviHub",
-      "url": "https://www.movihub.net/"
-    },
-    {
-      "id": "m4",
-      "name": "The Movie Box",
-      "url": "https://themoviebox.xyz/"
-    },
-    {
-      "id": "m5",
-      "name": "MLSBD",
-      "url": "https://mlsbd.co/"
-    }
-  ],
   "prompts": [
     {
       "id": "p1",
