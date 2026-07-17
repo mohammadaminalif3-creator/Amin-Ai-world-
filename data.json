@@ -199,6 +199,14 @@
       "category": "অন্যান্য",
       "icon": "🎭",
       "desc": "AI ক্যারেক্টার চ্যাট"
+    },
+    {
+      "id": "tmrp8edh89as3",
+      "name": "Symphony creative Ai Studio",
+      "url": "https://ads.tiktok.com/creative/creativestudio/create?isTTOauth=true",
+      "category": "ছবি ও ভিডিও",
+      "icon": "🎬",
+      "desc": "ছবি,ভিডিও, গ্রাফিক্স"
     }
   ],
   "songs": [
