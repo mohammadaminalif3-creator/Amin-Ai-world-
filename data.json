@@ -1,0 +1,70 @@
+{
+  "aiTools": [
+    { "id": "t1", "name": "Claude AI", "url": "https://claude.ai", "category": "চ্যাট ও লেখা", "icon": "🟠", "desc": "লেখা, কোড ও রিসার্চের জন্য Anthropic-এর AI" },
+    { "id": "t2", "name": "ChatGPT", "url": "https://chatgpt.com", "category": "চ্যাট ও লেখা", "icon": "💬", "desc": "OpenAI-এর জনপ্রিয় চ্যাট AI" },
+    { "id": "t3", "name": "Gemini", "url": "https://gemini.google.com", "category": "চ্যাট ও লেখা", "icon": "✨", "desc": "Google-এর AI অ্যাসিস্ট্যান্ট" },
+    { "id": "t4", "name": "Perplexity AI", "url": "https://www.perplexity.ai", "category": "চ্যাট ও লেখা", "icon": "🔍", "desc": "AI সার্চ ইঞ্জিন" },
+    { "id": "t5", "name": "DeepSeek", "url": "https://www.deepseek.com", "category": "চ্যাট ও লেখা", "icon": "🌊", "desc": "ওপেন AI মডেল" },
+    { "id": "t6", "name": "Microsoft Copilot", "url": "https://copilot.microsoft.com", "category": "চ্যাট ও লেখা", "icon": "🧭", "desc": "Microsoft-এর AI সহকারী" },
+    { "id": "t7", "name": "NotebookLM", "url": "https://notebooklm.google.com", "category": "চ্যাট ও লেখা", "icon": "📓", "desc": "Google-এর নোট ও রিসার্চ AI" },
+    { "id": "t8", "name": "Midjourney", "url": "https://www.midjourney.com", "category": "ছবি তৈরি", "icon": "🎨", "desc": "AI দিয়ে শিল্পসম্মত ছবি তৈরি" },
+    { "id": "t9", "name": "DALL·E 3", "url": "https://openai.com/dall-e-3", "category": "ছবি তৈরি", "icon": "🖼️", "desc": "OpenAI-এর ছবি তৈরির টুল" },
+    { "id": "t10", "name": "Leonardo AI", "url": "https://leonardo.ai", "category": "ছবি তৈরি", "icon": "🦁", "desc": "AI আর্ট ও ডিজাইন টুল" },
+    { "id": "t11", "name": "Ideogram", "url": "https://ideogram.ai", "category": "ছবি তৈরি", "icon": "🔤", "desc": "টেক্সটসহ AI ছবি তৈরি" },
+    { "id": "t12", "name": "Stable Diffusion", "url": "https://stability.ai", "category": "ছবি তৈরি", "icon": "🌀", "desc": "ওপেন সোর্স ইমেজ AI" },
+    { "id": "t13", "name": "Adobe Firefly", "url": "https://firefly.adobe.com", "category": "ছবি তৈরি", "icon": "🔥", "desc": "Adobe-এর AI ছবি ও ডিজাইন টুল" },
+    { "id": "t14", "name": "Canva AI", "url": "https://www.canva.com", "category": "ছবি তৈরি", "icon": "🖌️", "desc": "ডিজাইন ও গ্রাফিক্সের জন্য AI" },
+    { "id": "t15", "name": "Kling AI", "url": "https://klingai.com", "category": "ভিডিও তৈরি", "icon": "🎬", "desc": "AI ভিডিও জেনারেশন টুল" },
+    { "id": "t16", "name": "Seedance 2.0", "url": "https://seedance.ai", "category": "ভিডিও তৈরি", "icon": "🎥", "desc": "AI ভিডিও তৈরির টুল" },
+    { "id": "t17", "name": "Runway", "url": "https://runwayml.com", "category": "ভিডিও তৈরি", "icon": "🎞️", "desc": "AI ভিডিও এডিটিং ও জেনারেশন" },
+    { "id": "t18", "name": "Pika", "url": "https://pika.art", "category": "ভিডিও তৈরি", "icon": "📹", "desc": "টেক্সট থেকে ভিডিও AI" },
+    { "id": "t19", "name": "Luma Dream Machine", "url": "https://lumalabs.ai/dream-machine", "category": "ভিডিও তৈরি", "icon": "💡", "desc": "AI ভিডিও জেনারেটর" },
+    { "id": "t20", "name": "Symphony Creative Studio", "url": "https://symphony.is", "category": "মিউজিক ও অডিও", "icon": "🎼", "desc": "AI ক্রিয়েটিভ স্টুডিও" },
+    { "id": "t21", "name": "Suno AI", "url": "https://suno.com", "category": "মিউজিক ও অডিও", "icon": "🎵", "desc": "AI দিয়ে গান তৈরি" },
+    { "id": "t22", "name": "ElevenLabs", "url": "https://elevenlabs.io", "category": "মিউজিক ও অডিও", "icon": "🔊", "desc": "AI ভয়েস ও অডিও টুল" },
+    { "id": "t23", "name": "Udio", "url": "https://www.udio.com", "category": "মিউজিক ও অডিও", "icon": "🎧", "desc": "AI মিউজিক জেনারেটর" },
+    { "id": "t24", "name": "HeyGen", "url": "https://www.heygen.com", "category": "অন্যান্য", "icon": "🗣️", "desc": "AI অ্যাভাটার ভিডিও টুল" },
+    { "id": "t25", "name": "Character AI", "url": "https://character.ai", "category": "অন্যান্য", "icon": "🎭", "desc": "AI ক্যারেক্টার চ্যাট" }
+  ],
+  "songs": [
+    { "id": "s1", "title": "গান ১", "youtubeId": "_nePq7EOCYc", "category": "সাধারণ" },
+    { "id": "s2", "title": "গান ২", "youtubeId": "fb_XLsvAvrY", "category": "সাধারণ" },
+    { "id": "s3", "title": "গান ৩", "youtubeId": "uajs8FgJWdI", "category": "সাধারণ" },
+    { "id": "s4", "title": "গান ৪", "youtubeId": "VqcJG-kr0U0", "category": "সাধারণ" },
+    { "id": "s5", "title": "গান ৫", "youtubeId": "j-gPwD5csXI", "category": "সাধারণ" },
+    { "id": "s6", "title": "গান ৬", "youtubeId": "mfPzfiRoGMc", "category": "সাধারণ" },
+    { "id": "s7", "title": "গান ৭", "youtubeId": "SK-P6WWYDTI", "category": "সাধারণ" },
+    { "id": "s8", "title": "গান ৮", "youtubeId": "xX3Szbkol7o", "category": "সাধারণ" },
+    { "id": "s9", "title": "গান ৯", "youtubeId": "kYEOVc_auKE", "category": "সাধারণ" },
+    { "id": "s10", "title": "গান ১০", "youtubeId": "7vUyLJv78Ow", "category": "সাধারণ" },
+    { "id": "s11", "title": "গান ১১", "youtubeId": "27qdXawJuUQ", "category": "সাধারণ" }
+  ],
+  "movies": [
+    { "id": "m1", "name": "Fojik", "url": "https://fojik.com/" },
+    { "id": "m2", "name": "MovieLinkBD", "url": "https://movielinkbd.one/" },
+    { "id": "m3", "name": "MoviHub", "url": "https://www.movihub.net/" },
+    { "id": "m4", "name": "The Movie Box", "url": "https://themoviebox.xyz/" },
+    { "id": "m5", "name": "MLSBD", "url": "https://mlsbd.co/" }
+  ],
+  "prompts": [
+    { "id": "p1", "title": "রোমান্টিক সন্ধ্যা", "titleEn": "Romantic Evening", "text": "A cinematic portrait of a couple walking on a rain-soaked street at dusk, warm bokeh city lights, romantic mood, soft golden rim light, ultra realistic, 85mm lens", "tool": "Midjourney", "category": "romantic", "image": "", "themeColor": "pink" },
+    { "id": "p2", "title": "আত্মবিশ্বাসী পুরুষ পোর্ট্রেট", "titleEn": "Confident Man Portrait", "text": "Studio portrait of a confident man in a tailored suit, dramatic side lighting, dark background, sharp focus, editorial photography style", "tool": "DALL·E 3", "category": "man", "image": "", "themeColor": "blue" },
+    { "id": "p3", "title": "মার্জিত নারী পোর্ট্রেট", "titleEn": "Elegant Woman Portrait", "text": "Elegant portrait of a woman in traditional saree, soft natural window light, warm tones, shallow depth of field, cinematic color grade", "tool": "Leonardo AI", "category": "woman", "image": "", "themeColor": "violet" },
+    { "id": "p4", "title": "ফ্যান্টাসি জগত", "titleEn": "Fantasy World", "text": "A vast fantasy landscape with floating islands, waterfalls falling into clouds, glowing plants, epic scale, digital painting, trending on artstation", "tool": "Stable Diffusion", "category": "others", "image": "", "themeColor": "green" },
+    { "id": "p5", "title": "কাপল ফটোশুট", "titleEn": "Couple Photoshoot", "text": "Indian bridal couple portrait, cinematic wedding photography, golden hour lighting, intricate traditional outfits, soft focus background", "tool": "Midjourney", "category": "romantic", "image": "", "themeColor": "red" },
+    { "id": "p6", "title": "সাইবারপাংক সিটি", "titleEn": "Cyberpunk City", "text": "A neon-lit cyberpunk city street at night, rain reflections, flying vehicles, futuristic signage in multiple languages, ultra detailed, 8k", "tool": "Kling AI", "category": "others", "image": "", "themeColor": "dark" }
+  ],
+  "islamicQuotes": [
+    { "id": "i1", "title": "ধৈর্য", "text": "নিশ্চয় আল্লাহ ধৈর্যশীলদের সঙ্গে আছেন।", "source": "সূরা আল-বাকারা, আয়াত ১৫৩", "category": "কোরআন", "themeColor": "green", "image": "" },
+    { "id": "i2", "title": "নিয়ত", "text": "সকল কাজ নিয়তের উপর নির্ভরশীল।", "source": "সহীহ বুখারী", "category": "হাদিস", "themeColor": "blue", "image": "" }
+  ],
+  "inspirationQuotes": [
+    { "id": "n1", "title": "স্বপ্ন", "text": "স্বপ্ন দেখা বন্ধ করো না, কারণ স্বপ্নই তোমাকে এগিয়ে নিয়ে যাবে।", "source": "", "category": "স্বপ্ন", "themeColor": "gold", "image": "" },
+    { "id": "n2", "title": "পরিশ্রম", "text": "সাফল্যের কোনো শর্টকাট নেই, শুধু ধারাবাহিক পরিশ্রম আছে।", "source": "", "category": "সাফল্য", "themeColor": "violet", "image": "" }
+  ],
+  "income": [
+    { "id": "ic1", "name": "Self Digital", "url": "https://play.google.com/store/apps/details?id=www.self_digital", "video": "C4RWO0DsoZg" },
+    { "id": "ic2", "name": "LifeGood BD", "url": "https://play.google.com/store/apps/details?id=com.lifegoodbd.lifegood", "video": "VXsjEJfrLXw" }
+  ],
+  "blogPosts": []
+}
