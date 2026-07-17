@@ -4,616 +4,719 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Panel — Amin AI World</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0A0C12;--card:#151926;--border:#232838;--violet:#7C5CFF;--cyan:#4DE8FF;--text:#E9EBF2;--muted:#8B93A7;--green:#27C93F;--red:#FF5F56;--orange:#F97316;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:'Hind Siliguri','Inter',sans-serif;min-height:100vh;}
-a{color:inherit;}
-input,textarea,select,button{font-family:inherit;}
+  :root{
+    --green-deep:#0F3D2E; --green-mid:#175C43; --gold:#E8A93B; --gold-soft:#F3D9A0;
+    --cream:#FBF7ED; --paper:#FFFDF7; --maroon:#7A2331; --ink:#1B1B18; --ink-soft:#4A4A44;
+    --line:#E7DFC9; --radius:14px; --danger:#C0392B; --ok:#1E8449;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--cream); color:var(--ink); font-family:'Hind Siliguri',sans-serif;}
+  h1,h2,h3,.display{font-family:'Baloo Da 2',sans-serif; color:var(--green-deep); margin:0;}
+  input,textarea,select{
+    width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--line);
+    font-family:inherit; font-size:0.95rem; background:#fff;
+  }
+  label{display:block; font-size:0.85rem; font-weight:600; color:var(--ink-soft); margin:12px 0 6px;}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border-radius:10px; font-weight:700; font-size:0.9rem; cursor:pointer; border:none;}
+  .btn-gold{background:var(--gold); color:var(--green-deep);}
+  .btn-green{background:var(--green-deep); color:#fff;}
+  .btn-outline{background:#fff; border:1px solid var(--line); color:var(--ink);}
+  .btn-danger{background:var(--danger); color:#fff;}
+  .btn:disabled{opacity:.5; cursor:not-allowed;}
+  .card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px;}
+  .msg{padding:10px 14px; border-radius:10px; font-size:0.88rem; margin-top:10px;}
+  .msg.ok{background:#E8F6EE; color:var(--ok);}
+  .msg.err{background:#FBEAE8; color:var(--danger);}
+  .hidden{display:none !important;}
 
-/* LOGIN */
-#loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:radial-gradient(circle at 50% 30%,rgba(124,92,255,.2),transparent 60%),var(--bg);}
-.login-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:44px 36px;width:100%;max-width:380px;text-align:center;}
-.login-logo{font-family:'Space Grotesk';font-size:1.7rem;font-weight:700;margin-bottom:6px;display:flex;align-items:center;justify-content:center;gap:10px;}
-.lmark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#7C5CFF,#4DE8FF);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;color:#0A0C12;}
-.login-logo span{color:#4DE8FF;}
-.login-sub{color:var(--muted);font-size:.85rem;margin-bottom:30px;}
-.inp{width:100%;background:#0d0f18;border:1px solid var(--border);border-radius:9px;padding:12px 14px;color:var(--text);font-size:.95rem;margin-bottom:10px;outline:none;transition:border-color .15s;}
-.inp:focus{border-color:var(--violet);}
-.btn-login{width:100%;background:var(--violet);color:#fff;border:none;padding:13px;border-radius:9px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:4px;}
-.btn-login:hover{background:#6a4ce0;}
-.err{color:var(--red);font-size:.82rem;margin-top:8px;display:none;}
-.hint{color:var(--muted);font-size:.75rem;margin-top:18px;}
-.hint a{color:var(--cyan);}
+  /* Login screen */
+  #authScreen{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;}
+  .auth-box{width:100%; max-width:380px; background:#fff; border-radius:18px; padding:32px; box-shadow:0 20px 50px rgba(15,61,46,.15); text-align:center;}
+  .auth-mark{width:56px; height:56px; border-radius:16px; background:linear-gradient(135deg,var(--gold),var(--green-mid)); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin:0 auto 14px; font-family:'Baloo Da 2'; font-weight:800;}
 
-/* MAIN */
-#adminPanel{display:none;}
-.topbar{background:rgba(10,12,18,.95);border-bottom:1px solid var(--border);padding:13px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);}
-.topbar-logo{font-family:'Space Grotesk';font-weight:700;font-size:.92rem;display:flex;align-items:center;gap:8px;}
-.topbar-logo span{color:#4DE8FF;}
-.topbar-right{display:flex;gap:8px;}
-.site-btn{color:var(--cyan);font-size:.78rem;text-decoration:none;padding:6px 12px;border:1px solid var(--border);border-radius:6px;}
-.logout-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:6px;cursor:pointer;font-size:.8rem;}
-
-.wrap{max-width:780px;margin:0 auto;padding:20px 16px;}
-
-/* STATS */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;}
-@media(max-width:500px){.stats{grid-template-columns:repeat(2,1fr);}}
-.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;}
-.stat-n{font-family:'Space Grotesk';font-size:1.4rem;font-weight:700;color:var(--cyan);}
-.stat-l{color:var(--muted);font-size:.66rem;margin-top:2px;}
-
-/* TOKEN */
-.token-box{background:rgba(124,92,255,.08);border:1px solid rgba(124,92,255,.25);border-radius:12px;padding:14px;margin-bottom:18px;}
-.token-box h3{font-size:.86rem;font-weight:700;margin-bottom:4px;}
-.token-box p{font-size:.76rem;color:var(--muted);margin-bottom:9px;line-height:1.5;}
-.token-row{display:flex;gap:7px;}
-.token-inp{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 12px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.76rem;outline:none;}
-.token-inp:focus{border-color:var(--violet);}
-.btn-sm{background:var(--violet);color:#fff;border:none;padding:8px 14px;border-radius:7px;cursor:pointer;font-size:.78rem;font-weight:600;}
-.token-status{font-size:.72rem;margin-top:5px;}
-
-/* ALERTS */
-.alert{border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:.84rem;display:none;}
-.alert.ok{background:rgba(39,201,63,.1);border:1px solid rgba(39,201,63,.25);color:var(--green);}
-.alert.err{background:rgba(255,95,86,.1);border:1px solid rgba(255,95,86,.25);color:var(--red);}
-
-/* TABS */
-.tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:18px;}
-.tab{padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;font-size:.78rem;font-weight:600;white-space:nowrap;transition:all .15s;}
-.tab.active{background:var(--violet);border-color:var(--violet);color:#fff;}
-.tc{display:none;}
-.tc.active{display:block;}
-
-/* FORM */
-.label{display:block;font-size:.78rem;color:var(--muted);margin-bottom:5px;font-weight:600;}
-.finp{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:.87rem;outline:none;transition:border-color .15s;margin-bottom:13px;}
-.finp:focus{border-color:var(--violet);}
-textarea.finp{min-height:110px;resize:vertical;font-family:var(--body);font-size:.88rem;line-height:1.7;}
-textarea.finp.mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-@media(max-width:520px){.g2{grid-template-columns:1fr;}}
-
-/* UPLOAD AREA */
-.upload-area{border:2px dashed var(--border);border-radius:12px;padding:26px 18px;text-align:center;cursor:pointer;background:var(--card);margin-bottom:11px;transition:border-color .2s;}
-.upload-area:hover,.upload-area.drag{border-color:var(--violet);}
-.ua-icon{font-size:2rem;margin-bottom:7px;}
-.upload-area h4{font-size:.88rem;font-weight:600;margin-bottom:2px;}
-.upload-area p{font-size:.72rem;color:var(--muted);}
-.preview-wrap{display:none;margin-bottom:11px;position:relative;}
-.preview-wrap img{width:100%;max-height:230px;object-fit:cover;border-radius:10px;border:1px solid var(--border);}
-.remove-img{position:absolute;top:7px;right:7px;background:rgba(255,95,86,.9);color:#fff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;display:flex;align-items:center;justify-content:center;}
-
-/* PROGRESS */
-.prog-wrap{display:none;margin-bottom:11px;}
-.prog-bg{background:var(--border);border-radius:99px;height:5px;overflow:hidden;}
-.prog-bar{background:var(--violet);height:100%;border-radius:99px;transition:width .3s;width:0%;}
-.prog-text{font-size:.73rem;color:var(--muted);margin-top:4px;}
-
-/* TAG CHIPS */
-.tag-row{display:flex;flex-wrap:wrap;gap:5px;margin:-3px 0 13px;}
-.tg-chip{padding:3px 10px;border-radius:99px;border:1px solid var(--border);color:var(--muted);font-size:.7rem;cursor:pointer;background:var(--card);}
-.tg-chip:hover{border-color:var(--cyan);color:var(--cyan);}
-
-/* SUBMIT */
-.btn-sub{width:100%;border:none;padding:13px;border-radius:9px;font-size:.92rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .15s;}
-.btn-sub:disabled{opacity:.5;cursor:not-allowed;}
-.bg-green{background:var(--green);color:#fff;}
-.bg-violet{background:var(--violet);color:#fff;}
-.bg-cyan{background:#0891B2;color:#fff;}
-.bg-pink{background:#BE185D;color:#fff;}
-.bg-red{background:var(--red);color:#fff;}
-
-/* GUIDE */
-.guide-list{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
-.guide-item{display:flex;gap:13px;padding:14px;border-bottom:1px solid var(--border);}
-.guide-item:last-child{border-bottom:none;}
-.g-num{width:26px;height:26px;border-radius:50%;background:var(--violet);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;flex-shrink:0;}
-.g-info h4{font-size:.86rem;font-weight:600;margin-bottom:2px;}
-.g-info p{color:var(--muted);font-size:.76rem;line-height:1.5;}
-.g-info code{background:var(--bg);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--cyan);}
-
-/* SETTINGS */
-.settings-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:14px;}
-.settings-card h3{font-family:'Space Grotesk';font-size:.92rem;font-weight:700;margin-bottom:12px;padding-bottom:9px;border-bottom:1px solid var(--border);}
-
-/* BLOG PREVIEW */
-.blog-preview-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px;display:none;}
-.blog-preview-card img{width:100%;max-height:200px;object-fit:cover;}
-.blog-preview-body{padding:14px;}
-.blog-preview-body h3{font-family:'Space Grotesk';font-size:1rem;font-weight:700;margin-bottom:6px;}
-.blog-preview-body p{color:var(--muted);font-size:.82rem;line-height:1.6;}
+  /* App shell */
+  #appScreen{display:none;}
+  #appScreen.show{display:flex; min-height:100vh;}
+  .sidebar{width:230px; background:var(--green-deep); color:#fff; flex-shrink:0; padding:20px 14px; position:sticky; top:0; height:100vh; overflow-y:auto;}
+  .sidebar .brand{font-family:'Baloo Da 2'; font-weight:800; font-size:1.1rem; margin-bottom:20px; display:flex; align-items:center; gap:8px;}
+  .sidebar button.tab-btn{
+    display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:none; border:none;
+    color:rgba(255,255,255,.8); padding:10px 12px; border-radius:10px; font-size:0.9rem; cursor:pointer; margin-bottom:2px;
+  }
+  .sidebar button.tab-btn:hover{background:rgba(255,255,255,.08);}
+  .sidebar button.tab-btn.active{background:var(--gold); color:var(--green-deep); font-weight:700;}
+  .sidebar .logout{margin-top:20px; width:100%; background:rgba(255,255,255,.1); color:#fff; border:none; padding:10px; border-radius:10px; cursor:pointer; font-size:0.85rem;}
+  .main{flex:1; padding:24px 28px; max-width:980px;}
+  .topbar{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:22px;}
+  .stat-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:24px;}
+  .stat-pill{background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 18px; text-align:center; min-width:90px;}
+  .stat-pill b{display:block; font-size:1.3rem; color:var(--green-deep); font-family:'Baloo Da 2';}
+  .stat-pill span{font-size:0.75rem; color:var(--ink-soft);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .item-row{display:flex; justify-content:space-between; align-items:center; gap:10px; padding:12px 14px; border:1px solid var(--line); border-radius:10px; margin-bottom:8px; background:var(--paper);}
+  .item-row .info{font-size:0.88rem;}
+  .item-row .info b{display:block; color:var(--ink);}
+  .item-row .info span{color:var(--ink-soft); font-size:0.78rem;}
+  .del-btn{background:none; border:none; color:var(--danger); cursor:pointer; font-size:1.1rem;}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media(max-width:700px){ .two-col{grid-template-columns:1fr;} #appScreen.show{flex-direction:column;} .sidebar{width:100%; height:auto; position:relative;} }
+  .publish-bar{
+    position:sticky; top:0; z-index:10; background:var(--paper); border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:22px;
+  }
+  .guide-step{display:flex; gap:12px; margin-bottom:16px;}
+  .guide-step .n{width:30px; height:30px; border-radius:50%; background:var(--gold); color:var(--green-deep); display:flex; align-items:center; justify-content:center; font-weight:800; flex-shrink:0;}
+  code{background:var(--cream); padding:2px 6px; border-radius:6px; font-size:0.85em;}
+  small.hint{color:var(--ink-soft); font-size:0.78rem;}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="loginScreen">
-  <div class="login-card">
-    <div class="login-logo"><div class="lmark">A</div>Amin AI <span>World</span></div>
-    <p class="login-sub">🔐 Admin Panel — শুধুমাত্র অ্যাডমিনের জন্য</p>
-    <input class="inp" type="email" id="emailInput" placeholder="ইমেইল দিন..." autocomplete="email">
-    <input class="inp" type="password" id="pwdInput" placeholder="পাসওয়ার্ড দিন..." autocomplete="current-password">
-    <button class="btn-login" onclick="doLogin()">প্রবেশ করুন →</button>
-    <p class="err" id="loginErr">❌ ভুল ইমেইল বা পাসওয়ার্ড!</p>
-    <p class="hint">Default: <code style="color:var(--cyan)">admin@aminaiworld.com</code> / <code style="color:var(--cyan)">Amin@2024</code><br><a href="index.html">← সাইটে ফিরুন</a></p>
+<!-- ============ AUTH SCREEN ============ -->
+<div id="authScreen">
+  <div class="auth-box">
+    <div class="auth-mark">A</div>
+    <h2 id="authTitle">🔐 Admin লগইন</h2>
+    <p id="authSub" style="color:var(--ink-soft); font-size:0.88rem; margin-top:6px;">Amin AI World Admin Panel</p>
+
+    <div id="loginForm">
+      <label>ইমেইল</label>
+      <input type="email" id="loginEmail" placeholder="you@example.com">
+      <label>পাসওয়ার্ড</label>
+      <input type="password" id="loginPass" placeholder="••••••••">
+      <button class="btn btn-gold" style="width:100%; margin-top:18px; justify-content:center;" onclick="handleLogin()">প্রবেশ করুন →</button>
+      <div id="loginMsg"></div>
+    </div>
+
+    <div id="setupForm" class="hidden">
+      <p style="font-size:0.85rem; color:var(--ink-soft); text-align:left;">এটি আপনার প্রথমবার — নিজের অ্যাডমিন ইমেইল ও পাসওয়ার্ড সেট করুন। এই তথ্য শুধু এই ব্রাউজারে সুরক্ষিতভাবে (এনক্রিপ্টেড আকারে) সংরক্ষিত থাকবে।</p>
+      <label>আপনার ইমেইল</label>
+      <input type="email" id="setupEmail" placeholder="you@example.com">
+      <label>নতুন পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)</label>
+      <input type="password" id="setupPass" placeholder="••••••••">
+      <label>পাসওয়ার্ড নিশ্চিত করুন</label>
+      <input type="password" id="setupPass2" placeholder="••••••••">
+      <button class="btn btn-green" style="width:100%; margin-top:18px; justify-content:center;" onclick="handleSetup()">✅ অ্যাকাউন্ট তৈরি করুন</button>
+      <div id="setupMsg"></div>
+    </div>
   </div>
 </div>
 
-<!-- ADMIN PANEL -->
-<div id="adminPanel">
-  <div class="topbar">
-    <div class="topbar-logo"><div style="width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#7C5CFF,#4DE8FF);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:#0A0C12;">A</div>Amin AI <span>World</span> — Admin</div>
-    <div class="topbar-right">
-      <a class="site-btn" href="index.html" target="_blank">🌐 সাইট</a>
-      <button class="logout-btn" onclick="doLogout()">লগআউট</button>
-    </div>
+<!-- ============ APP SCREEN ============ -->
+<div id="appScreen">
+  <div class="sidebar">
+    <div class="brand">🅰️ Amin AI World</div>
+    <button class="tab-btn active" data-tab="dashboard">📊 ড্যাশবোর্ড</button>
+    <button class="tab-btn" data-tab="tools">🛠️ AI টুলস</button>
+    <button class="tab-btn" data-tab="prompts">📸 প্রম্পট</button>
+    <button class="tab-btn" data-tab="songs">🎵 গান</button>
+    <button class="tab-btn" data-tab="movies">🎬 মুভি</button>
+    <button class="tab-btn" data-tab="income">💰 ইনকাম</button>
+    <button class="tab-btn" data-tab="blog">📝 ব্লগ পোস্ট</button>
+    <button class="tab-btn" data-tab="islamic">🕌 ইসলামিক</button>
+    <button class="tab-btn" data-tab="inspiration">✨ প্রেরণা</button>
+    <button class="tab-btn" data-tab="settings">⚙️ সেটিংস</button>
+    <button class="tab-btn" data-tab="guide">📖 গাইড</button>
+    <button class="logout" onclick="handleLogout()">🚪 লগআউট</button>
   </div>
 
-  <div class="wrap">
-    <div class="stats">
-      <div class="stat"><div class="stat-n">98+</div><div class="stat-l">প্রম্পট</div></div>
-      <div class="stat"><div class="stat-n">25</div><div class="stat-l">AI টুলস</div></div>
-      <div class="stat"><div class="stat-n">24</div><div class="stat-l">বাণী</div></div>
-      <div class="stat"><div class="stat-n">10+</div><div class="stat-l">গান</div></div>
+  <div class="main">
+    <div class="publish-bar">
+      <div>
+        <b style="font-size:0.9rem;">🔑 GitHub Token</b><br>
+        <small class="hint">সাইটে পরিবর্তন সবার জন্য প্রকাশ করতে প্রতিবার টোকেন দিন — এটি সংরক্ষণ করা হয় না।</small>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+        <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx" style="width:220px;">
+        <button class="btn btn-green" onclick="publishData()">🚀 সবার জন্য প্রকাশ করুন</button>
+      </div>
+    </div>
+    <div id="publishMsg"></div>
+
+    <div class="stat-row">
+      <div class="stat-pill"><b id="statTools">0</b><span>AI টুলস</span></div>
+      <div class="stat-pill"><b id="statPrompts">0</b><span>প্রম্পট</span></div>
+      <div class="stat-pill"><b id="statSongs">0</b><span>গান</span></div>
+      <div class="stat-pill"><b id="statMovies">0</b><span>মুভি</span></div>
+      <div class="stat-pill"><b id="statIncome">0</b><span>ইনকাম অ্যাপ</span></div>
+      <div class="stat-pill"><b id="statIslamic">0</b><span>ইসলামিক বাণী</span></div>
+      <div class="stat-pill"><b id="statBlog">0</b><span>ব্লগ পোস্ট</span></div>
     </div>
 
-    <div class="token-box">
-      <h3>🔑 GitHub Token</h3>
-      <p>সরাসরি সাইটে কনটেন্ট আপলোড করতে GitHub Token লাগবে। <a href="https://github.com/settings/tokens/new" target="_blank" style="color:var(--cyan)">এখানে তৈরি করুন</a> (repo > contents:write সিলেক্ট করুন)।</p>
-      <div class="token-row">
-        <input class="token-inp" type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxx">
-        <button class="btn-sm" onclick="saveToken()">সেভ</button>
+    <!-- DASHBOARD -->
+    <div class="tab-panel active" id="tab-dashboard">
+      <div class="card">
+        <h3>স্বাগতম 👋</h3>
+        <p style="color:var(--ink-soft);">বাম পাশের মেনু থেকে যেকোনো কনটেন্ট (AI টুলস, প্রম্পট, গান, মুভি, ব্লগ, ইসলামিক বাণী, প্রেরণা) যোগ, এডিট বা মুছে ফেলুন। পরিবর্তন করার পর উপরে <b>"সবার জন্য প্রকাশ করুন"</b> বাটনে ক্লিক করলে তা সঙ্গে সঙ্গে আপনার লাইভ ওয়েবসাইটে সবার জন্য দেখা যাবে।</p>
+        <p style="color:var(--ink-soft);">প্রকাশ করার আগে যেকোনো পরিবর্তন শুধু আপনার এই ব্রাউজারে খসড়া (draft) হিসেবে থাকে — কাউকে দেখানো হয় না, যতক্ষণ না আপনি প্রকাশ করছেন।</p>
       </div>
-      <p class="token-status" id="tokenStatus"></p>
     </div>
 
-    <div class="alert ok" id="alertOk"></div>
-    <div class="alert err" id="alertErr"></div>
-
-    <div class="tabs">
-      <button class="tab active" onclick="showTab('t-blog',this)">📝 ব্লগ পোস্ট</button>
-      <button class="tab" onclick="showTab('t-prompt',this)">📸 প্রম্পট</button>
-      <button class="tab" onclick="showTab('t-music',this)">🎵 গান</button>
-      <button class="tab" onclick="showTab('t-islamic',this)">🕌 ইসলামিক</button>
-      <button class="tab" onclick="showTab('t-inspiration',this)">✨ প্রেরণা</button>
-      <button class="tab" onclick="showTab('t-profile',this)">👤 প্রোফাইল</button>
-      <button class="tab" onclick="showTab('t-settings',this)">⚙️ সেটিংস</button>
-      <button class="tab" onclick="showTab('t-guide',this)">📖 গাইড</button>
-    </div>
-
-    <!-- ===== BLOG POST TAB ===== -->
-    <div class="tc active" id="t-blog">
-      <p style="color:var(--muted);font-size:.83rem;margin-bottom:16px;">ছবি ও ক্যাপশন সহ লেখা লিখুন — ইসলামিক, প্রেরণামূলক, দেশপ্রেম বা যেকোনো বিষয়ে।</p>
-
-      <div class="upload-area" id="blogImgArea" onclick="document.getElementById('blogImgFile').click()">
-        <div class="ua-icon">🖼️</div>
-        <h4>ব্লগ কভার ছবি বেছে নিন</h4>
-        <p>আপনার নিজের গ্রাফিক্স ডিজাইন আপলোড করুন</p>
-      </div>
-      <input type="file" id="blogImgFile" accept="image/*" style="display:none" onchange="onBlogImgSel(this)">
-      <div class="preview-wrap" id="blogImgPreviewWrap">
-        <img id="blogImgPreviewEl" alt="preview">
-        <button class="remove-img" onclick="clearBlogImg()">✕</button>
-      </div>
-
-      <label class="label">পোস্টের শিরোনাম *</label>
-      <input class="finp" type="text" id="blogTitle" placeholder="যেমন: রমজানের শিক্ষা — একটি নতুন সূচনা" oninput="updateBlogPreview()">
-
-      <label class="label">ক্যাটাগরি</label>
-      <select class="finp" id="blogCat" onchange="updateBlogPreview()">
-        <option value="islamic">🕌 ইসলামিক</option>
-        <option value="inspiration">✨ প্রেরণা</option>
-        <option value="life">💚 জীবন</option>
-        <option value="patriotic">🇧🇩 দেশপ্রেম</option>
-        <option value="ai">🤖 AI টিপস</option>
-        <option value="general">📌 সাধারণ</option>
-      </select>
-
-      <label class="label">ইমোজি (ছবি না থাকলে দেখাবে)</label>
-      <input class="finp" type="text" id="blogEmoji" placeholder="যেমন: 🕌 বা ✨ বা 🇧🇩" maxlength="4" style="max-width:120px;">
-
-      <label class="label">লেখার বিষয়বস্তু * (বাংলায় লিখুন)</label>
-      <textarea class="finp" id="blogContent" placeholder="এখানে আপনার পুরো লেখাটি লিখুন...
-
-আপনি বাংলায় যেকোনো বিষয়ে লিখতে পারেন:
-• ইসলামিক বিষয় — কোরআন, হাদিস, রমজান, ঈদ
-• প্রেরণামূলক — জীবনের পাঠ, সাফল্যের গল্প
-• দেশপ্রেম — বাংলাদেশ, ভাষা আন্দোলন
-• AI ও প্রযুক্তি — টিপস ও গাইড
-• সাধারণ — যেকোনো বিষয়" style="min-height:220px;" oninput="updateBlogPreview()"></textarea>
-
-      <!-- Preview -->
-      <div class="blog-preview-card" id="blogPreviewCard">
-        <div id="blogPreviewImgWrap"></div>
-        <div class="blog-preview-body">
-          <div style="font-size:.65rem;color:#4DE8FF;font-family:'JetBrains Mono',monospace;margin-bottom:6px;">প্রিভিউ</div>
-          <h3 id="blogPreviewTitle"></h3>
-          <p id="blogPreviewContent"></p>
+    <!-- AI TOOLS -->
+    <div class="tab-panel" id="tab-tools">
+      <div class="card">
+        <h3>🛠️ নতুন AI টুল যোগ করুন</h3>
+        <div class="two-col">
+          <div><label>টুলের নাম *</label><input id="toolName" placeholder="যেমন: Claude AI"></div>
+          <div><label>লিংক (URL) *</label><input id="toolUrl" placeholder="https://claude.ai"></div>
+          <div><label>ক্যাটাগরি</label><input id="toolCat" placeholder="চ্যাট ও লেখা / ছবি তৈরি / ভিডিও তৈরি..."></div>
+          <div><label>ইমোজি আইকন</label><input id="toolIcon" placeholder="🤖"></div>
         </div>
+        <label>ছোট বিবরণ</label>
+        <textarea id="toolDesc" rows="2" placeholder="এই টুলটি কী কাজে ব্যবহার হয়"></textarea>
+        <button class="btn btn-gold" style="margin-top:14px;" onclick="addTool()">✅ AI টুল যোগ করুন</button>
       </div>
-
-      <div class="prog-wrap" id="blogProgWrap"><div class="prog-bg"><div class="prog-bar" id="blogProgBar"></div></div><p class="prog-text" id="blogProgText"></p></div>
-
-      <button class="btn-sub bg-green" id="blogSubmitBtn" onclick="submitBlogPost()">📝 পোস্ট প্রকাশ করুন</button>
+      <h3 style="margin:20px 0 10px;">বর্তমান তালিকা</h3>
+      <div id="toolsList"></div>
     </div>
 
-    <!-- ===== PROMPT TAB ===== -->
-    <div class="tc" id="t-prompt">
-      <div class="upload-area" id="imgUploadArea" onclick="document.getElementById('imgFile').click()" ondragover="dragOver(event)" ondrop="dropFile(event)">
-        <div class="ua-icon">🖼️</div><h4>ছবি বেছে নিন বা ড্র্যাগ করুন</h4><p>JPG, PNG, WEBP — ৫ MB পর্যন্ত</p>
+    <!-- PROMPTS -->
+    <div class="tab-panel" id="tab-prompts">
+      <div class="card">
+        <h3>📸 নতুন প্রম্পট যোগ করুন</h3>
+        <label>ছবি বেছে নিন (ঐচ্ছিক)</label>
+        <input type="file" id="promptImgFile" accept="image/*" onchange="handleImageUpload(this,'promptImgPreview')">
+        <img id="promptImgPreview" style="max-width:160px; margin-top:8px; border-radius:8px;">
+        <div class="two-col">
+          <div><label>শিরোনাম (বাংলা) *</label><input id="promptTitle" placeholder="রোমান্টিক সন্ধ্যা"></div>
+          <div><label>Title (English)</label><input id="promptTitleEn" placeholder="Romantic Evening"></div>
+          <div>
+            <label>ক্যাটাগরি *</label>
+            <select id="promptCat">
+              <option value="romantic">💑 রোমান্টিক</option>
+              <option value="man">🧔 পুরুষ (Man)</option>
+              <option value="woman">👩 নারী (Woman)</option>
+              <option value="others">🎨 অন্যান্য</option>
+            </select>
+          </div>
+          <div>
+            <label>AI টুল</label>
+            <select id="promptTool">
+              <option>Midjourney</option><option>DALL·E 3</option><option>Stable Diffusion</option>
+              <option>Leonardo AI</option><option>Kling AI</option><option>Ideogram</option><option>অন্যান্য</option>
+            </select>
+          </div>
+          <div>
+            <label>থিম রঙ</label>
+            <select id="promptTheme">
+              <option value="pink">🌸 গোলাপি</option><option value="violet">💜 ভায়োলেট</option>
+              <option value="blue">🩵 নীল</option><option value="red">❤️ লাল</option>
+              <option value="green">🌿 সবুজ</option><option value="dark">🌙 অন্ধকার</option>
+            </select>
+          </div>
+        </div>
+        <label>প্রম্পট টেক্সট *</label>
+        <textarea id="promptText" rows="3" placeholder="A cinematic portrait of..."></textarea>
+        <button class="btn btn-gold" style="margin-top:14px;" onclick="addPrompt()">✅ প্রম্পট যোগ করুন</button>
       </div>
-      <input type="file" id="imgFile" accept="image/*" style="display:none" onchange="onImgSel(this)">
-      <div class="preview-wrap" id="imgPreviewWrap"><img id="imgPreviewEl" alt="preview"><button class="remove-img" onclick="clearImg()">✕</button></div>
-      <div class="prog-wrap" id="imgProgWrap"><div class="prog-bg"><div class="prog-bar" id="imgProgBar"></div></div><p class="prog-text" id="imgProgText"></p></div>
-      <div class="g2">
-        <div><label class="label">শিরোনাম (বাংলা) *</label><input class="finp" type="text" id="pTitleBn" placeholder="রোমান্টিক সানসেট কাপল"></div>
-        <div><label class="label">Title (English)</label><input class="finp" type="text" id="pTitleEn" placeholder="Romantic Sunset Couple"></div>
-      </div>
-      <label class="label">প্রম্পট টেক্সট *</label>
-      <textarea class="finp mono" id="pPromptText" placeholder="Photorealistic portrait of..."></textarea>
-      <div class="g2">
-        <div><label class="label">AI টুল</label><select class="finp" id="pTool"><option>Midjourney</option><option>DALL·E 3</option><option>Stable Diffusion</option><option>Leonardo AI</option><option>Kling AI</option><option>Ideogram</option><option>অন্যান্য</option></select></div>
-        <div><label class="label">থিম রঙ</label><select class="finp" id="pGrad">
-          <option value="linear-gradient(135deg,#FF6B9D,#FF9A5C)">🌸 গোলাপি</option>
-          <option value="linear-gradient(135deg,#7C5CFF,#4DE8FF)">💜 ভায়োলেট</option>
-          <option value="linear-gradient(135deg,#0EA5E9,#10B981)">🩵 নীল সবুজ</option>
-          <option value="linear-gradient(135deg,#FF2D55,#1C1C3A)">❤️ লাল রাত</option>
-          <option value="linear-gradient(135deg,#F97316,#FCD34D)">🌅 কমলা</option>
-          <option value="linear-gradient(135deg,#B22222,#FFD700)">👑 বিবাহ</option>
-          <option value="linear-gradient(135deg,#166534,#FCD34D)">🌿 সবুজ</option>
-          <option value="linear-gradient(135deg,#1F2937,#F59E0B)">🌙 অন্ধকার</option>
-        </select></div>
-      </div>
-      <label class="label">ট্যাগ</label>
-      <input class="finp" type="text" id="pTags" placeholder="portrait, romantic, bangla">
-      <div class="tag-row">
-        <span style="font-size:.7rem;color:var(--muted)">দ্রুত:</span>
-        <span class="tg-chip" onclick="addTag('portrait')">portrait</span><span class="tg-chip" onclick="addTag('romantic')">romantic</span><span class="tg-chip" onclick="addTag('bangla')">bangla</span><span class="tg-chip" onclick="addTag('indian')">indian</span><span class="tg-chip" onclick="addTag('couple')">couple</span><span class="tg-chip" onclick="addTag('sad')">sad</span><span class="tg-chip" onclick="addTag('love')">love</span><span class="tg-chip" onclick="addTag('cinematic')">cinematic</span><span class="tg-chip" onclick="addTag('trending')">trending</span><span class="tg-chip" onclick="addTag('fantasy')">fantasy</span>
-      </div>
-      <button class="btn-sub bg-green" id="promptSubmitBtn" onclick="submitPrompt()">✅ প্রম্পট যোগ করুন</button>
+      <h3 style="margin:20px 0 10px;">বর্তমান তালিকা</h3>
+      <div id="promptsList"></div>
     </div>
 
-    <!-- ===== MUSIC TAB ===== -->
-    <div class="tc" id="t-music">
-      <p style="color:var(--muted);font-size:.83rem;margin-bottom:16px;">YouTube চ্যানেলের গান যোগ করুন।</p>
-      <label class="label">গানের শিরোনাম *</label>
-      <input class="finp" type="text" id="mTitle" placeholder="গানের নাম">
-      <label class="label">YouTube লিংক বা ID *</label>
-      <input class="finp" type="text" id="mYoutubeId" placeholder="https://youtu.be/XXXX অথবা ID: XXXX" oninput="previewMusicThumb()">
-      <div id="musicThumbPreview" style="display:none;margin-bottom:12px;">
-        <img id="musicThumbImg" style="width:100%;max-height:180px;object-fit:cover;border-radius:10px;border:1px solid var(--border);" alt="thumbnail">
+    <!-- SONGS -->
+    <div class="tab-panel" id="tab-songs">
+      <div class="card">
+        <h3>🎵 নতুন গান যোগ করুন</h3>
+        <label>গানের শিরোনাম *</label>
+        <input id="songTitle" placeholder="গানের নাম">
+        <label>YouTube লিংক বা ID *</label>
+        <input id="songUrl" placeholder="https://youtu.be/xxxxxxxxxxx">
+        <label>ক্যাটাগরি</label>
+        <select id="songCat">
+          <option>সাধারণ</option><option>লোকগীতি</option><option>রোমান্টিক</option>
+          <option>আবেগময়</option><option>সামাজিক</option><option>অনুপ্রেরণামূলক</option>
+        </select>
+        <button class="btn btn-gold" style="margin-top:14px;" onclick="addSong()">✅ গান যোগ করুন</button>
       </div>
-      <div class="prog-wrap" id="mProgWrap"><div class="prog-bg"><div class="prog-bar" id="mProgBar"></div></div><p class="prog-text" id="mProgText"></p></div>
-      <label class="label">ক্যাটাগরি</label>
-      <select class="finp" id="mCat">
-        <option value="folk">লোকগীতি</option><option value="romantic">রোমান্টিক</option><option value="emotional">আবেগময়</option><option value="social">সামাজিক</option><option value="inspirational">অনুপ্রেরণামূলক</option>
-      </select>
-      <button class="btn-sub bg-green" id="musicSubmitBtn" onclick="submitMusic()">🎵 গান যোগ করুন</button>
+      <h3 style="margin:20px 0 10px;">বর্তমান তালিকা</h3>
+      <div id="songsList"></div>
     </div>
 
-    <!-- ===== ISLAMIC TAB ===== -->
-    <div class="tc" id="t-islamic">
-      <div class="upload-area" id="iqUploadArea" onclick="document.getElementById('iqFile').click()">
-        <div class="ua-icon">🖼️</div><h4>গ্রাফিক ছবি (ঐচ্ছিক)</h4><p>নিজের ডিজাইন করা ছবি</p>
+    <!-- MOVIES -->
+    <div class="tab-panel" id="tab-movies">
+      <div class="card">
+        <h3>🎬 নতুন মুভি লিংক যোগ করুন</h3>
+        <label>নাম *</label>
+        <input id="movieName" placeholder="যেমন: Fojik">
+        <label>লিংক (URL) *</label>
+        <input id="movieUrl" placeholder="https://example.com">
+        <button class="btn btn-gold" style="margin-top:14px;" onclick="addMovie()">✅ মুভি যোগ করুন</button>
       </div>
-      <input type="file" id="iqFile" accept="image/*" style="display:none" onchange="onIqSel(this)">
-      <div class="preview-wrap" id="iqPreviewWrap"><img id="iqPreviewEl" alt="preview"><button class="remove-img" onclick="clearIq()">✕</button></div>
-      <div class="prog-wrap" id="iqProgWrap"><div class="prog-bg"><div class="prog-bar" id="iqProgBar"></div></div><p class="prog-text" id="iqProgText"></p></div>
-      <label class="label">শিরোনাম *</label>
-      <input class="finp" type="text" id="iqTitle" placeholder="যেমন: সবরের পুরস্কার">
-      <label class="label">বাণী / উক্তি *</label>
-      <textarea class="finp" id="iqQuote" placeholder="কোরআন বা হাদিসের বাণী লিখুন..."></textarea>
-      <label class="label">উৎস</label>
-      <input class="finp" type="text" id="iqAttrib" placeholder="সূরা আশ-শারহ: ৫-৬">
-      <div class="g2">
-        <div><label class="label">ক্যাটাগরি</label><select class="finp" id="iqCat"><option value="quran">কোরআন</option><option value="hadith">হাদিস</option></select></div>
-        <div><label class="label">থিম রঙ</label><select class="finp" id="iqGrad">
-          <option value="linear-gradient(135deg,#065F46,#0D9488)">🟢 সবুজ</option>
-          <option value="linear-gradient(135deg,#1E3A8A,#3B82F6)">🔵 নীল</option>
-          <option value="linear-gradient(135deg,#4C1D95,#7C3AED)">🟣 বেগুনি</option>
-          <option value="linear-gradient(135deg,#92400E,#D97706)">🟠 কমলা</option>
-        </select></div>
-      </div>
-      <button class="btn-sub bg-green" onclick="submitQuote('islamic-extra.json','iqTitle','iqQuote','iqAttrib','iqCat','iqGrad','iqProgWrap','iqProgBar','iqProgText',iqImgFile)">✅ ইসলামিক বাণী যোগ করুন</button>
+      <h3 style="margin:20px 0 10px;">বর্তমান তালিকা</h3>
+      <div id="moviesList"></div>
     </div>
 
-    <!-- ===== INSPIRATION TAB ===== -->
-    <div class="tc" id="t-inspiration">
-      <div class="upload-area" id="insUploadArea" onclick="document.getElementById('insFile').click()">
-        <div class="ua-icon">🖼️</div><h4>গ্রাফিক ছবি (ঐচ্ছিক)</h4><p>নিজের ডিজাইন করা ছবি</p>
+    <!-- INCOME -->
+    <div class="tab-panel" id="tab-income">
+      <div class="card">
+        <h3>💰 নতুন ইনকাম অ্যাপ যোগ করুন</h3>
+        <label>অ্যাপের নাম *</label>
+        <input id="incomeName" placeholder="যেমন: Self Digital">
+        <label>Google Play / ওয়েবসাইট লিংক *</label>
+        <input id="incomeUrl" placeholder="https://play.google.com/store/apps/details?id=...">
+        <label>ব্যবহার-ভিডিও (YouTube লিংক বা ID, ঐচ্ছিক)</label>
+        <input id="incomeVideo" placeholder="https://youtu.be/xxxxxxxxxxx">
+        <button class="btn btn-gold" style="margin-top:14px;" onclick="addIncome()">✅ ইনকাম অ্যাপ যোগ করুন</button>
       </div>
-      <input type="file" id="insFile" accept="image/*" style="display:none" onchange="onInsSel(this)">
-      <div class="preview-wrap" id="insPreviewWrap"><img id="insPreviewEl" alt="preview"><button class="remove-img" onclick="clearIns()">✕</button></div>
-      <div class="prog-wrap" id="insProgWrap"><div class="prog-bg"><div class="prog-bar" id="insProgBar"></div></div><p class="prog-text" id="insProgText"></p></div>
-      <label class="label">শিরোনাম *</label>
-      <input class="finp" type="text" id="insTitle" placeholder="যেমন: স্বপ্ন দেখো">
-      <label class="label">বাণী / উক্তি *</label>
-      <textarea class="finp" id="insQuote" placeholder="প্রেরণামূলক বাণী লিখুন..."></textarea>
-      <label class="label">উৎস</label>
-      <input class="finp" type="text" id="insAttrib" placeholder="— জীবনের পথে">
-      <div class="g2">
-        <div><label class="label">ক্যাটাগরি</label><select class="finp" id="insCat"><option value="life">জীবন</option><option value="dream">স্বপ্ন</option><option value="motivation">অনুপ্রেরণা</option><option value="success">সাফল্য</option><option value="patriotic">দেশপ্রেম</option><option value="education">শিক্ষা</option></select></div>
-        <div><label class="label">থিম রঙ</label><select class="finp" id="insGrad">
-          <option value="linear-gradient(135deg,#7C5CFF,#4DE8FF)">💜 ভায়োলেট</option>
-          <option value="linear-gradient(135deg,#DC2626,#F97316)">🔴 লাল</option>
-          <option value="linear-gradient(135deg,#166534,#10B981)">🟢 সবুজ</option>
-          <option value="linear-gradient(135deg,#92400E,#FCD34D)">🟡 সোনালি</option>
-          <option value="linear-gradient(135deg,#1E1B4B,#F97316)">🌙 রাত</option>
-        </select></div>
-      </div>
-      <button class="btn-sub bg-green" onclick="submitQuote('inspiration-extra.json','insTitle','insQuote','insAttrib','insCat','insGrad','insProgWrap','insProgBar','insProgText',insImgFile)">✅ প্রেরণার বাণী যোগ করুন</button>
+      <h3 style="margin:20px 0 10px;">বর্তমান তালিকা</h3>
+      <div id="incomeList"></div>
     </div>
 
-    <!-- ===== PROFILE TAB ===== -->
-    <div class="tc" id="t-profile">
-      <div class="upload-area" id="profUploadArea" onclick="document.getElementById('profFile').click()">
-        <div class="ua-icon">👤</div><h4>প্রোফাইল ছবি বেছে নিন</h4><p>আপনার সেরা ছবি</p>
+    <!-- BLOG -->
+    <div class="tab-panel" id="tab-blog">
+      <div class="card">
+        <h3>📝 নতুন ব্লগ পোস্ট লিখুন</h3>
+        <label>কভার ছবি (ঐচ্ছিক)</label>
+        <input type="file" id="blogImgFile" accept="image/*" onchange="handleImageUpload(this,'blogImgPreview')">
+        <img id="blogImgPreview" style="max-width:160px; margin-top:8px; border-radius:8px;">
+        <label>পোস্টের শিরোনাম *</label>
+        <input id="blogTitle" placeholder="শিরোনাম লিখুন">
+        <label>ক্যাটাগরি</label>
+        <select id="blogCat">
+          <option>🕌 ইসলামিক</option><option>✨ প্রেরণা</option><option>💚 জীবন</option>
+          <option>🇧🇩 দেশপ্রেম</option><option>🤖 AI টিপস</option><option>📌 সাধারণ</option>
+        </select>
+        <label>ইমোজি (ছবি না থাকলে দেখাবে)</label>
+        <input id="blogEmoji" placeholder="📝">
+        <label>লেখার বিষয়বস্তু *</label>
+        <textarea id="blogContent" rows="5" placeholder="বাংলায় লিখুন..."></textarea>
+        <button class="btn btn-gold" style="margin-top:14px;" onclick="addBlog()">📝 পোস্ট প্রকাশ করুন</button>
       </div>
-      <input type="file" id="profFile" accept="image/*" style="display:none" onchange="onProfSel(this)">
-      <div class="preview-wrap" id="profPreviewWrap"><img id="profPreviewEl" alt="profile"><button class="remove-img" onclick="clearProf()">✕</button></div>
-      <div class="prog-wrap" id="profProgWrap"><div class="prog-bg"><div class="prog-bar" id="profProgBar"></div></div><p class="prog-text" id="profProgText"></p></div>
-      <button class="btn-sub bg-violet" id="profSubmitBtn" onclick="submitProfile()">👤 প্রোফাইল ছবি আপডেট করুন</button>
+      <h3 style="margin:20px 0 10px;">বর্তমান পোস্টসমূহ</h3>
+      <div id="blogList"></div>
     </div>
 
-    <!-- ===== SETTINGS TAB ===== -->
-    <div class="tc" id="t-settings">
-      <div class="settings-card">
-        <h3>🔐 Admin লগইন পরিবর্তন</h3>
-        <label class="label">নতুন ইমেইল</label><input class="finp" type="email" id="newEmail" placeholder="admin@aminaiworld.com">
-        <label class="label">নতুন পাসওয়ার্ড</label><input class="finp" type="password" id="newPwd" placeholder="শক্তিশালী পাসওয়ার্ড">
-        <label class="label">পাসওয়ার্ড নিশ্চিত করুন</label><input class="finp" type="password" id="confirmPwd" placeholder="আবার দিন">
-        <button class="btn-sub bg-violet" onclick="saveCredentials()">✅ পরিবর্তন সেভ করুন</button>
+    <!-- ISLAMIC -->
+    <div class="tab-panel" id="tab-islamic">
+      <div class="card">
+        <h3>🕌 নতুন ইসলামিক বাণী যোগ করুন</h3>
+        <label>শিরোনাম *</label>
+        <input id="islTitle" placeholder="যেমন: ধৈর্য">
+        <label>বাণী / উক্তি *</label>
+        <textarea id="islText" rows="2"></textarea>
+        <div class="two-col">
+          <div><label>উৎস</label><input id="islSource" placeholder="সূরা আল-বাকারা, আয়াত ১৫৩"></div>
+          <div>
+            <label>ক্যাটাগরি</label>
+            <select id="islCat"><option>কোরআন</option><option>হাদিস</option></select>
+          </div>
+        </div>
+        <label>থিম রঙ</label>
+        <select id="islTheme">
+          <option value="green">🟢 সবুজ</option><option value="blue">🔵 নীল</option>
+          <option value="violet">🟣 বেগুনি</option><option value="gold">🟠 কমলা</option>
+        </select>
+        <button class="btn btn-gold" style="margin-top:14px;" onclick="addIslamic()">✅ বাণী যোগ করুন</button>
       </div>
-      <div class="settings-card">
-        <h3>🗑️ Extra কনটেন্ট রিসেট</h3>
-        <p style="color:var(--muted);font-size:.8rem;margin-bottom:13px;">Admin থেকে যোগ করা সব কনটেন্ট মুছতে চাইলে:</p>
-        <button class="btn-sub bg-red" onclick="resetAll()">🗑️ সব Extra কনটেন্ট মুছুন</button>
+      <h3 style="margin:20px 0 10px;">বর্তমান তালিকা</h3>
+      <div id="islamicList"></div>
+    </div>
+
+    <!-- INSPIRATION -->
+    <div class="tab-panel" id="tab-inspiration">
+      <div class="card">
+        <h3>✨ নতুন প্রেরণার বাণী যোগ করুন</h3>
+        <label>শিরোনাম *</label>
+        <input id="inspTitle" placeholder="যেমন: স্বপ্ন">
+        <label>বাণী / উক্তি *</label>
+        <textarea id="inspText" rows="2"></textarea>
+        <div class="two-col">
+          <div><label>উৎস (ঐচ্ছিক)</label><input id="inspSource"></div>
+          <div>
+            <label>ক্যাটাগরি</label>
+            <select id="inspCat">
+              <option>জীবন</option><option>স্বপ্ন</option><option>অনুপ্রেরণা</option>
+              <option>সাফল্য</option><option>দেশপ্রেম</option><option>শিক্ষা</option>
+            </select>
+          </div>
+        </div>
+        <label>থিম রঙ</label>
+        <select id="inspTheme">
+          <option value="violet">💜 ভায়োলেট</option><option value="red">🔴 লাল</option>
+          <option value="green">🟢 সবুজ</option><option value="gold">🟡 সোনালি</option>
+        </select>
+        <button class="btn btn-gold" style="margin-top:14px;" onclick="addInspiration()">✅ প্রেরণার বাণী যোগ করুন</button>
+      </div>
+      <h3 style="margin:20px 0 10px;">বর্তমান তালিকা</h3>
+      <div id="inspirationList"></div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="tab-panel" id="tab-settings">
+      <div class="card">
+        <h3>🔐 লগইন তথ্য পরিবর্তন</h3>
+        <label>নতুন ইমেইল</label><input id="newEmail" placeholder="বর্তমান ইমেইল অপরিবর্তিত রাখতে খালি রাখুন">
+        <label>নতুন পাসওয়ার্ড</label><input type="password" id="newPass" placeholder="বর্তমান পাসওয়ার্ড অপরিবর্তিত রাখতে খালি রাখুন">
+        <label>পাসওয়ার্ড নিশ্চিত করুন</label><input type="password" id="newPass2">
+        <button class="btn btn-green" style="margin-top:14px;" onclick="changeCredentials()">✅ পরিবর্তন সেভ করুন</button>
+        <div id="credMsg"></div>
+      </div>
+      <div class="card" style="margin-top:16px;">
+        <h3>🗑️ খসড়া পরিবর্তন রিসেট করুন</h3>
+        <p style="color:var(--ink-soft); font-size:0.88rem;">প্রকাশ না-করা সব খসড়া পরিবর্তন মুছে সর্বশেষ প্রকাশিত অবস্থায় ফিরে যেতে চাইলে:</p>
+        <button class="btn btn-danger" onclick="resetDraft()">🗑️ খসড়া রিসেট করুন</button>
       </div>
     </div>
 
-    <!-- ===== GUIDE TAB ===== -->
-    <div class="tc" id="t-guide">
-      <div class="guide-list">
-        <div class="guide-item"><div class="g-num">১</div><div class="g-info"><h4>GitHub Token তৈরি করুন</h4><p><a href="https://github.com/settings/tokens/new" target="_blank" style="color:var(--cyan)">github.com/settings/tokens/new</a> → "Amin AI World" লিখুন → <code>repo</code> scope → Generate → Token কপি করুন।</p></div></div>
-        <div class="guide-item"><div class="g-num">২</div><div class="g-info"><h4>ব্লগ পোস্ট লিখুন</h4><p>"ব্লগ পোস্ট" ট্যাবে যান → কভার ছবি দিন → শিরোনাম, ক্যাটাগরি ও লেখা দিন → "প্রকাশ করুন" চাপুন। ১-২ মিনিটে সাইটে দেখা যাবে।</p></div></div>
-        <div class="guide-item"><div class="g-num">৩</div><div class="g-info"><h4>প্রম্পট যোগ করুন</h4><p>ছবি আপলোড করুন → ফর্ম পূরণ করুন → "যোগ করুন" চাপুন।</p></div></div>
-        <div class="guide-item"><div class="g-num">৪</div><div class="g-info"><h4>গান যোগ করুন</h4><p>YouTube লিংক দিন → শিরোনাম ও ক্যাটাগরি দিন → "গান যোগ করুন" চাপুন।</p></div></div>
-        <div class="guide-item"><div class="g-num">৫</div><div class="g-info"><h4>Admin লিংক</h4><p><code>mohammadaminalif3-creator.github.io/Amin-Ai-world-/admin.html</code></p></div></div>
+    <!-- GUIDE -->
+    <div class="tab-panel" id="tab-guide">
+      <div class="card">
+        <h3 style="margin-bottom:16px;">📖 ব্যবহার গাইড</h3>
+        <div class="guide-step"><div class="n">১</div><div><b>GitHub Token তৈরি করুন</b><br><span style="color:var(--ink-soft); font-size:0.9rem;">প্রথমবার প্রকাশ করার আগে <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> থেকে একটি "fine-grained" টোকেন তৈরি করুন, যেটি <b>শুধু</b> আপনার <code>Amin-Ai-world-</code> রিপোজিটরিতে অ্যাক্সেস দেয় এবং শুধু <code>Contents: Read & Write</code> পারমিশন থাকে। টোকেন কপি করে উপরের বক্সে পেস্ট করুন — এটি সংরক্ষণ করা হয় না, প্রতিবার নতুন করে দিতে হবে।</span></div></div>
+        <div class="guide-step"><div class="n">২</div><div><b>কনটেন্ট যোগ করুন</b><br><span style="color:var(--ink-soft); font-size:0.9rem;">বাম মেনু থেকে যেকোনো ট্যাবে গিয়ে ফর্ম পূরণ করে "যোগ করুন" চাপুন। এটি এখনো শুধু খসড়া — লাইভ সাইটে দেখা যাবে না।</span></div></div>
+        <div class="guide-step"><div class="n">৩</div><div><b>প্রকাশ করুন</b><br><span style="color:var(--ink-soft); font-size:0.9rem;">উপরে GitHub Token বসিয়ে "🚀 সবার জন্য প্রকাশ করুন" চাপুন। ১-২ মিনিটের মধ্যে পরিবর্তন লাইভ সাইটে দেখা যাবে।</span></div></div>
+        <div class="guide-step"><div class="n">৪</div><div><b>Admin লিংক</b><br><span style="color:var(--ink-soft); font-size:0.9rem;"><code>mohammadaminalif3-creator.github.io/Amin-Ai-world-/admin.html</code></span></div></div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-const REPO='mohammadaminalif3-creator/Amin-Ai-world-';
-const BRANCH='main';
-const DEFAULT_EMAIL='admin@aminaiworld.com';
-const DEFAULT_PWD='Amin@2024';
+const GH_OWNER = 'mohammadaminalif3-creator';
+const GH_REPO  = 'Amin-Ai-world-';
+const DATA_PATH = 'data.json';
+const AUTH_KEY = 'aaw_admin_auth_v1';
+const DRAFT_KEY = 'aaw_admin_draft_v1';
 
-let selImgFile=null,selProfFile=null,iqImgFile=null,insImgFile=null,selBlogImgFile=null;
+let DATA = { aiTools:[], songs:[], movies:[], prompts:[], islamicQuotes:[], inspirationQuotes:[], blogPosts:[], income:[] };
 
-// AUTH
-function getAdminEmail(){return localStorage.getItem('adminEmail')||DEFAULT_EMAIL;}
-function getAdminPwd(){return localStorage.getItem('adminPwd')||DEFAULT_PWD;}
-function doLogin(){
-  const email=document.getElementById('emailInput').value.trim();
-  const pwd=document.getElementById('pwdInput').value;
-  if(email===getAdminEmail()&&pwd===getAdminPwd()){
-    sessionStorage.setItem('adminOk','1');
-    document.getElementById('loginScreen').style.display='none';
-    document.getElementById('adminPanel').style.display='block';
-    loadToken();
-  }else{document.getElementById('loginErr').style.display='block';setTimeout(()=>document.getElementById('loginErr').style.display='none',2500);}
+// ---------- crypto helpers ----------
+async function sha256(text){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
-function doLogout(){sessionStorage.removeItem('adminOk');document.getElementById('loginScreen').style.display='flex';document.getElementById('adminPanel').style.display='none';document.getElementById('emailInput').value='';document.getElementById('pwdInput').value='';}
-document.getElementById('pwdInput').addEventListener('keypress',e=>{if(e.key==='Enter')doLogin();});
-document.getElementById('emailInput').addEventListener('keypress',e=>{if(e.key==='Enter')doLogin();});
-if(sessionStorage.getItem('adminOk')){document.getElementById('loginScreen').style.display='none';document.getElementById('adminPanel').style.display='block';loadToken();}
-
-// TOKEN
-function loadToken(){const t=localStorage.getItem('ghToken');if(t){document.getElementById('tokenInput').value=t;document.getElementById('tokenStatus').innerHTML='<span style="color:var(--green)">✅ Token সেট আছে</span>';}}
-function saveToken(){const t=document.getElementById('tokenInput').value.trim();if(!t){showAlert('err','Token দিন!');return;}localStorage.setItem('ghToken',t);document.getElementById('tokenStatus').innerHTML='<span style="color:var(--green)">✅ সেভ হয়েছে!</span>';}
-function getToken(){return localStorage.getItem('ghToken');}
-
-// TABS
-function showTab(id,btn){document.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');}
-
-// GITHUB API
-async function getFileSHA(token,path){try{const r=await fetch(`https://api.github.com/repos/${REPO}/contents/${path}?ref=${BRANCH}`,{headers:{'Authorization':`token ${token}`}});if(r.ok){const d=await r.json();return{sha:d.sha,content:d.content};}}catch(e){}return null;}
-async function uploadFile(token,path,b64,message){const ex=await getFileSHA(token,path);const body={message,content:b64,branch:BRANCH};if(ex)body.sha=ex.sha;const r=await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`,{method:'PUT',headers:{'Authorization':`token ${token}`,'Content-Type':'application/json'},body:JSON.stringify(body)});return r.ok;}
-async function fileToB64(file,maxW=900){return new Promise(res=>{const canvas=document.createElement('canvas');const ctx=canvas.getContext('2d');const img=new Image();const url=URL.createObjectURL(file);img.onload=()=>{let w=img.width,h=img.height;if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}canvas.width=w;canvas.height=h;ctx.drawImage(img,0,0,w,h);URL.revokeObjectURL(url);canvas.toBlob(blob=>{const fr=new FileReader();fr.onload=()=>res(fr.result.split(',')[1]);fr.readAsDataURL(blob);},'image/jpeg',0.85);};img.src=url;});}
-function setProgress(wrapId,barId,textId,pct,msg){document.getElementById(wrapId).style.display='block';document.getElementById(barId).style.width=pct+'%';document.getElementById(textId).textContent=msg;}
-
-// IMAGE SELECTORS
-function onImgSel(inp){if(!inp.files[0])return;selImgFile=inp.files[0];document.getElementById('imgPreviewEl').src=URL.createObjectURL(selImgFile);document.getElementById('imgPreviewWrap').style.display='block';document.getElementById('imgUploadArea').style.display='none';}
-function clearImg(){selImgFile=null;document.getElementById('imgFile').value='';document.getElementById('imgPreviewWrap').style.display='none';document.getElementById('imgUploadArea').style.display='block';}
-function dragOver(e){e.preventDefault();document.getElementById('imgUploadArea').classList.add('drag');}
-function dropFile(e){e.preventDefault();document.getElementById('imgUploadArea').classList.remove('drag');const f=e.dataTransfer.files[0];if(f&&f.type.startsWith('image/')){selImgFile=f;document.getElementById('imgPreviewEl').src=URL.createObjectURL(f);document.getElementById('imgPreviewWrap').style.display='block';document.getElementById('imgUploadArea').style.display='none';}}
-function onProfSel(inp){if(!inp.files[0])return;selProfFile=inp.files[0];document.getElementById('profPreviewEl').src=URL.createObjectURL(selProfFile);document.getElementById('profPreviewWrap').style.display='block';document.getElementById('profUploadArea').style.display='none';}
-function clearProf(){selProfFile=null;document.getElementById('profFile').value='';document.getElementById('profPreviewWrap').style.display='none';document.getElementById('profUploadArea').style.display='block';}
-function onIqSel(inp){if(!inp.files[0])return;iqImgFile=inp.files[0];document.getElementById('iqPreviewEl').src=URL.createObjectURL(iqImgFile);document.getElementById('iqPreviewWrap').style.display='block';document.getElementById('iqUploadArea').style.display='none';}
-function clearIq(){iqImgFile=null;document.getElementById('iqFile').value='';document.getElementById('iqPreviewWrap').style.display='none';document.getElementById('iqUploadArea').style.display='block';}
-function onInsSel(inp){if(!inp.files[0])return;insImgFile=inp.files[0];document.getElementById('insPreviewEl').src=URL.createObjectURL(insImgFile);document.getElementById('insPreviewWrap').style.display='block';document.getElementById('insUploadArea').style.display='none';}
-function clearIns(){insImgFile=null;document.getElementById('insFile').value='';document.getElementById('insPreviewWrap').style.display='none';document.getElementById('insUploadArea').style.display='block';}
-function onBlogImgSel(inp){if(!inp.files[0])return;selBlogImgFile=inp.files[0];document.getElementById('blogImgPreviewEl').src=URL.createObjectURL(selBlogImgFile);document.getElementById('blogImgPreviewWrap').style.display='block';document.getElementById('blogImgArea').style.display='none';updateBlogPreview();}
-function clearBlogImg(){selBlogImgFile=null;document.getElementById('blogImgFile').value='';document.getElementById('blogImgPreviewWrap').style.display='none';document.getElementById('blogImgArea').style.display='block';}
-
-// MUSIC PREVIEW
-function previewMusicThumb(){const raw=document.getElementById('mYoutubeId').value;const id=extractYouTubeId(raw);if(id){document.getElementById('musicThumbImg').src=`https://img.youtube.com/vi/${id}/hqdefault.jpg`;document.getElementById('musicThumbPreview').style.display='block';}else{document.getElementById('musicThumbPreview').style.display='none';}}
-function extractYouTubeId(url){const m=url.match(/(?:youtu\.be\/|v=|embed\/)([A-Za-z0-9_-]{11})/);if(m)return m[1];if(/^[A-Za-z0-9_-]{11}$/.test(url.trim()))return url.trim();return null;}
-
-// BLOG PREVIEW
-function updateBlogPreview(){
-  const title=document.getElementById('blogTitle').value;
-  const content=document.getElementById('blogContent').value;
-  const card=document.getElementById('blogPreviewCard');
-  if(title||content){
-    card.style.display='block';
-    document.getElementById('blogPreviewTitle').textContent=title||'শিরোনাম...';
-    document.getElementById('blogPreviewContent').textContent=(content||'').slice(0,150)+'...';
-    const imgWrap=document.getElementById('blogPreviewImgWrap');
-    if(selBlogImgFile){imgWrap.innerHTML=`<img src="${document.getElementById('blogImgPreviewEl').src}" style="width:100%;height:120px;object-fit:cover;">`;}
-    else{imgWrap.innerHTML='';}
-  }else{card.style.display='none';}
+function randomSalt(){
+  return Array.from(crypto.getRandomValues(new Uint8Array(16))).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 
-// TAGS
-function addTag(tag){const inp=document.getElementById('pTags');const cur=inp.value.trim();if(!cur)inp.value=tag;else if(!cur.split(',').map(t=>t.trim()).includes(tag))inp.value=cur+', '+tag;}
+// ---------- auth ----------
+function getAuth(){
+  try{ return JSON.parse(localStorage.getItem(AUTH_KEY)); }catch(e){ return null; }
+}
+function saveAuth(obj){ localStorage.setItem(AUTH_KEY, JSON.stringify(obj)); }
 
-// SUBMIT BLOG
-async function submitBlogPost(){
-  const token=getToken();if(!token){showAlert('err','আগে GitHub Token সেট করুন!');return;}
-  const title=document.getElementById('blogTitle').value.trim();
-  const content=document.getElementById('blogContent').value.trim();
-  if(!title||!content){showAlert('err','শিরোনাম ও লেখা দিন!');return;}
-  const btn=document.getElementById('blogSubmitBtn');btn.disabled=true;btn.textContent='⏳ প্রকাশ হচ্ছে...';hideAlerts();
+function initAuthScreen(){
+  const auth = getAuth();
+  if(!auth){
+    document.getElementById('authTitle').textContent = '👋 প্রথমবার — অ্যাকাউন্ট তৈরি করুন';
+    document.getElementById('loginForm').classList.add('hidden');
+    document.getElementById('setupForm').classList.remove('hidden');
+  } else {
+    document.getElementById('authTitle').textContent = '🔐 Admin লগইন';
+    document.getElementById('loginForm').classList.remove('hidden');
+    document.getElementById('setupForm').classList.add('hidden');
+  }
+}
+
+async function handleSetup(){
+  const email = document.getElementById('setupEmail').value.trim();
+  const pass = document.getElementById('setupPass').value;
+  const pass2 = document.getElementById('setupPass2').value;
+  const msg = document.getElementById('setupMsg');
+  if(!email || !pass){ msg.innerHTML = '<div class="msg err">ইমেইল ও পাসওয়ার্ড দিন।</div>'; return; }
+  if(pass.length < 6){ msg.innerHTML = '<div class="msg err">পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।</div>'; return; }
+  if(pass !== pass2){ msg.innerHTML = '<div class="msg err">পাসওয়ার্ড দুটি মিলছে না।</div>'; return; }
+  const salt = randomSalt();
+  const passHash = await sha256(salt + pass);
+  saveAuth({ email, salt, passHash });
+  enterApp();
+}
+
+async function handleLogin(){
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  const msg = document.getElementById('loginMsg');
+  const auth = getAuth();
+  if(!auth){ initAuthScreen(); return; }
+  const passHash = await sha256(auth.salt + pass);
+  if(email === auth.email && passHash === auth.passHash){
+    enterApp();
+  } else {
+    msg.innerHTML = '<div class="msg err">❌ ভুল ইমেইল বা পাসওয়ার্ড!</div>';
+  }
+}
+
+function handleLogout(){
+  document.getElementById('appScreen').classList.remove('show');
+  document.getElementById('authScreen').style.display = 'flex';
+  document.getElementById('loginEmail').value = '';
+  document.getElementById('loginPass').value = '';
+}
+
+async function changeCredentials(){
+  const auth = getAuth();
+  const newEmail = document.getElementById('newEmail').value.trim();
+  const newPass = document.getElementById('newPass').value;
+  const newPass2 = document.getElementById('newPass2').value;
+  const msg = document.getElementById('credMsg');
+  if(newPass && newPass.length < 6){ msg.innerHTML = '<div class="msg err">পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।</div>'; return; }
+  if(newPass && newPass !== newPass2){ msg.innerHTML = '<div class="msg err">পাসওয়ার্ড দুটি মিলছে না।</div>'; return; }
+  const updated = { email: newEmail || auth.email, salt: auth.salt, passHash: auth.passHash };
+  if(newPass){ updated.passHash = await sha256(auth.salt + newPass); }
+  saveAuth(updated);
+  document.getElementById('newEmail').value = '';
+  document.getElementById('newPass').value = '';
+  document.getElementById('newPass2').value = '';
+  msg.innerHTML = '<div class="msg ok">✅ লগইন তথ্য আপডেট হয়েছে।</div>';
+}
+
+function enterApp(){
+  document.getElementById('authScreen').style.display = 'none';
+  document.getElementById('appScreen').classList.add('show');
+  loadWorkingData();
+}
+
+// ---------- data loading ----------
+async function loadWorkingData(){
+  const draft = localStorage.getItem(DRAFT_KEY);
+  if(draft){
+    try{ DATA = JSON.parse(draft); renderAll(); return; }catch(e){}
+  }
   try{
-    let imagePath='';
-    if(selBlogImgFile){
-      setProgress('blogProgWrap','blogProgBar','blogProgText',25,'ছবি আপলোড হচ্ছে...');
-      const b64=await fileToB64(selBlogImgFile);
-      const ext=selBlogImgFile.name.split('.').pop().toLowerCase().replace('jpg','jpeg');
-      const fname='blog_'+Date.now()+'.'+ext;
-      imagePath='images/'+fname;
-      const ok=await uploadFile(token,imagePath,b64,'Add blog image: '+fname);
-      if(!ok)throw new Error('ছবি আপলোড ব্যর্থ!');
+    const res = await fetch('data.json?v=' + Date.now());
+    DATA = await res.json();
+  }catch(e){
+    console.error('data.json লোড করা যায়নি', e);
+  }
+  renderAll();
+}
+function saveDraft(){
+  localStorage.setItem(DRAFT_KEY, JSON.stringify(DATA));
+  renderAll();
+}
+function resetDraft(){
+  if(!confirm('সব খসড়া (প্রকাশ না-করা) পরিবর্তন মুছে ফেলা হবে। নিশ্চিত?')) return;
+  localStorage.removeItem(DRAFT_KEY);
+  loadWorkingData();
+}
+
+function uid(prefix){ return prefix + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+// ---------- image upload ----------
+function handleImageUpload(input, previewId){
+  const file = input.files[0];
+  if(!file) return;
+  if(file.size > 800*1024){
+    alert('ছবির সাইজ ৮০০KB-এর কম রাখুন, যাতে সাইট দ্রুত লোড হয়।');
+  }
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById(previewId).src = e.target.result;
+    document.getElementById(previewId).dataset.b64 = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// ---------- tabs ----------
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ---------- AI Tools ----------
+function addTool(){
+  const name = document.getElementById('toolName').value.trim();
+  const url = document.getElementById('toolUrl').value.trim();
+  if(!name || !url){ alert('নাম ও লিংক আবশ্যক।'); return; }
+  DATA.aiTools.push({
+    id: uid('t'), name, url,
+    category: document.getElementById('toolCat').value.trim() || 'অন্যান্য',
+    icon: document.getElementById('toolIcon').value.trim() || '🤖',
+    desc: document.getElementById('toolDesc').value.trim()
+  });
+  ['toolName','toolUrl','toolCat','toolIcon','toolDesc'].forEach(id=>document.getElementById(id).value='');
+  saveDraft();
+}
+function deleteItem(arrName, id){
+  if(!confirm('মুছে ফেলতে চান?')) return;
+  DATA[arrName] = DATA[arrName].filter(x=>x.id!==id);
+  saveDraft();
+}
+
+// ---------- Prompts ----------
+function addPrompt(){
+  const title = document.getElementById('promptTitle').value.trim();
+  const text = document.getElementById('promptText').value.trim();
+  if(!title || !text){ alert('শিরোনাম ও প্রম্পট টেক্সট আবশ্যক।'); return; }
+  DATA.prompts.push({
+    id: uid('p'), title,
+    titleEn: document.getElementById('promptTitleEn').value.trim(),
+    text, tool: document.getElementById('promptTool').value,
+    category: document.getElementById('promptCat').value,
+    themeColor: document.getElementById('promptTheme').value,
+    image: document.getElementById('promptImgPreview').dataset.b64 || ''
+  });
+  ['promptTitle','promptTitleEn','promptText'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('promptImgPreview').removeAttribute('src');
+  document.getElementById('promptImgPreview').removeAttribute('data-b64');
+  document.getElementById('promptImgFile').value = '';
+  saveDraft();
+}
+
+// ---------- Songs ----------
+function extractYouTubeId(input){
+  input = input.trim();
+  const patterns = [/youtu\.be\/([A-Za-z0-9_-]{6,})/, /[?&]v=([A-Za-z0-9_-]{6,})/, /embed\/([A-Za-z0-9_-]{6,})/];
+  for(const p of patterns){ const m = input.match(p); if(m) return m[1]; }
+  if(/^[A-Za-z0-9_-]{6,}$/.test(input)) return input;
+  return null;
+}
+function addSong(){
+  const title = document.getElementById('songTitle').value.trim();
+  const raw = document.getElementById('songUrl').value.trim();
+  const ytId = extractYouTubeId(raw);
+  if(!title || !ytId){ alert('গানের শিরোনাম ও সঠিক YouTube লিংক দিন।'); return; }
+  DATA.songs.push({ id: uid('s'), title, youtubeId: ytId, category: document.getElementById('songCat').value });
+  document.getElementById('songTitle').value=''; document.getElementById('songUrl').value='';
+  saveDraft();
+}
+
+// ---------- Movies ----------
+function addMovie(){
+  const name = document.getElementById('movieName').value.trim();
+  const url = document.getElementById('movieUrl').value.trim();
+  if(!name || !url){ alert('নাম ও লিংক আবশ্যক।'); return; }
+  DATA.movies.push({ id: uid('m'), name, url });
+  document.getElementById('movieName').value=''; document.getElementById('movieUrl').value='';
+  saveDraft();
+}
+
+// ---------- Income ----------
+function addIncome(){
+  const name = document.getElementById('incomeName').value.trim();
+  const url = document.getElementById('incomeUrl').value.trim();
+  const rawVideo = document.getElementById('incomeVideo').value.trim();
+  if(!name || !url){ alert('নাম ও লিংক আবশ্যক।'); return; }
+  DATA.income.push({ id: uid('ic'), name, url, video: rawVideo ? (extractYouTubeId(rawVideo) || '') : '' });
+  ['incomeName','incomeUrl','incomeVideo'].forEach(id=>document.getElementById(id).value='');
+  saveDraft();
+}
+
+// ---------- Blog ----------
+function addBlog(){
+  const title = document.getElementById('blogTitle').value.trim();
+  const content = document.getElementById('blogContent').value.trim();
+  if(!title || !content){ alert('শিরোনাম ও লেখা আবশ্যক।'); return; }
+  DATA.blogPosts.unshift({
+    id: uid('b'), title, content,
+    category: document.getElementById('blogCat').value,
+    emoji: document.getElementById('blogEmoji').value.trim() || '📝',
+    image: document.getElementById('blogImgPreview').dataset.b64 || '',
+    date: new Date().toISOString().slice(0,10)
+  });
+  ['blogTitle','blogContent','blogEmoji'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('blogImgPreview').removeAttribute('src');
+  document.getElementById('blogImgPreview').removeAttribute('data-b64');
+  document.getElementById('blogImgFile').value = '';
+  saveDraft();
+}
+
+// ---------- Islamic ----------
+function addIslamic(){
+  const title = document.getElementById('islTitle').value.trim();
+  const text = document.getElementById('islText').value.trim();
+  if(!title || !text){ alert('শিরোনাম ও বাণী আবশ্যক।'); return; }
+  DATA.islamicQuotes.push({
+    id: uid('i'), title, text,
+    source: document.getElementById('islSource').value.trim(),
+    category: document.getElementById('islCat').value,
+    themeColor: document.getElementById('islTheme').value
+  });
+  ['islTitle','islText','islSource'].forEach(id=>document.getElementById(id).value='');
+  saveDraft();
+}
+
+// ---------- Inspiration ----------
+function addInspiration(){
+  const title = document.getElementById('inspTitle').value.trim();
+  const text = document.getElementById('inspText').value.trim();
+  if(!title || !text){ alert('শিরোনাম ও বাণী আবশ্যক।'); return; }
+  DATA.inspirationQuotes.push({
+    id: uid('n'), title, text,
+    source: document.getElementById('inspSource').value.trim(),
+    category: document.getElementById('inspCat').value,
+    themeColor: document.getElementById('inspTheme').value
+  });
+  ['inspTitle','inspText','inspSource'].forEach(id=>document.getElementById(id).value='');
+  saveDraft();
+}
+
+// ---------- render lists ----------
+function renderAll(){
+  document.getElementById('statTools').textContent = DATA.aiTools.length;
+  document.getElementById('statPrompts').textContent = DATA.prompts.length;
+  document.getElementById('statSongs').textContent = DATA.songs.length;
+  document.getElementById('statMovies').textContent = DATA.movies.length;
+  document.getElementById('statIncome').textContent = DATA.income.length;
+  document.getElementById('statIslamic').textContent = DATA.islamicQuotes.length;
+  document.getElementById('statBlog').textContent = DATA.blogPosts.length;
+
+  document.getElementById('toolsList').innerHTML = rowList(DATA.aiTools, t=>`<b>${esc(t.icon)} ${esc(t.name)}</b><span>${esc(t.category)} · ${esc(t.url)}</span>`, 'aiTools');
+  document.getElementById('promptsList').innerHTML = rowList(DATA.prompts, p=>`<b>${esc(p.title)}</b><span>${p.category} · ${esc(p.tool)}</span>`, 'prompts');
+  document.getElementById('songsList').innerHTML = rowList(DATA.songs, s=>`<b>${esc(s.title)}</b><span>${esc(s.youtubeId)}</span>`, 'songs');
+  document.getElementById('moviesList').innerHTML = rowList(DATA.movies, m=>`<b>${esc(m.name)}</b><span>${esc(m.url)}</span>`, 'movies');
+  document.getElementById('incomeList').innerHTML = rowList(DATA.income, ic=>`<b>${esc(ic.name)}</b><span>${esc(ic.url)}${ic.video?' · 🎬 ভিডিও যুক্ত':''}</span>`, 'income');
+  document.getElementById('blogList').innerHTML = rowList(DATA.blogPosts, b=>`<b>${esc(b.title)}</b><span>${esc(b.category)} · ${esc(b.date||'')}</span>`, 'blogPosts');
+  document.getElementById('islamicList').innerHTML = rowList(DATA.islamicQuotes, q=>`<b>${esc(q.title)}</b><span>${esc(q.category)}</span>`, 'islamicQuotes');
+  document.getElementById('inspirationList').innerHTML = rowList(DATA.inspirationQuotes, q=>`<b>${esc(q.title)}</b><span>${esc(q.category)}</span>`, 'inspirationQuotes');
+}
+function rowList(list, tpl, arrName){
+  if(!list.length) return '<div class="msg" style="background:#F3EEDD;">এখনো কিছু যোগ করা হয়নি।</div>';
+  return list.map(item=>`
+    <div class="item-row">
+      <div class="info">${tpl(item)}</div>
+      <button class="del-btn" onclick="deleteItem('${arrName}','${item.id}')" title="মুছুন">🗑️</button>
+    </div>`).join('');
+}
+function esc(str){
+  return String(str==null?'':str).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+// ---------- publish to GitHub ----------
+async function publishData(){
+  const token = document.getElementById('ghToken').value.trim();
+  const msgBox = document.getElementById('publishMsg');
+  if(!token){ msgBox.innerHTML = '<div class="msg err">প্রথমে GitHub Token দিন।</div>'; return; }
+  msgBox.innerHTML = '<div class="msg" style="background:#F3EEDD;">⏳ প্রকাশ করা হচ্ছে...</div>';
+
+  const apiBase = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${DATA_PATH}`;
+  try{
+    // 1. get current sha
+    const getRes = await fetch(apiBase, { headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' } });
+    if(!getRes.ok){
+      const errBody = await getRes.text();
+      throw new Error(`GitHub থেকে বর্তমান ফাইল পড়া যায়নি (${getRes.status}). টোকেনের অনুমতি ও রিপো নাম যাচাই করুন।`);
     }
-    const now=new Date();
-    const dateStr=now.toLocaleDateString('bn-BD',{year:'numeric',month:'long',day:'numeric'});
-    const newPost={
-      id:'blog'+Date.now(),
-      title,
-      content,
-      category:document.getElementById('blogCat').value,
-      emoji:document.getElementById('blogEmoji').value||'📝',
-      date:dateStr,
-      author:'Amin AI World'
-    };
-    if(imagePath)newPost.image=imagePath;
-    setProgress('blogProgWrap','blogProgBar','blogProgText',65,'পোস্ট সেভ হচ্ছে...');
-    const ex=await getFileSHA(token,'blog-posts.json');
-    let posts=[];if(ex&&ex.content){try{posts=JSON.parse(atob(ex.content.replace(/\n/g,'')));}catch(e){posts=[];}}
-    posts.unshift(newPost);
-    const ok2=await uploadFile(token,'blog-posts.json',btoa(unescape(encodeURIComponent(JSON.stringify(posts,null,2)))),'Add blog post: '+title);
-    if(!ok2)throw new Error('পোস্ট সেভ ব্যর্থ!');
-    setProgress('blogProgWrap','blogProgBar','blogProgText',100,'সম্পন্ন ✓');
-    showAlert('ok','✅ পোস্ট প্রকাশিত হয়েছে! ১-২ মিনিটে সাইটের ব্লগ সেকশনে দেখা যাবে।');
-    document.getElementById('blogTitle').value='';document.getElementById('blogContent').value='';document.getElementById('blogEmoji').value='';clearBlogImg();document.getElementById('blogPreviewCard').style.display='none';
-    setTimeout(()=>document.getElementById('blogProgWrap').style.display='none',2000);
-  }catch(e){showAlert('err','❌ '+e.message);document.getElementById('blogProgWrap').style.display='none';}
-  btn.disabled=false;btn.textContent='📝 পোস্ট প্রকাশ করুন';
+    const getJson = await getRes.json();
+    const sha = getJson.sha;
+
+    // 2. push updated content
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(DATA, null, 2))));
+    const putRes = await fetch(apiBase, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: 'Admin panel থেকে কনটেন্ট আপডেট', content, sha })
+    });
+    if(!putRes.ok){
+      const errBody = await putRes.text();
+      throw new Error(`প্রকাশ ব্যর্থ হয়েছে (${putRes.status}).`);
+    }
+    localStorage.removeItem(DRAFT_KEY);
+    msgBox.innerHTML = '<div class="msg ok">✅ সফলভাবে প্রকাশিত হয়েছে! ১-২ মিনিটের মধ্যে লাইভ সাইটে দেখা যাবে।</div>';
+    document.getElementById('ghToken').value = '';
+  }catch(e){
+    msgBox.innerHTML = `<div class="msg err">❌ ${esc(e.message)}</div>`;
+  }
 }
 
-// SUBMIT PROMPT
-async function submitPrompt(){
-  const token=getToken();if(!token){showAlert('err','Token দিন!');return;}
-  const titleBn=document.getElementById('pTitleBn').value.trim();const promptText=document.getElementById('pPromptText').value.trim();
-  if(!titleBn||!promptText){showAlert('err','শিরোনাম ও প্রম্পট দিন!');return;}
-  const btn=document.getElementById('promptSubmitBtn');btn.disabled=true;btn.textContent='⏳ ...';hideAlerts();
-  try{
-    let imagePath='';
-    if(selImgFile){setProgress('imgProgWrap','imgProgBar','imgProgText',30,'ছবি আপলোড...');const b64=await fileToB64(selImgFile);const fname='img_'+Date.now()+'.jpeg';imagePath='images/'+fname;const ok=await uploadFile(token,imagePath,b64,'Add image');if(!ok)throw new Error('ছবি আপলোড ব্যর্থ!');}
-    const tags=document.getElementById('pTags').value.split(',').map(t=>t.trim()).filter(Boolean);
-    const newP={id:'pe'+Date.now(),title:titleBn,titleEn:document.getElementById('pTitleEn').value.trim()||titleBn,prompt:promptText,tool:document.getElementById('pTool').value,tags,gradient:document.getElementById('pGrad').value};
-    if(imagePath)newP.image=imagePath;
-    setProgress('imgProgWrap','imgProgBar','imgProgText',75,'সেভ হচ্ছে...');
-    const ex=await getFileSHA(token,'prompts-extra.json');let prompts=[];if(ex&&ex.content){try{prompts=JSON.parse(atob(ex.content.replace(/\n/g,'')));}catch(e){prompts=[];}}
-    prompts.unshift(newP);
-    const ok2=await uploadFile(token,'prompts-extra.json',btoa(unescape(encodeURIComponent(JSON.stringify(prompts,null,2)))),'Add prompt: '+titleBn);
-    if(!ok2)throw new Error('সেভ ব্যর্থ!');
-    setProgress('imgProgWrap','imgProgBar','imgProgText',100,'সম্পন্ন ✓');
-    showAlert('ok','✅ প্রম্পট যোগ হয়েছে! ১-২ মিনিটে দেখা যাবে।');
-    document.getElementById('pTitleBn').value='';document.getElementById('pTitleEn').value='';document.getElementById('pPromptText').value='';document.getElementById('pTags').value='';clearImg();
-    setTimeout(()=>document.getElementById('imgProgWrap').style.display='none',2000);
-  }catch(e){showAlert('err','❌ '+e.message);document.getElementById('imgProgWrap').style.display='none';}
-  btn.disabled=false;btn.textContent='✅ প্রম্পট যোগ করুন';
-}
-
-// SUBMIT MUSIC
-async function submitMusic(){
-  const token=getToken();if(!token){showAlert('err','Token দিন!');return;}
-  const title=document.getElementById('mTitle').value.trim();const raw=document.getElementById('mYoutubeId').value.trim();const youtubeId=extractYouTubeId(raw);
-  if(!title||!youtubeId){showAlert('err','শিরোনাম ও YouTube লিংক দিন!');return;}
-  const btn=document.getElementById('musicSubmitBtn');btn.disabled=true;btn.textContent='⏳ ...';hideAlerts();
-  try{
-    setProgress('mProgWrap','mProgBar','mProgText',40,'সেভ হচ্ছে...');
-    const ex=await getFileSHA(token,'music-extra.json');let list=[];if(ex&&ex.content){try{list=JSON.parse(atob(ex.content.replace(/\n/g,'')));}catch(e){list=[];}}
-    list.unshift({id:'me'+Date.now(),title,youtubeId,category:document.getElementById('mCat').value});
-    const ok=await uploadFile(token,'music-extra.json',btoa(unescape(encodeURIComponent(JSON.stringify(list,null,2)))),'Add music: '+title);
-    if(!ok)throw new Error('সেভ ব্যর্থ!');
-    setProgress('mProgWrap','mProgBar','mProgText',100,'সম্পন্ন ✓');
-    showAlert('ok','✅ গান যোগ হয়েছে! ১-২ মিনিটে দেখা যাবে।');
-    document.getElementById('mTitle').value='';document.getElementById('mYoutubeId').value='';document.getElementById('musicThumbPreview').style.display='none';
-    setTimeout(()=>document.getElementById('mProgWrap').style.display='none',2000);
-  }catch(e){showAlert('err','❌ '+e.message);document.getElementById('mProgWrap').style.display='none';}
-  btn.disabled=false;btn.textContent='🎵 গান যোগ করুন';
-}
-
-// SUBMIT QUOTE
-async function submitQuote(jsonFile,titleId,quoteId,attribId,catId,gradId,progWrap,progBar,progText,imgFile){
-  const token=getToken();if(!token){showAlert('err','Token দিন!');return;}
-  const title=document.getElementById(titleId).value.trim();const quote=document.getElementById(quoteId).value.trim();
-  if(!title||!quote){showAlert('err','শিরোনাম ও বাণী দিন!');return;}
-  hideAlerts();setProgress(progWrap,progBar,progText,20,'প্রসেস হচ্ছে...');
-  try{
-    let imagePath='';
-    if(imgFile){const b64=await fileToB64(imgFile);const fname='qimg_'+Date.now()+'.jpeg';imagePath='images/'+fname;setProgress(progWrap,progBar,progText,50,'ছবি আপলোড...');const ok=await uploadFile(token,imagePath,b64,'Add quote image');if(!ok)throw new Error('ছবি আপলোড ব্যর্থ!');}
-    const newQ={id:'q'+Date.now(),title,quote,attribution:document.getElementById(attribId).value.trim()||'',category:document.getElementById(catId).value,gradient:document.getElementById(gradId).value};
-    if(imagePath)newQ.image=imagePath;
-    setProgress(progWrap,progBar,progText,80,'সেভ হচ্ছে...');
-    const ex=await getFileSHA(token,jsonFile);let list=[];if(ex&&ex.content){try{list=JSON.parse(atob(ex.content.replace(/\n/g,'')));}catch(e){list=[];}}
-    list.unshift(newQ);
-    const ok2=await uploadFile(token,jsonFile,btoa(unescape(encodeURIComponent(JSON.stringify(list,null,2)))),'Add quote: '+title);
-    if(!ok2)throw new Error('সেভ ব্যর্থ!');
-    setProgress(progWrap,progBar,progText,100,'সম্পন্ন ✓');
-    showAlert('ok','✅ বাণী যোগ হয়েছে! ১-২ মিনিটে দেখা যাবে।');
-    document.getElementById(titleId).value='';document.getElementById(quoteId).value='';document.getElementById(attribId).value='';
-    if(jsonFile.includes('islamic'))clearIq();else clearIns();
-    setTimeout(()=>document.getElementById(progWrap).style.display='none',2000);
-  }catch(e){showAlert('err','❌ '+e.message);document.getElementById(progWrap).style.display='none';}
-}
-
-// SUBMIT PROFILE
-async function submitProfile(){
-  const token=getToken();if(!token){showAlert('err','Token দিন!');return;}
-  if(!selProfFile){showAlert('err','ছবি সিলেক্ট করুন!');return;}
-  const btn=document.getElementById('profSubmitBtn');btn.disabled=true;btn.textContent='⏳ ...';hideAlerts();
-  try{
-    setProgress('profProgWrap','profProgBar','profProgText',40,'আপলোড হচ্ছে...');
-    const b64=await fileToB64(selProfFile,600);
-    const ok=await uploadFile(token,'images/amin-profile.png',b64,'Update profile picture');
-    if(!ok)throw new Error('আপলোড ব্যর্থ!');
-    setProgress('profProgWrap','profProgBar','profProgText',100,'সম্পন্ন ✓');
-    showAlert('ok','✅ প্রোফাইল ছবি আপডেট হয়েছে!');
-    setTimeout(()=>document.getElementById('profProgWrap').style.display='none',2000);
-  }catch(e){showAlert('err','❌ '+e.message);document.getElementById('profProgWrap').style.display='none';}
-  btn.disabled=false;btn.textContent='👤 প্রোফাইল ছবি আপডেট করুন';
-}
-
-// SETTINGS
-function saveCredentials(){
-  const email=document.getElementById('newEmail').value.trim();const pwd=document.getElementById('newPwd').value;const confirm=document.getElementById('confirmPwd').value;
-  if(!email||!pwd){showAlert('err','ইমেইল ও পাসওয়ার্ড দিন!');return;}
-  if(pwd!==confirm){showAlert('err','পাসওয়ার্ড মিলছে না!');return;}
-  if(pwd.length<6){showAlert('err','পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে!');return;}
-  localStorage.setItem('adminEmail',email);localStorage.setItem('adminPwd',pwd);
-  showAlert('ok','✅ আপডেট হয়েছে! পরের লগইনে নতুন তথ্য ব্যবহার করুন।');
-}
-async function resetAll(){
-  if(!confirm('সত্যিই মুছবেন?'))return;
-  const token=getToken();if(!token){showAlert('err','Token দিন!');return;}
-  const files=['prompts-extra.json','music-extra.json','islamic-extra.json','inspiration-extra.json','blog-posts.json'];
-  let ok=true;
-  for(const f of files){const r=await uploadFile(token,f,btoa('[]'),'Reset: '+f);if(!r)ok=false;}
-  ok?showAlert('ok','✅ রিসেট সম্পন্ন!'):showAlert('err','❌ কিছু ফাইল রিসেট ব্যর্থ!');
-}
-
-// ALERTS
-function showAlert(type,msg){hideAlerts();const el=document.getElementById(type==='ok'?'alertOk':'alertErr');el.textContent=msg;el.style.display='block';el.scrollIntoView({behavior:'smooth'});if(type==='ok')setTimeout(()=>el.style.display='none',7000);}
-function hideAlerts(){document.getElementById('alertOk').style.display='none';document.getElementById('alertErr').style.display='none';}
+initAuthScreen();
 </script>
 </body>
 </html>
