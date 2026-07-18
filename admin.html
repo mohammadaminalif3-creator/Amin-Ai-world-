@@ -331,6 +331,15 @@
     <!-- SETTINGS -->
     <div class="tab-panel" id="tab-settings">
       <div class="card">
+        <h3>🧑 প্রোফাইল ছবি</h3>
+        <p style="color:var(--ink-soft); font-size:0.85rem;">এই ছবিটি সাইটের উপরে (নেভিগেশন) ও হোমপেজের শুরুতে দেখানো হবে।</p>
+        <label>ছবি আপলোড করুন</label>
+        <input type="file" id="profileImgFile" accept="image/*" onchange="handleImageUpload(this,'profileImgPreview')">
+        <img id="profileImgPreview" style="max-width:140px; border-radius:50%; margin-top:10px; display:block;">
+        <button class="btn btn-gold" style="margin-top:14px;" onclick="saveProfile()">✅ প্রোফাইল সেভ করুন</button>
+        <div id="profileMsg"></div>
+      </div>
+      <div class="card" style="margin-top:16px;">
         <h3>📢 Google AdSense ও যোগাযোগ তথ্য</h3>
         <p style="color:var(--ink-soft); font-size:0.85rem;">AdSense-এ আবেদন করে অনুমোদন পাওয়ার পর নিচে আপনার Publisher ID ও Ad Slot ID বসিয়ে সেভ করুন — সাইটে বিজ্ঞাপন স্বয়ংক্রিয়ভাবে চালু হয়ে যাবে, কোনো কোড এডিট করা লাগবে না। এখন খালি রাখলে সাইটে কোনো বিজ্ঞাপন দেখাবে না।</p>
         <label>Publisher ID (ca-pub-দিয়ে শুরু)</label>
@@ -382,7 +391,7 @@ const DRAFT_KEY = 'aaw_admin_draft_v1';
 // শুধু এই ইমেইল দিয়েই প্রথমবার Admin অ্যাকাউন্ট সেটআপ করা যাবে
 const ALLOWED_OWNER_EMAIL = 'mohammadaminalif3@gmail.com';
 
-let DATA = { aiTools:[], songs:[], prompts:[], islamicQuotes:[], inspirationQuotes:[], blogPosts:[], income:[], settings:{contactEmail:'',adsensePubId:'',adsenseSlotTop:'',adsenseSlotMid:''} };
+let DATA = { aiTools:[], songs:[], prompts:[], islamicQuotes:[], inspirationQuotes:[], blogPosts:[], income:[], settings:{contactEmail:'',adsensePubId:'',adsenseSlotTop:'',adsenseSlotMid:''}, profile:{name:'',image:''} };
 
 // ---------- crypto helpers ----------
 async function sha256(text){
@@ -646,6 +655,9 @@ function addInspiration(){
 // ---------- render lists ----------
 function renderAll(){
   DATA.settings = DATA.settings || {contactEmail:'',adsensePubId:'',adsenseSlotTop:'',adsenseSlotMid:''};
+  DATA.profile = DATA.profile || {name:'',image:''};
+  const pImg = document.getElementById('profileImgPreview');
+  if(pImg && DATA.profile.image){ pImg.src = DATA.profile.image; }
   document.getElementById('statTools').textContent = DATA.aiTools.length;
   document.getElementById('statPrompts').textContent = DATA.prompts.length;
   document.getElementById('statSongs').textContent = DATA.songs.length;
@@ -665,6 +677,14 @@ function renderAll(){
   document.getElementById('setAdsSlotTop').value = DATA.settings.adsenseSlotTop || '';
   document.getElementById('setAdsSlotMid').value = DATA.settings.adsenseSlotMid || '';
   document.getElementById('setContactEmail').value = DATA.settings.contactEmail || '';
+}
+function saveProfile(){
+  const preview = document.getElementById('profileImgPreview');
+  const img = preview.dataset.b64 || (DATA.profile && DATA.profile.image) || '';
+  if(!img){ document.getElementById('profileMsg').innerHTML = '<div class="msg err">প্রথমে একটা ছবি আপলোড করুন।</div>'; return; }
+  DATA.profile = { name: 'Amin', image: img };
+  document.getElementById('profileMsg').innerHTML = '<div class="msg ok">✅ প্রোফাইল সেভ হয়েছে (খসড়া) — লাইভ করতে উপরে "প্রকাশ করুন" চাপুন।</div>';
+  saveDraft();
 }
 function saveSiteSettings(){
   DATA.settings = {
