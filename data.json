@@ -199,6 +199,14 @@
       "category": "অন্যান্য",
       "icon": "🎭",
       "desc": "AI ক্যারেক্টার চ্যাট"
+    },
+    {
+      "id": "tmrq5oeu7ua5e",
+      "name": "Google FLOW",
+      "url": "https://labs.google/fx/tools/flow",
+      "category": "ছবি ও ভিডিও তৈরি",
+      "icon": "🎬",
+      "desc": "Google ai tools"
     }
   ],
   "songs": [
