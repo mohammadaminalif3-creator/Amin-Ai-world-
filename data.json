@@ -201,12 +201,20 @@
       "desc": "AI ক্যারেক্টার চ্যাট"
     },
     {
-      "id": "tmrq5sjuoa9dl",
-      "name": "Google Labs",
-      "url": "https://labs.google/",
-      "category": "Video,image, writing, music, audios",
-      "icon": "🌏",
-      "desc": "Google ai tools Best products"
+      "id": "tmrq5oeu7ua5e",
+      "name": "Google FLOW",
+      "url": "https://labs.google/fx/tools/flow",
+      "category": "ছবি ও ভিডিও তৈরি",
+      "icon": "🎬",
+      "desc": "Google ai tools"
+    },
+    {
+      "id": "tmrq5wkemxite",
+      "name": "Symphony creative Ai studio",
+      "url": "https://ads.tiktok.com/creative/creativestudio/create/history",
+      "category": "ছবি ও ভিডিও তৈরি",
+      "icon": "🎬",
+      "desc": "tiktok ai tools, Symphony creative Ai studio"
     }
   ],
   "songs": [
