@@ -50,10 +50,12 @@
   .nav-row{display:flex; align-items:center; justify-content:space-between; padding:14px 20px; gap:16px;}
   .brand{display:flex; align-items:center; gap:10px; font-family:'Baloo Da 2'; font-weight:800; font-size:1.25rem; color:var(--green-deep);}
   .brand .mark{
-    width:38px; height:38px; border-radius:11px;
+    width:38px; height:38px; border-radius:50%; overflow:hidden;
     background:linear-gradient(135deg,var(--gold),var(--green-mid));
     display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.1rem;
+    flex-shrink:0;
   }
+  .brand .mark img{width:100%; height:100%; object-fit:cover; display:block;}
   nav.links{display:flex; gap:4px; flex-wrap:wrap;}
   nav.links a{
     font-size:0.92rem; padding:8px 12px; border-radius:999px; color:var(--ink-soft); font-weight:600;
@@ -164,6 +166,13 @@
   .play-overlay span{width:52px; height:52px; border-radius:50%; background:var(--gold); color:var(--green-deep); display:flex; align-items:center; justify-content:center; font-size:1.3rem;}
   .song-title{padding:12px 14px; font-weight:600; font-size:0.92rem;}
 
+  .hero-photo{
+    width:132px; height:132px; border-radius:50%; margin:0 auto 18px; overflow:hidden;
+    border:4px solid var(--gold); box-shadow:0 0 0 6px rgba(255,255,255,0.08), 0 12px 28px rgba(0,0,0,0.35);
+    background:linear-gradient(135deg,var(--gold),var(--green-mid));
+  }
+  .hero-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+
   /* Ad slots */
   .ad-slot{min-height:0; overflow:hidden;}
   .ad-slot:empty{display:none;}
@@ -213,7 +222,7 @@
 
 <header class="site">
   <div class="nav-row wrap">
-    <div class="brand"><span class="mark">A</span> Amin AI World</div>
+    <div class="brand"><span class="mark" id="navMark">A</span> Amin AI World</div>
     <nav class="links" id="navLinks">
       <a href="#tools">🛠️ AI টুলস</a>
       <a href="#prompts">📸 প্রম্পট</a>
@@ -230,6 +239,7 @@
 
 <section class="hero">
   <div class="wrap">
+    <div class="hero-photo" id="heroPhoto"></div>
     <span class="eyebrow">🌟 Bangladesh's #1 AI &amp; Smart Platform</span>
     <h1>WELCOME TO ❤️ Amin AI World</h1>
     <p>আপনার প্রয়োজনীয় সকল AI টুলস, রেডি প্রম্পট, ইসলামিক বাণী, প্রেরণা ও বিনোদন — সব একসাথে, একদম ফ্রি।</p>
@@ -408,7 +418,7 @@ async function loadData(){
     DATA = await res.json();
   }catch(e){
     console.error('data.json লোড করা যায়নি', e);
-    DATA = {aiTools:[],songs:[],prompts:[],islamicQuotes:[],inspirationQuotes:[],blogPosts:[],income:[],settings:{}};
+    DATA = {aiTools:[],songs:[],prompts:[],islamicQuotes:[],inspirationQuotes:[],blogPosts:[],income:[],settings:{},profile:{}};
   }
   render();
 }
@@ -420,6 +430,7 @@ function render(){
   document.getElementById('cntQuotes').textContent = DATA.islamicQuotes.length;
   document.getElementById('cntSongs').textContent = DATA.songs.length;
 
+  renderProfile();
   renderTools('সব');
   renderPrompts('all');
   renderQuotes('islamicGrid', DATA.islamicQuotes);
@@ -428,6 +439,20 @@ function render(){
   renderIncome();
   renderBlog();
   initAds();
+}
+
+// ---- PROFILE PHOTO ----
+function renderProfile(){
+  const img = (DATA.profile && DATA.profile.image) ? DATA.profile.image : '';
+  const navMark = document.getElementById('navMark');
+  const heroPhoto = document.getElementById('heroPhoto');
+  if(img){
+    navMark.innerHTML = `<img src="${img}" alt="Amin AI World">`;
+    heroPhoto.innerHTML = `<img src="${img}" alt="Amin AI World">`;
+  } else {
+    navMark.textContent = 'A';
+    heroPhoto.style.display = 'none';
+  }
 }
 
 // ---- AI TOOLS ----
