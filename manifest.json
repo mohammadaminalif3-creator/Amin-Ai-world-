@@ -1,0 +1,33 @@
+{
+  "name": "Amin AI World",
+  "short_name": "Amin AI World",
+  "description": "AI টুলস, প্রম্পট, ইসলামিক বাণী, প্রেরণা, ব্লগ, গান ও ইনকাম — সব একসাথে, ফ্রি।",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FBF7ED",
+  "theme_color": "#0F3D2E",
+  "lang": "bn",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
