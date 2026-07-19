@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amin AI World — প্রম্পট, AI টুলস, ইসলামিক বাণী, প্রেরণা ও বিনোদন</title>
 <meta name="description" content="আপনার প্রয়োজনীয় সকল অনলাইন স্মার্ট প্রজেক্ট, AI টুলস, তথ্য ও বিনোদন — Amin AI World">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0F3D2E">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Amin AI World">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -203,6 +210,13 @@
 
   /* Modal */
   .modal-bg{position:fixed; inset:0; background:rgba(10,20,15,.75); display:none; align-items:center; justify-content:center; z-index:200; padding:20px;}
+  .hidden{display:none !important;}
+  .install-btn{
+    position:fixed; left:18px; bottom:18px; z-index:150;
+    background:linear-gradient(135deg,var(--gold),#d4941f); color:#fff; border:none;
+    padding:13px 20px; border-radius:999px; font-family:'Hind Siliguri'; font-weight:700; font-size:0.92rem;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25); cursor:pointer;
+  }
   .modal-bg.open{display:flex;}
   .modal-box{background:#000; border-radius:14px; overflow:hidden; width:100%; max-width:800px; aspect-ratio:16/9; position:relative;}
   .modal-close{position:absolute; top:-40px; right:0; background:none; border:none; color:#fff; font-size:1.6rem; cursor:pointer;}
@@ -231,6 +245,7 @@
       <a href="#blog">📝 ব্লগ</a>
       <a href="#entertainment">🎵 বিনোদন</a>
       <a href="#income">💰 ইনকাম</a>
+      <a href="study.html">📚 পড়ালেখা</a>
       <a href="#social">📱 সোশ্যাল</a>
     </nav>
     <button class="menu-toggle" id="menuToggle">☰</button>
@@ -370,6 +385,20 @@
   </div>
 </section>
 
+<!-- STUDY -->
+<section id="study-promo" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">// ০৯</div>
+      <h2>📚 পড়ালেখা</h2>
+      <p>বাচ্চাদের প্রাথমিক শিক্ষা — বাংলা, ইংরেজি ও আরবি একসাথে, রঙিন ও সহজভাবে সাজানো।</p>
+    </div>
+    <div style="text-align:center;">
+      <a class="btn btn-gold" href="study.html" style="font-size:1rem; padding:14px 28px;">📖 পড়ালেখা শুরু করুন →</a>
+    </div>
+  </div>
+</section>
+
 <!-- SUPPORT -->
 <section id="support">
   <div class="wrap" style="text-align:center;">
@@ -400,6 +429,20 @@
   <div class="modal-box">
     <button class="modal-close" id="modalClose">✕</button>
     <iframe id="videoFrame" width="100%" height="100%" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+</div>
+
+<button id="installBtn" class="install-btn hidden">📲 অ্যাপ ইনস্টল করুন</button>
+
+<div class="modal-bg" id="iosInstallModal">
+  <div class="modal-box" style="height:auto; max-width:380px; padding:26px;">
+    <button class="modal-close" id="iosModalClose">✕</button>
+    <h3 style="font-family:'Baloo Da 2'; color:var(--green-deep); margin-top:0;">📲 হোম স্ক্রিনে যোগ করুন</h3>
+    <ol style="padding-left:20px; line-height:2; color:var(--ink-soft);">
+      <li>নিচে Safari-এর <b>Share</b> (□↑) বাটনে চাপুন</li>
+      <li><b>"Add to Home Screen"</b> খুঁজে বের করে ট্যাপ করুন</li>
+      <li><b>"Add"</b> চাপুন — ব্যস, আইকন হোম স্ক্রিনে চলে আসবে</li>
+    </ol>
   </div>
 </div>
 
@@ -475,7 +518,7 @@ function renderTools(activeCat){
 }
 
 // ---- PROMPTS ----
-const promptCatLabels = {all:'সব', romantic:'💑 রোমান্টিক', man:'🧔 পুরুষ', woman:'👩 নারী', others:'🎨 অন্যান্য'};
+const promptCatLabels = {all:'সব', romantic:'💑 রোমান্টিক', man:'🧔 পুরুষ', woman:'👩 নারী', others:'🎨 অন্যান্য', trending:'🔥 ট্রেন্ডিং', worldwide:'🌍 ওয়ার্ল্ডওয়াইড'};
 function renderPrompts(activeCat){
   const filterBar = document.getElementById('promptFilters');
   filterBar.innerHTML = Object.keys(promptCatLabels).map(c=>`<button class="chip ${c===activeCat?'active':''}" data-cat="${c}">${promptCatLabels[c]}</button>`).join('');
@@ -589,6 +632,47 @@ function initAds(){
     holder.dataset.filled = '1';
     holder.innerHTML = `<ins class="adsbygoogle" style="display:block" data-ad-client="${escAttr(s.adsensePubId)}" data-ad-slot="${escAttr(slotId)}" data-ad-format="auto" data-full-width-responsive="true"></ins>`;
     try{ (window.adsbygoogle = window.adsbygoogle || []).push({}); }catch(e){}
+  });
+}
+
+// ---- PWA: Install App ----
+let deferredInstallPrompt = null;
+const installBtn = document.getElementById('installBtn');
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+if(!isStandalone){
+  if(isIOS){
+    installBtn.classList.remove('hidden');
+    installBtn.addEventListener('click', ()=>{
+      document.getElementById('iosInstallModal').classList.add('open');
+    });
+  } else {
+    window.addEventListener('beforeinstallprompt', (e)=>{
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      installBtn.classList.remove('hidden');
+    });
+    installBtn.addEventListener('click', async ()=>{
+      if(!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      installBtn.classList.add('hidden');
+    });
+    window.addEventListener('appinstalled', ()=>{ installBtn.classList.add('hidden'); });
+  }
+}
+document.getElementById('iosModalClose').addEventListener('click', ()=>{
+  document.getElementById('iosInstallModal').classList.remove('open');
+});
+document.getElementById('iosInstallModal').addEventListener('click', (e)=>{
+  if(e.target.id==='iosInstallModal') document.getElementById('iosInstallModal').classList.remove('open');
+});
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
   });
 }
 
