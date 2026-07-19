@@ -178,6 +178,7 @@
         <label>ছবি বেছে নিন (ঐচ্ছিক)</label>
         <input type="file" id="promptImgFile" accept="image/*" onchange="handleImageUpload(this,'promptImgPreview')">
         <img id="promptImgPreview" style="max-width:160px; margin-top:8px; border-radius:8px;">
+        <div id="promptImgPreviewMsg" style="font-size:0.8rem; color:var(--green-mid); margin-top:4px;"></div>
         <div class="two-col">
           <div><label>শিরোনাম (বাংলা) *</label><input id="promptTitle" placeholder="রোমান্টিক সন্ধ্যা"></div>
           <div><label>Title (English)</label><input id="promptTitleEn" placeholder="Romantic Evening"></div>
@@ -188,6 +189,8 @@
               <option value="man">🧔 পুরুষ (Man)</option>
               <option value="woman">👩 নারী (Woman)</option>
               <option value="others">🎨 অন্যান্য</option>
+              <option value="trending">🔥 ট্রেন্ডিং</option>
+              <option value="worldwide">🌍 ওয়ার্ল্ডওয়াইড</option>
             </select>
           </div>
           <div>
@@ -226,6 +229,7 @@
         <select id="songCat">
           <option>সাধারণ</option><option>লোকগীতি</option><option>রোমান্টিক</option>
           <option>আবেগময়</option><option>সামাজিক</option><option>অনুপ্রেরণামূলক</option>
+          <option>দেশাত্মবোধক</option><option>ইসলামিক</option>
         </select>
         <button class="btn btn-gold" style="margin-top:14px;" onclick="addSong()">✅ গান যোগ করুন</button>
       </div>
@@ -256,6 +260,7 @@
         <label>কভার ছবি (ঐচ্ছিক)</label>
         <input type="file" id="blogImgFile" accept="image/*" onchange="handleImageUpload(this,'blogImgPreview')">
         <img id="blogImgPreview" style="max-width:160px; margin-top:8px; border-radius:8px;">
+        <div id="blogImgPreviewMsg" style="font-size:0.8rem; color:var(--green-mid); margin-top:4px;"></div>
         <label>পোস্টের শিরোনাম *</label>
         <input id="blogTitle" placeholder="শিরোনাম লিখুন">
         <label>ক্যাটাগরি</label>
@@ -336,6 +341,7 @@
         <label>ছবি আপলোড করুন</label>
         <input type="file" id="profileImgFile" accept="image/*" onchange="handleImageUpload(this,'profileImgPreview')">
         <img id="profileImgPreview" style="max-width:140px; border-radius:50%; margin-top:10px; display:block;">
+        <div id="profileImgPreviewMsg" style="font-size:0.8rem; color:var(--green-mid); margin-top:4px;"></div>
         <button class="btn btn-gold" style="margin-top:14px;" onclick="saveProfile()">✅ প্রোফাইল সেভ করুন</button>
         <div id="profileMsg"></div>
       </div>
@@ -510,18 +516,56 @@ function resetDraft(){
 function uid(prefix){ return prefix + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
 
 // ---------- image upload ----------
-function handleImageUpload(input, previewId){
+// ছবি অটো-রিসাইজ ও কম্প্রেস করে — বড় ছবি দিলেও সাইটের জন্য উপযুক্ত ছোট সাইজে বদলে যাবে
+const MAX_IMG_DIMENSION = 1280;   // পিক্সেল, এর বেশি বড় দিক থাকলে ছোট করা হবে
+const TARGET_IMG_KB = 300;        // এই সাইজের নিচে রাখার চেষ্টা করা হবে
+
+function compressImageFile(file){
+  return new Promise((resolve, reject)=>{
+    const img = new Image();
+    const reader = new FileReader();
+    reader.onload = e => { img.src = e.target.result; };
+    reader.onerror = reject;
+    img.onload = () => {
+      let { width, height } = img;
+      if(width > MAX_IMG_DIMENSION || height > MAX_IMG_DIMENSION){
+        if(width >= height){ height = Math.round(height * (MAX_IMG_DIMENSION/width)); width = MAX_IMG_DIMENSION; }
+        else { width = Math.round(width * (MAX_IMG_DIMENSION/height)); height = MAX_IMG_DIMENSION; }
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = width; canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0,0,width,height); // PNG স্বচ্ছতা থাকলে সাদা ব্যাকগ্রাউন্ড
+      ctx.drawImage(img, 0, 0, width, height);
+
+      let quality = 0.85;
+      let dataUrl = canvas.toDataURL('image/jpeg', quality);
+      // এখনো বড় হলে ধাপে ধাপে কোয়ালিটি কমিয়ে টার্গেট সাইজে আনার চেষ্টা
+      while(dataUrl.length * 0.75 / 1024 > TARGET_IMG_KB && quality > 0.35){
+        quality -= 0.1;
+        dataUrl = canvas.toDataURL('image/jpeg', quality);
+      }
+      resolve(dataUrl);
+    };
+    img.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function handleImageUpload(input, previewId){
   const file = input.files[0];
   if(!file) return;
-  if(file.size > 800*1024){
-    alert('ছবির সাইজ ৮০০KB-এর কম রাখুন, যাতে সাইট দ্রুত লোড হয়।');
+  const originalKB = Math.round(file.size/1024);
+  try{
+    const compressed = await compressImageFile(file);
+    const finalKB = Math.round(compressed.length * 0.75 / 1024);
+    document.getElementById(previewId).src = compressed;
+    document.getElementById(previewId).dataset.b64 = compressed;
+    const msgEl = document.getElementById(previewId + 'Msg');
+    if(msgEl) msgEl.textContent = `✅ ছবি অটো-কম্প্রেস হয়েছে: ${originalKB}KB → প্রায় ${finalKB}KB`;
+  }catch(e){
+    alert('ছবি প্রসেস করা যায়নি, অন্য ছবি দিয়ে চেষ্টা করুন।');
   }
-  const reader = new FileReader();
-  reader.onload = e => {
-    document.getElementById(previewId).src = e.target.result;
-    document.getElementById(previewId).dataset.b64 = e.target.result;
-  };
-  reader.readAsDataURL(file);
 }
 
 // ---------- tabs ----------
