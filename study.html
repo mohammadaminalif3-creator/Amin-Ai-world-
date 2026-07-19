@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0F3D2E">
+<link rel="icon" href="icon-192.png">
+<title>পড়ালেখা — বাচ্চাদের প্রাথমিক শিক্ষা | Amin AI World</title>
+<meta name="description" content="বাংলা, ইংরেজি ও আরবি — বাচ্চাদের প্রাথমিক শিক্ষার বর্ণমালা, সংখ্যা ও মৌলিক বিষয় একসাথে।">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#0F3D2E; --green-mid:#175C43; --gold:#E8A93B; --gold-soft:#F3D9A0;
+    --cream:#FBF7ED; --ink:#1B1B18; --ink-soft:#4A4A44; --line:#E7DFC9; --radius:16px;
+    --red:#D9534F; --blue:#3B6FB0; --violet:#8B5FBF; --pink:#D9709A;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--cream); color:var(--ink); font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif; line-height:1.7;}
+  h1,h2,h3{font-family:'Baloo Da 2','Hind Siliguri',sans-serif;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px;}
+
+  header.top{background:var(--green-deep); padding:16px 0;}
+  header.top .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Baloo Da 2'; font-weight:800; font-size:1.15rem; color:#fff;}
+  .back-link{color:var(--gold-soft); font-weight:600; font-size:0.9rem;}
+
+  .hero{background:linear-gradient(160deg,var(--green-deep),var(--green-mid)); color:#fff; padding:40px 0 34px; text-align:center;}
+  .hero .emoji{font-size:2.6rem;}
+  .hero h1{font-size:1.9rem; margin:8px 0 6px;}
+  .hero p{color:#D9E8DF; font-size:0.98rem; max-width:520px; margin:0 auto;}
+
+  .lang-tabs{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:-24px auto 30px; position:relative; z-index:5; padding:0 20px;}
+  .lang-tab{
+    background:#fff; border:2px solid var(--line); border-radius:999px; padding:12px 22px;
+    font-weight:700; font-size:1rem; cursor:pointer; box-shadow:0 6px 16px rgba(0,0,0,0.08);
+    display:flex; align-items:center; gap:8px;
+  }
+  .lang-tab.active{background:var(--gold); border-color:var(--gold); color:#1B1B18;}
+
+  .panel{display:none;}
+  .panel.active{display:block;}
+
+  .sec-title{display:flex; align-items:center; gap:10px; margin:34px 0 14px;}
+  .sec-title .num{background:var(--green-deep); color:#fff; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem; font-weight:700; flex-shrink:0;}
+  .sec-title h2{font-size:1.2rem; color:var(--green-deep); margin:0;}
+
+  .chip-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(84px,1fr)); gap:10px;}
+  .chip{
+    background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 6px; text-align:center;
+  }
+  .chip .big{font-size:1.7rem; font-weight:700; color:var(--green-deep); font-family:'Baloo Da 2';}
+  .chip .sm{font-size:0.72rem; color:var(--ink-soft); margin-top:3px;}
+
+  .word-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:12px;}
+  .word-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:16px; text-align:center;}
+  .word-card .ico{font-size:1.8rem;}
+  .word-card .w{font-weight:700; margin-top:6px; color:var(--ink);}
+  .word-card .m{font-size:0.78rem; color:var(--ink-soft); margin-top:2px;}
+
+  .table-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:18px; overflow-x:auto;}
+  table{border-collapse:collapse; width:100%; font-size:0.95rem;}
+  table td, table th{padding:8px 10px; text-align:center; border-bottom:1px solid var(--line);}
+  table th{color:var(--green-deep); font-family:'Baloo Da 2';}
+
+  .arabic{font-family:'Noto Naskh Arabic',serif; direction:rtl;}
+  .arabic .chip .big{font-family:'Noto Naskh Arabic',serif; font-size:2rem;}
+
+  .note-card{background:var(--gold-soft); border-radius:var(--radius); padding:16px 18px; font-size:0.9rem; color:var(--ink); margin-top:30px;}
+
+  footer{text-align:center; padding:30px 20px 50px; color:var(--ink-soft); font-size:0.85rem;}
+
+  @media(max-width:520px){
+    .hero h1{font-size:1.5rem;}
+    .lang-tab{padding:10px 16px; font-size:0.9rem;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><span>📚</span> পড়ালেখা</div>
+    <a class="back-link" href="index.html">← হোমে ফিরুন</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="emoji">🧒📖👧</div>
+    <h1>বাচ্চাদের প্রাথমিক শিক্ষা</h1>
+    <p>বাংলা, ইংরেজি ও আরবি — তিনটি ভাষার মৌলিক বর্ণমালা, সংখ্যা ও শব্দ একসাথে, সহজ ও রঙিনভাবে সাজানো।</p>
+  </div>
+</div>
+
+<div class="lang-tabs">
+  <button class="lang-tab active" data-lang="bangla">🇧🇩 বাংলা</button>
+  <button class="lang-tab" data-lang="english">🔤 English</button>
+  <button class="lang-tab" data-lang="arabic">🕌 العربية</button>
+</div>
+
+<div class="wrap">
+
+  <!-- ================= BANGLA ================= -->
+  <section class="panel active" id="panel-bangla">
+
+    <div class="sec-title"><div class="num">১</div><h2>স্বরবর্ণ</h2></div>
+    <div class="chip-grid">
+      <div class="chip"><div class="big">অ</div></div><div class="chip"><div class="big">আ</div></div>
+      <div class="chip"><div class="big">ই</div></div><div class="chip"><div class="big">ঈ</div></div>
+      <div class="chip"><div class="big">উ</div></div><div class="chip"><div class="big">ঊ</div></div>
+      <div class="chip"><div class="big">ঋ</div></div><div class="chip"><div class="big">এ</div></div>
+      <div class="chip"><div class="big">ঐ</div></div><div class="chip"><div class="big">ও</div></div>
+      <div class="chip"><div class="big">ঔ</div></div>
+    </div>
+
+    <div class="sec-title"><div class="num">২</div><h2>ব্যঞ্জনবর্ণ</h2></div>
+    <div class="chip-grid">
+      <div class="chip"><div class="big">ক</div></div><div class="chip"><div class="big">খ</div></div>
+      <div class="chip"><div class="big">গ</div></div><div class="chip"><div class="big">ঘ</div></div>
+      <div class="chip"><div class="big">ঙ</div></div><div class="chip"><div class="big">চ</div></div>
+      <div class="chip"><div class="big">ছ</div></div><div class="chip"><div class="big">জ</div></div>
+      <div class="chip"><div class="big">ঝ</div></div><div class="chip"><div class="big">ঞ</div></div>
+      <div class="chip"><div class="big">ট</div></div><div class="chip"><div class="big">ঠ</div></div>
+      <div class="chip"><div class="big">ড</div></div><div class="chip"><div class="big">ঢ</div></div>
+      <div class="chip"><div class="big">ণ</div></div><div class="chip"><div class="big">ত</div></div>
+      <div class="chip"><div class="big">থ</div></div><div class="chip"><div class="big">দ</div></div>
+      <div class="chip"><div class="big">ধ</div></div><div class="chip"><div class="big">ন</div></div>
+      <div class="chip"><div class="big">প</div></div><div class="chip"><div class="big">ফ</div></div>
+      <div class="chip"><div class="big">ব</div></div><div class="chip"><div class="big">ভ</div></div>
+      <div class="chip"><div class="big">ম</div></div><div class="chip"><div class="big">য</div></div>
+      <div class="chip"><div class="big">র</div></div><div class="chip"><div class="big">ল</div></div>
+      <div class="chip"><div class="big">শ</div></div><div class="chip"><div class="big">ষ</div></div>
+      <div class="chip"><div class="big">স</div></div><div class="chip"><div class="big">হ</div></div>
+      <div class="chip"><div class="big">ড়</div></div><div class="chip"><div class="big">ঢ়</div></div>
+      <div class="chip"><div class="big">য়</div></div><div class="chip"><div class="big">ৎ</div></div>
+    </div>
+
+    <div class="sec-title"><div class="num">৩</div><h2>সংখ্যা ০–১০</h2></div>
+    <div class="chip-grid">
+      <div class="chip"><div class="big">০</div><div class="sm">শূন্য</div></div>
+      <div class="chip"><div class="big">১</div><div class="sm">এক</div></div>
+      <div class="chip"><div class="big">২</div><div class="sm">দুই</div></div>
+      <div class="chip"><div class="big">৩</div><div class="sm">তিন</div></div>
+      <div class="chip"><div class="big">৪</div><div class="sm">চার</div></div>
+      <div class="chip"><div class="big">৫</div><div class="sm">পাঁচ</div></div>
+      <div class="chip"><div class="big">৬</div><div class="sm">ছয়</div></div>
+      <div class="chip"><div class="big">৭</div><div class="sm">সাত</div></div>
+      <div class="chip"><div class="big">৮</div><div class="sm">আট</div></div>
+      <div class="chip"><div class="big">৯</div><div class="sm">নয়</div></div>
+      <div class="chip"><div class="big">১০</div><div class="sm">দশ</div></div>
+    </div>
+
+    <div class="sec-title"><div class="num">৪</div><h2>নামতা (২ ও ৫ এর ঘর)</h2></div>
+    <div class="table-card">
+      <table>
+        <tr><th>২ এর ঘর</th><th>ফলাফল</th><th>৫ এর ঘর</th><th>ফলাফল</th></tr>
+        <tr><td>২×১</td><td>২</td><td>৫×১</td><td>৫</td></tr>
+        <tr><td>২×২</td><td>৪</td><td>৫×২</td><td>১০</td></tr>
+        <tr><td>২×৩</td><td>৬</td><td>৫×৩</td><td>১৫</td></tr>
+        <tr><td>২×৪</td><td>৮</td><td>৫×৪</td><td>২০</td></tr>
+        <tr><td>২×৫</td><td>১০</td><td>৫×৫</td><td>২৫</td></tr>
+      </table>
+    </div>
+
+    <div class="sec-title"><div class="num">৫</div><h2>রঙের নাম</h2></div>
+    <div class="word-grid">
+      <div class="word-card"><div class="ico">🔴</div><div class="w">লাল</div></div>
+      <div class="word-card"><div class="ico">🟢</div><div class="w">সবুজ</div></div>
+      <div class="word-card"><div class="ico">🟡</div><div class="w">হলুদ</div></div>
+      <div class="word-card"><div class="ico">🔵</div><div class="w">নীল</div></div>
+      <div class="word-card"><div class="ico">⚪</div><div class="w">সাদা</div></div>
+      <div class="word-card"><div class="ico">⚫</div><div class="w">কালো</div></div>
+      <div class="word-card"><div class="ico">🟤</div><div class="w">বাদামি</div></div>
+      <div class="word-card"><div class="ico">🟣</div><div class="w">বেগুনি</div></div>
+    </div>
+
+    <div class="sec-title"><div class="num">৬</div><h2>ফলের নাম</h2></div>
+    <div class="word-grid">
+      <div class="word-card"><div class="ico">🥭</div><div class="w">আম</div></div>
+      <div class="word-card"><div class="ico">🍌</div><div class="w">কলা</div></div>
+      <div class="word-card"><div class="ico">🍇</div><div class="w">আঙুর</div></div>
+      <div class="word-card"><div class="ico">🍎</div><div class="w">আপেল</div></div>
+      <div class="word-card"><div class="ico">🍊</div><div class="w">কমলা</div></div>
+      <div class="word-card"><div class="ico">🍍</div><div class="w">আনারস</div></div>
+      <div class="word-card"><div class="ico">🍉</div><div class="w">তরমুজ</div></div>
+      <div class="word-card"><div class="ico">🥥</div><div class="w">নারিকেল</div></div>
+    </div>
+
+    <div class="sec-title"><div class="num">৭</div><h2>প্রাণীর নাম</h2></div>
+    <div class="word-grid">
+      <div class="word-card"><div class="ico">🐄</div><div class="w">গরু</div></div>
+      <div class="word-card"><div class="ico">🐐</div><div class="w">ছাগল</div></div>
+      <div class="word-card"><div class="ico">🐓</div><div class="w">মুরগি</div></div>
+      <div class="word-card"><div class="ico">🐘</div><div class="w">হাতি</div></div>
+      <div class="word-card"><div class="ico">🐅</div><div class="w">বাঘ</div></div>
+      <div class="word-card"><div class="ico">🐒</div><div class="w">বানর</div></div>
+      <div class="word-card"><div class="ico">🐕</div><div class="w">কুকুর</div></div>
+      <div class="word-card"><div class="ico">🐈</div><div class="w">বিড়াল</div></div>
+    </div>
+
+  </section>
+
+  <!-- ================= ENGLISH ================= -->
+  <section class="panel" id="panel-english">
+
+    <div class="sec-title"><div class="num">1</div><h2>Alphabet A–Z</h2></div>
+    <div class="word-grid">
+      <div class="word-card"><div class="ico">🍎</div><div class="w">A — Apple</div></div>
+      <div class="word-card"><div class="ico">⚽</div><div class="w">B — Ball</div></div>
+      <div class="word-card"><div class="ico">🐱</div><div class="w">C — Cat</div></div>
+      <div class="word-card"><div class="ico">🐕</div><div class="w">D — Dog</div></div>
+      <div class="word-card"><div class="ico">🥚</div><div class="w">E — Egg</div></div>
+      <div class="word-card"><div class="ico">🐟</div><div class="w">F — Fish</div></div>
+      <div class="word-card"><div class="ico">🐐</div><div class="w">G — Goat</div></div>
+      <div class="word-card"><div class="ico">🏠</div><div class="w">H — House</div></div>
+      <div class="word-card"><div class="ico">🍦</div><div class="w">I — Ice cream</div></div>
+      <div class="word-card"><div class="ico">🪁</div><div class="w">J — Kite</div></div>
+      <div class="word-card"><div class="ico">🔑</div><div class="w">K — Key</div></div>
+      <div class="word-card"><div class="ico">🦁</div><div class="w">L — Lion</div></div>
+      <div class="word-card"><div class="ico">🥭</div><div class="w">M — Mango</div></div>
+      <div class="word-card"><div class="ico">👃</div><div class="w">N — Nose</div></div>
+      <div class="word-card"><div class="ico">🍊</div><div class="w">O — Orange</div></div>
+      <div class="word-card"><div class="ico">🖊️</div><div class="w">P — Pen</div></div>
+      <div class="word-card"><div class="ico">👑</div><div class="w">Q — Queen</div></div>
+      <div class="word-card"><div class="ico">🌈</div><div class="w">R — Rainbow</div></div>
+      <div class="word-card"><div class="ico">☀️</div><div class="w">S — Sun</div></div>
+      <div class="word-card"><div class="ico">🌳</div><div class="w">T — Tree</div></div>
+      <div class="word-card"><div class="ico">☂️</div><div class="w">U — Umbrella</div></div>
+      <div class="word-card"><div class="ico">🚐</div><div class="w">V — Van</div></div>
+      <div class="word-card"><div class="ico">⌚</div><div class="w">W — Watch</div></div>
+      <div class="word-card"><div class="ico">🎋</div><div class="w">X — Xylophone</div></div>
+      <div class="word-card"><div class="ico">🌱</div><div class="w">Y — Yam</div></div>
+      <div class="word-card"><div class="ico">🦓</div><div class="w">Z — Zebra</div></div>
+    </div>
+
+    <div class="sec-title"><div class="num">2</div><h2>Numbers 1–20</h2></div>
+    <div class="chip-grid">
+      <div class="chip"><div class="big">1</div><div class="sm">One</div></div>
+      <div class="chip"><div class="big">2</div><div class="sm">Two</div></div>
+      <div class="chip"><div class="big">3</div><div class="sm">Three</div></div>
+      <div class="chip"><div class="big">4</div><div class="sm">Four</div></div>
+      <div class="chip"><div class="big">5</div><div class="sm">Five</div></div>
+      <div class="chip"><div class="big">6</div><div class="sm">Six</div></div>
+      <div class="chip"><div class="big">7</div><div class="sm">Seven</div></div>
+      <div class="chip"><div class="big">8</div><div class="sm">Eight</div></div>
+      <div class="chip"><div class="big">9</div><div class="sm">Nine</div></div>
+      <div class="chip"><div class="big">10</div><div class="sm">Ten</div></div>
+      <div class="chip"><div class="big">11</div><div class="sm">Eleven</div></div>
+      <div class="chip"><div class="big">12</div><div class="sm">Twelve</div></div>
+      <div class="chip"><div class="big">13</div><div class="sm">Thirteen</div></div>
+      <div class="chip"><div class="big">14</div><div class="sm">Fourteen</div></div>
+      <div class="chip"><div class="big">15</div><div class="sm">Fifteen</div></div>
+      <div class="chip"><div class="big">16</div><div class="sm">Sixteen</div></div>
+      <div class="chip"><div class="big">17</div><div class="sm">Seventeen</div></div>
+      <div class="chip"><div class="big">18</div><div class="sm">Eighteen</div></div>
+      <div class="chip"><div class="big">19</div><div class="sm">Nineteen</div></div>
+      <div class="chip"><div class="big">20</div><div class="sm">Twenty</div></div>
+    </div>
+
+    <div class="sec-title"><div class="num">3</div><h2>Days of the Week</h2></div>
+    <div class="word-grid">
+      <div class="word-card"><div class="w">Saturday</div><div class="m">শনিবার</div></div>
+      <div class="word-card"><div class="w">Sunday</div><div class="m">রবিবার</div></div>
+      <div class="word-card"><div class="w">Monday</div><div class="m">সোমবার</div></div>
+      <div class="word-card"><div class="w">Tuesday</div><div class="m">মঙ্গলবার</div></div>
+      <div class="word-card"><div class="w">Wednesday</div><div class="m">বুধবার</div></div>
+      <div class="word-card"><div class="w">Thursday</div><div class="m">বৃহস্পতিবার</div></div>
+      <div class="word-card"><div class="w">Friday</div><div class="m">শুক্রবার</div></div>
+    </div>
+
+    <div class="sec-title"><div class="num">4</div><h2>Colors</h2></div>
+    <div class="word-grid">
+      <div class="word-card"><div class="ico">🔴</div><div class="w">Red</div></div>
+      <div class="word-card"><div class="ico">🟢</div><div class="w">Green</div></div>
+      <div class="word-card"><div class="ico">🟡</div><div class="w">Yellow</div></div>
+      <div class="word-card"><div class="ico">🔵</div><div class="w">Blue</div></div>
+      <div class="word-card"><div class="ico">⚪</div><div class="w">White</div></div>
+      <div class="word-card"><div class="ico">⚫</div><div class="w">Black</div></div>
+      <div class="word-card"><div class="ico">🟤</div><div class="w">Brown</div></div>
+      <div class="word-card"><div class="ico">🟣</div><div class="w">Purple</div></div>
+    </div>
+
+    <div class="sec-title"><div class="num">5</div><h2>Common Greetings</h2></div>
+    <div class="word-grid">
+      <div class="word-card"><div class="w">Good Morning</div><div class="m">শুভ সকাল</div></div>
+      <div class="word-card"><div class="w">Good Night</div><div class="m">শুভ রাত্রি</div></div>
+      <div class="word-card"><div class="w">Thank You</div><div class="m">ধন্যবাদ</div></div>
+      <div class="word-card"><div class="w">Please</div><div class="m">দয়া করে</div></div>
+      <div class="word-card"><div class="w">Sorry</div><div class="m">দুঃখিত</div></div>
+      <div class="word-card"><div class="w">How are you?</div><div class="m">তুমি কেমন আছো?</div></div>
+    </div>
+
+  </section>
+
+  <!-- ================= ARABIC ================= -->
+  <section class="panel" id="panel-arabic">
+
+    <div class="sec-title"><div class="num">١</div><h2>আরবি বর্ণমালা (হরফ)</h2></div>
+    <div class="chip-grid arabic">
+      <div class="chip"><div class="big">ا</div><div class="sm">আলিফ</div></div>
+      <div class="chip"><div class="big">ب</div><div class="sm">বা</div></div>
+      <div class="chip"><div class="big">ت</div><div class="sm">তা</div></div>
+      <div class="chip"><div class="big">ث</div><div class="sm">সা</div></div>
+      <div class="chip"><div class="big">ج</div><div class="sm">জিম</div></div>
+      <div class="chip"><div class="big">ح</div><div class="sm">হা</div></div>
+      <div class="chip"><div class="big">خ</div><div class="sm">খা</div></div>
+      <div class="chip"><div class="big">د</div><div class="sm">দাল</div></div>
+      <div class="chip"><div class="big">ذ</div><div class="sm">যাল</div></div>
+      <div class="chip"><div class="big">ر</div><div class="sm">রা</div></div>
+      <div class="chip"><div class="big">ز</div><div class="sm">যা</div></div>
+      <div class="chip"><div class="big">س</div><div class="sm">সিন</div></div>
+      <div class="chip"><div class="big">ش</div><div class="sm">শিন</div></div>
+      <div class="chip"><div class="big">ص</div><div class="sm">সোয়াদ</div></div>
+      <div class="chip"><div class="big">ض</div><div class="sm">দোয়াদ</div></div>
+      <div class="chip"><div class="big">ط</div><div class="sm">তোয়া</div></div>
+      <div class="chip"><div class="big">ظ</div><div class="sm">জোয়া</div></div>
+      <div class="chip"><div class="big">ع</div><div class="sm">আইন</div></div>
+      <div class="chip"><div class="big">غ</div><div class="sm">গাইন</div></div>
+      <div class="chip"><div class="big">ف</div><div class="sm">ফা</div></div>
+      <div class="chip"><div class="big">ق</div><div class="sm">ক্বাফ</div></div>
+      <div class="chip"><div class="big">ك</div><div class="sm">কাফ</div></div>
+      <div class="chip"><div class="big">ل</div><div class="sm">লাম</div></div>
+      <div class="chip"><div class="big">م</div><div class="sm">মিম</div></div>
+      <div class="chip"><div class="big">ن</div><div class="sm">নুন</div></div>
+      <div class="chip"><div class="big">ه</div><div class="sm">হা</div></div>
+      <div class="chip"><div class="big">و</div><div class="sm">ওয়াও</div></div>
+      <div class="chip"><div class="big">ي</div><div class="sm">ইয়া</div></div>
+    </div>
+
+    <div class="sec-title"><div class="num">٢</div><h2>সংখ্যা ১–১০</h2></div>
+    <div class="chip-grid arabic">
+      <div class="chip"><div class="big">١</div><div class="sm">ওয়াহিদ (এক)</div></div>
+      <div class="chip"><div class="big">٢</div><div class="sm">ইছনান (দুই)</div></div>
+      <div class="chip"><div class="big">٣</div><div class="sm">সালাসা (তিন)</div></div>
+      <div class="chip"><div class="big">٤</div><div class="sm">আরবাআ (চার)</div></div>
+      <div class="chip"><div class="big">٥</div><div class="sm">খামসা (পাঁচ)</div></div>
+      <div class="chip"><div class="big">٦</div><div class="sm">সিত্তা (ছয়)</div></div>
+      <div class="chip"><div class="big">٧</div><div class="sm">সাবয়া (সাত)</div></div>
+      <div class="chip"><div class="big">٨</div><div class="sm">সামানিয়া (আট)</div></div>
+      <div class="chip"><div class="big">٩</div><div class="sm">তিসয়া (নয়)</div></div>
+      <div class="chip"><div class="big">١٠</div><div class="sm">আশারা (দশ)</div></div>
+    </div>
+
+    <div class="sec-title"><div class="num">٣</div><h2>দৈনন্দিন দোয়া ও বাক্য</h2></div>
+    <div class="word-grid">
+      <div class="word-card"><div class="w arabic" style="font-size:1.3rem;">بِسْمِ اللَّهِ</div><div class="m">খাওয়া/কাজ শুরুর আগে বলা হয়</div></div>
+      <div class="word-card"><div class="w arabic" style="font-size:1.3rem;">الْحَمْدُ لِلَّهِ</div><div class="m">আলহামদুলিল্লাহ — সব প্রশংসা আল্লাহর</div></div>
+      <div class="word-card"><div class="w arabic" style="font-size:1.3rem;">السَّلَامُ عَلَيْكُمْ</div><div class="m">আসসালামু আলাইকুম — সালাম প্রদান</div></div>
+      <div class="word-card"><div class="w arabic" style="font-size:1.3rem;">جَزَاكَ اللَّهُ خَيْرًا</div><div class="m">জাযাকাল্লাহু খাইরান — ধন্যবাদ জানানো</div></div>
+    </div>
+
+    <div class="note-card">
+      📌 আরবি অংশের বিষয়বস্তু সাধারণ পরিচিতিমূলক। শুদ্ধ উচ্চারণ ও তাজবিদ শেখার জন্য একজন যোগ্য শিক্ষকের কাছে শেখানো সবচেয়ে ভালো।
+    </div>
+
+  </section>
+
+</div>
+
+<footer>
+  © <span id="year"></span> Amin AI World — পড়ালেখা বিভাগ
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+document.querySelectorAll('.lang-tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.lang-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.lang).classList.add('active');
+    window.scrollTo({top: document.querySelector('.lang-tabs').offsetTop - 10, behavior:'smooth'});
+  });
+});
+
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+</script>
+</body>
+</html>
