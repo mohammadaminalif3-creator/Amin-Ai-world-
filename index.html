@@ -12,229 +12,123 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
 <style>
   :root{
-    --green-950:#0A2A20;
-    --green-900:#0F3D2E;
-    --green-700:#175C46;
-    --gold-500:#D4A94D;
-    --gold-300:#E8CE8C;
-    --cream-100:#FAF6EC;
-    --cream-200:#F1EBDB;
-    --ink-900:#1C1C18;
-    --ink-600:#4B4A42;
-    --mint-100:#E9F1EC;
-    --line:#DDD5BE;
-    --radius:18px;
-    --shadow:0 10px 30px -12px rgba(15,61,46,0.25);
+    --green-950:#0A2A20; --green-900:#0F3D2E; --green-700:#175C46;
+    --gold-500:#D4A94D; --gold-300:#E8CE8C;
+    --cream-100:#FAF6EC; --cream-200:#F1EBDB;
+    --ink-900:#1C1C18; --ink-600:#4B4A42;
+    --mint-100:#E9F1EC; --line:#DDD5BE;
+    --radius:18px; --shadow:0 10px 30px -12px rgba(15,61,46,0.25);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--cream-100);
-    color:var(--ink-900);
-    font-family:'Hind Siliguri','Baloo Da 2',sans-serif;
-    line-height:1.7;
-  }
+  body{margin:0;background:var(--cream-100);color:var(--ink-900);font-family:'Hind Siliguri','Baloo Da 2',sans-serif;line-height:1.7;}
   h1,h2,h3,.brand,.stat-num{font-family:'Baloo Da 2','Hind Siliguri',sans-serif;}
   a{color:inherit;text-decoration:none;}
   img{max-width:100%;display:block;}
   .container{max-width:1120px;margin:0 auto;padding:0 20px;}
-
-  /* Bead divider — signature element, echoes a tasbih (prayer bead) strand,
-     used as the connective thread running through every section boundary */
-  .beads{
-    display:flex;align-items:center;justify-content:center;gap:10px;
-    padding:34px 0 6px;
-  }
-  .beads span{
-    width:7px;height:7px;border-radius:50%;
-    background:var(--gold-500);opacity:.55;
-  }
+  .beads{display:flex;align-items:center;justify-content:center;gap:10px;padding:34px 0 6px;}
+  .beads span{width:7px;height:7px;border-radius:50%;background:var(--gold-500);opacity:.55;}
   .beads span:nth-child(4n){width:11px;height:11px;opacity:.9;background:var(--green-700);}
 
-  /* Header */
-  header{
-    position:sticky;top:0;z-index:50;
-    background:rgba(250,246,236,0.92);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
+  header{position:sticky;top:0;z-index:50;background:rgba(250,246,236,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
   .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1120px;margin:0 auto;}
   .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;color:var(--green-900);}
-  .brand .mark{
-    width:36px;height:36px;border-radius:11px;
-    background:linear-gradient(135deg,var(--green-900),var(--green-700));
-    color:var(--gold-300);display:flex;align-items:center;justify-content:center;
-    font-weight:800;font-size:1.1rem;
-  }
-  nav.links{display:flex;gap:22px;flex-wrap:wrap;}
-  nav.links a{font-size:.95rem;color:var(--ink-600);font-weight:500;white-space:nowrap;}
+  .brand .mark{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--green-900),var(--green-700));color:var(--gold-300);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;}
+  nav.links{display:flex;gap:20px;flex-wrap:wrap;}
+  nav.links a{font-size:.92rem;color:var(--ink-600);font-weight:500;white-space:nowrap;}
   nav.links a:hover{color:var(--green-900);}
   .menu-btn{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--green-900);}
-
-  @media (max-width:860px){
-    nav.links{
-      display:none;position:absolute;top:100%;left:0;right:0;
-      background:var(--cream-100);flex-direction:column;gap:0;
-      border-bottom:1px solid var(--line);
-    }
+  @media (max-width:900px){
+    nav.links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--cream-100);flex-direction:column;gap:0;border-bottom:1px solid var(--line);max-height:70vh;overflow-y:auto;}
     nav.links.open{display:flex;}
     nav.links a{padding:14px 20px;border-top:1px solid var(--line);}
     .menu-btn{display:block;}
   }
 
-  /* Hero */
-  .hero{
-    position:relative;overflow:hidden;
-    background:radial-gradient(120% 140% at 50% -10%, #12503C 0%, var(--green-900) 45%, var(--green-950) 100%);
-    color:var(--cream-100);
-    text-align:center;
-    padding:70px 20px 60px;
-  }
-  .eyebrow{
-    display:inline-flex;align-items:center;gap:8px;
-    background:rgba(212,169,77,0.16);
-    border:1px solid rgba(212,169,77,0.4);
-    color:var(--gold-300);
-    padding:7px 16px;border-radius:999px;font-size:.85rem;font-weight:600;
-  }
-  .hero h1{
-    font-size:clamp(2rem,5vw,3rem);
-    margin:22px 0 14px;font-weight:800;
-    color:#fff;
-  }
+  .hero{position:relative;overflow:hidden;background:radial-gradient(120% 140% at 50% -10%, #12503C 0%, var(--green-900) 45%, var(--green-950) 100%);color:var(--cream-100);text-align:center;padding:60px 20px 50px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(212,169,77,0.16);border:1px solid rgba(212,169,77,0.4);color:var(--gold-300);padding:7px 16px;border-radius:999px;font-size:.85rem;font-weight:600;}
+  .hero h1{font-size:clamp(1.9rem,5vw,2.9rem);margin:20px 0 12px;font-weight:800;color:#fff;}
   .hero h1 .heart{color:var(--gold-500);}
-  .hero p.lead{
-    max-width:600px;margin:0 auto;color:#D9E6DE;font-size:1.05rem;
-  }
-  .stats{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
-    max-width:640px;margin:38px auto 0;
-  }
-  .stat{
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.12);
-    border-radius:14px;padding:16px 8px;
-  }
-  .stat-num{font-size:1.6rem;font-weight:800;color:var(--gold-300);}
-  .stat-label{font-size:.78rem;color:#C9D8CE;margin-top:2px;}
-  .hero-ctas{display:flex;gap:14px;justify-content:center;margin-top:32px;flex-wrap:wrap;}
-  .btn{
-    padding:13px 26px;border-radius:12px;font-weight:600;font-size:.95rem;
-    display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none;
-    transition:transform .15s ease, box-shadow .15s ease;
-  }
+  .hero p.lead{max-width:600px;margin:0 auto;color:#D9E6DE;font-size:1.02rem;}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:640px;margin:34px auto 0;}
+  .stat{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:14px 8px;}
+  .stat-num{font-size:1.5rem;font-weight:800;color:var(--gold-300);}
+  .stat-label{font-size:.76rem;color:#C9D8CE;margin-top:2px;}
+  .hero-ctas{display:flex;gap:14px;justify-content:center;margin-top:28px;flex-wrap:wrap;}
+  .btn{padding:12px 24px;border-radius:12px;font-weight:600;font-size:.92rem;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none;transition:transform .15s ease, box-shadow .15s ease;}
   .btn:hover{transform:translateY(-2px);}
   .btn-gold{background:var(--gold-500);color:var(--green-950);}
-  .btn-gold:hover{box-shadow:0 10px 22px -8px rgba(212,169,77,0.6);}
   .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.35);color:#fff;}
+  @media (max-width:520px){.stats{grid-template-columns:repeat(2,1fr);}}
 
-  @media (max-width:520px){
-    .stats{grid-template-columns:repeat(2,1fr);}
-  }
+  section.block{padding:24px 0 6px;}
+  .section-head{max-width:640px;margin:0 auto 26px;text-align:center;}
+  .tag{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--green-700);background:var(--mint-100);padding:5px 12px;border-radius:999px;margin-bottom:10px;}
+  .section-head h2{font-size:1.5rem;margin:0 0 6px;color:var(--green-950);}
+  .section-head p{color:var(--ink-600);margin:0;font-size:.94rem;}
 
-  /* Section shell */
-  section.block{padding:26px 0 10px;}
-  .section-head{max-width:640px;margin:0 auto 30px;text-align:center;}
-  .tag{
-    display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;
-    color:var(--green-700);background:var(--mint-100);
-    padding:5px 12px;border-radius:999px;margin-bottom:12px;
-  }
-  .section-head h2{font-size:1.6rem;margin:0 0 8px;color:var(--green-950);}
-  .section-head p{color:var(--ink-600);margin:0;font-size:.98rem;}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:22px;}
+  .filters button{border:1px solid var(--line);background:#fff;color:var(--ink-600);padding:6px 14px;border-radius:999px;font-size:.8rem;font-weight:600;cursor:pointer;}
+  .filters button.active{background:var(--green-900);color:#fff;border-color:var(--green-900);}
 
-  .grid{display:grid;gap:18px;grid-template-columns:repeat(3,1fr);padding:0 0 46px;}
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr);padding:0 0 42px;}
   @media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:600px){.grid{grid-template-columns:1fr;}}
 
-  .card{
-    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-    padding:22px;box-shadow:var(--shadow);
-  }
-  .card .icon{
-    width:44px;height:44px;border-radius:12px;background:var(--mint-100);
-    display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:14px;
-  }
-  .card h3{margin:0 0 6px;font-size:1.05rem;color:var(--green-950);}
-  .card p{margin:0;color:var(--ink-600);font-size:.92rem;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;}
+  .card .icon{width:42px;height:42px;border-radius:12px;background:var(--mint-100);display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+  .card h3{margin:2px 0 0;font-size:1.02rem;color:var(--green-950);}
+  .card p{margin:0;color:var(--ink-600);font-size:.88rem;}
+  .card .meta{font-size:.74rem;color:var(--gold-500);font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
+  .card a.linkbtn{margin-top:auto;font-size:.82rem;font-weight:700;color:var(--green-700);}
+  .card .badge{display:inline-block;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--mint-100);color:var(--green-700);width:fit-content;}
+  .prompt-card{color:#fff;border:none;position:relative;overflow:hidden;min-height:170px;justify-content:flex-end;}
+  .prompt-card .p-tool{font-size:.68rem;font-weight:700;opacity:.85;text-transform:uppercase;letter-spacing:.04em;}
+  .prompt-card h3{color:#fff;}
+  .prompt-card button.copy{align-self:flex-start;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);color:#fff;font-size:.78rem;padding:6px 12px;border-radius:8px;cursor:pointer;font-weight:600;}
+  .prompt-card button.copy.copied{background:#fff;color:var(--green-900);}
 
-  .empty{
-    grid-column:1/-1;text-align:center;padding:40px 20px;
-    border:1.5px dashed var(--line);border-radius:var(--radius);color:var(--ink-600);
-    background:var(--cream-200);
-  }
-  .empty strong{display:block;color:var(--green-900);margin-bottom:6px;font-size:1rem;}
+  .quote-strip{background:var(--green-900);color:var(--cream-100);border-radius:22px;padding:30px 24px;text-align:center;margin:0 auto 40px;max-width:1120px;}
+  .quote-strip p{font-size:1.1rem;max-width:560px;margin:0 auto;color:var(--gold-300);font-weight:600;}
+  .quote-strip span{display:block;margin-top:8px;font-size:.82rem;color:#BFD3C6;}
 
-  /* Islamic quote strip */
-  .quote-strip{
-    background:var(--green-900);color:var(--cream-100);
-    border-radius:22px;padding:34px 26px;text-align:center;
-    margin:0 auto 46px;max-width:1120px;
-  }
-  .quote-strip p{font-size:1.15rem;max-width:560px;margin:0 auto;color:var(--gold-300);font-weight:600;}
-  .quote-strip span{display:block;margin-top:10px;font-size:.85rem;color:#BFD3C6;}
-
-  /* Social + income + study CTA row */
-  .cta-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-bottom:46px;}
+  .cta-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-bottom:42px;}
   @media (max-width:700px){.cta-row{grid-template-columns:1fr;}}
-  .cta-card{
-    border-radius:var(--radius);padding:26px;color:#fff;
-    display:flex;flex-direction:column;gap:10px;
-  }
+  .cta-card{border-radius:var(--radius);padding:24px;color:#fff;display:flex;flex-direction:column;gap:8px;}
   .cta-card.a{background:linear-gradient(135deg,#175C46,#0F3D2E);}
   .cta-card.b{background:linear-gradient(135deg,#8A6A1E,#B98F2C);}
-  .cta-card h3{margin:0;font-size:1.15rem;}
-  .cta-card p{margin:0;opacity:.9;font-size:.92rem;}
+  .cta-card h3{margin:0;font-size:1.1rem;}
+  .cta-card p{margin:0;opacity:.9;font-size:.9rem;}
   .cta-card .btn{align-self:flex-start;margin-top:6px;}
+  .income-video{width:100%;aspect-ratio:16/9;border-radius:12px;border:none;margin-top:8px;}
 
-  /* Support / footer */
-  .support{
-    text-align:center;background:var(--mint-100);border-radius:var(--radius);
-    padding:38px 20px;margin:0 auto 50px;max-width:1120px;
-  }
-  .support h2{margin:0 0 8px;color:var(--green-950);font-size:1.4rem;}
-  .support p{color:var(--ink-600);margin:0 0 20px;}
-  .support .hero-ctas{margin-top:0;}
+  .social-grid{display:grid;gap:12px;grid-template-columns:repeat(3,1fr);padding-bottom:42px;}
+  @media (max-width:700px){.social-grid{grid-template-columns:repeat(2,1fr);}}
+  .social-card{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;}
+  .social-card .s-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex-shrink:0;}
+  .social-card .s-text{font-size:.85rem;}
+  .social-card .s-text b{display:block;font-size:.88rem;color:var(--green-950);}
+
+  .support{text-align:center;background:var(--mint-100);border-radius:var(--radius);padding:34px 20px;margin:0 auto 46px;max-width:1120px;}
+  .support h2{margin:0 0 8px;color:var(--green-950);font-size:1.3rem;}
+  .support p{color:var(--ink-600);margin:0 0 18px;}
   .support .btn-gold{background:var(--green-900);color:#fff;}
   .support .btn-outline{border-color:var(--green-700);color:var(--green-900);}
 
-  footer{border-top:1px solid var(--line);padding:26px 20px 40px;text-align:center;color:var(--ink-600);font-size:.85rem;}
+  footer{border-top:1px solid var(--line);padding:24px 20px 40px;text-align:center;color:var(--ink-600);font-size:.85rem;}
   footer .flinks{margin-top:10px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
   footer .flinks a{color:var(--green-700);}
 
-  /* Install banner */
-  #installBanner{
-    position:fixed;left:16px;right:16px;bottom:16px;z-index:80;
-    background:#fff;border:1px solid var(--line);border-radius:16px;
-    box-shadow:0 16px 40px -14px rgba(0,0,0,0.3);
-    padding:16px 18px;display:none;align-items:center;gap:14px;max-width:460px;margin:0 auto;
-  }
+  #installBanner{position:fixed;left:16px;right:16px;bottom:16px;z-index:80;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 16px 40px -14px rgba(0,0,0,0.3);padding:16px 18px;display:none;align-items:center;gap:14px;max-width:460px;margin:0 auto;}
   #installBanner.show{display:flex;}
-  #installBanner .ib-icon{
-    width:40px;height:40px;border-radius:11px;background:var(--green-900);color:var(--gold-300);
-    display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;
-  }
+  #installBanner .ib-icon{width:40px;height:40px;border-radius:11px;background:var(--green-900);color:var(--gold-300);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
   #installBanner .ib-text{flex:1;font-size:.85rem;color:var(--ink-900);}
   #installBanner .ib-text b{display:block;font-size:.9rem;margin-bottom:2px;}
   #installBanner button.close{background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--ink-600);}
   #installBanner button.go{background:var(--gold-500);border:none;border-radius:9px;padding:8px 14px;font-weight:700;font-size:.82rem;cursor:pointer;flex-shrink:0;}
-
-  /* iOS instructions modal */
-  #iosModal{
-    position:fixed;inset:0;background:rgba(10,30,22,0.55);z-index:90;
-    display:none;align-items:flex-end;justify-content:center;
-  }
-  #iosModal.show{display:flex;}
-  #iosModal .sheet{
-    background:#fff;border-radius:20px 20px 0 0;padding:26px 22px 34px;width:100%;max-width:480px;
-  }
-  #iosModal h3{margin:0 0 14px;color:var(--green-950);}
-  #iosModal ol{margin:0;padding-right:0;padding-left:20px;color:var(--ink-600);font-size:.92rem;}
-  #iosModal li{margin-bottom:8px;}
-  #iosModal .close-sheet{display:block;margin:18px auto 0;background:var(--mint-100);border:none;padding:10px 22px;border-radius:10px;font-weight:600;cursor:pointer;color:var(--green-900);}
 </style>
 </head>
 <body>
@@ -263,14 +157,12 @@
     <span class="eyebrow">🌟 Bangladesh's #1 AI &amp; Smart Platform</span>
     <h1>WELCOME TO <span class="heart">❤️</span> Amin AI World</h1>
     <p class="lead">আপনার প্রয়োজনীয় সকল AI টুলস, রেডি প্রম্পট, ইসলামিক বাণী, প্রেরণা ও বিনোদন — সব একসাথে, একদম ফ্রি।</p>
-
     <div class="stats">
-      <div class="stat"><div class="stat-num" data-count="0">0</div><div class="stat-label">AI টুলস</div></div>
-      <div class="stat"><div class="stat-num" data-count="0">0</div><div class="stat-label">প্রম্পট</div></div>
-      <div class="stat"><div class="stat-num" data-count="0">0</div><div class="stat-label">ইসলামিক বাণী</div></div>
-      <div class="stat"><div class="stat-num" data-count="0">0</div><div class="stat-label">গান</div></div>
+      <div class="stat"><div class="stat-num" id="cnt-tools">0</div><div class="stat-label">AI টুলস</div></div>
+      <div class="stat"><div class="stat-num" id="cnt-prompts">0</div><div class="stat-label">প্রম্পট</div></div>
+      <div class="stat"><div class="stat-num" id="cnt-islamic">0</div><div class="stat-label">ইসলামিক বাণী</div></div>
+      <div class="stat"><div class="stat-num" id="cnt-music">0</div><div class="stat-label">গান</div></div>
     </div>
-
     <div class="hero-ctas">
       <a href="#tools" class="btn btn-gold">🛠️ AI টুলস দেখুন</a>
       <a href="#islamic" class="btn btn-outline">🕌 ইসলামিক বাণী</a>
@@ -287,9 +179,7 @@
       <h2>🛠️ জনপ্রিয় AI টুলস ডিরেক্টরি</h2>
       <p>লেখা, ছবি, ভিডিও ও মিউজিকের সেরা AI টুলগুলো — এক ক্লিকে ব্যবহার করুন।</p>
     </div>
-    <div class="grid" id="toolsGrid">
-      <div class="empty"><strong>এখনো কোনো টুল যোগ করা হয়নি</strong>নিচের কোডে <code>toolsData</code> তালিকায় টুল যোগ করলেই এখানে কার্ড আকারে দেখা যাবে।</div>
-    </div>
+    <div class="grid" id="toolsGrid"></div>
   </section>
 
   <div class="beads"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
@@ -297,11 +187,10 @@
     <div class="section-head">
       <span class="tag">০২ · প্রম্পট</span>
       <h2>📸 AI প্রম্পট গ্যালারি</h2>
-      <p>ছবিসহ রেডি-মেইড প্রম্পট — কপি করে সরাসরি AI টুলে ব্যবহার করুন।</p>
+      <p>রেডি-মেইড প্রম্পট — কার্ডে ট্যাপ করে কপি করুন ও সরাসরি AI টুলে ব্যবহার করুন।</p>
     </div>
-    <div class="grid" id="promptsGrid">
-      <div class="empty"><strong>এখনো কোনো প্রম্পট যোগ করা হয়নি</strong><code>promptsData</code> তালিকায় প্রম্পট যোগ করুন।</div>
-    </div>
+    <div class="filters" id="promptFilters"></div>
+    <div class="grid" id="promptsGrid"></div>
   </section>
 
   <div class="beads"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
@@ -312,12 +201,11 @@
       <p>পবিত্র কোরআন ও হাদিসের আলোকে জীবন গড়ুন।</p>
     </div>
     <div class="quote-strip">
-      <p id="dailyQuote">"যে ব্যক্তি আল্লাহর উপর ভরসা করে, আল্লাহই তার জন্য যথেষ্ট।"</p>
-      <span>সূরা আত-তালাক, আয়াত ৩</span>
+      <p id="dailyQuote"></p>
+      <span id="dailyQuoteAttr"></span>
     </div>
-    <div class="grid" id="islamicGrid">
-      <div class="empty"><strong>আরও বাণী যোগ করুন</strong><code>islamicData</code> তালিকায় কোরআন-হাদিসের বাণী যোগ করলে এখানে কার্ড আকারে যোগ হবে।</div>
-    </div>
+    <div class="grid" id="islamicGrid"></div>
+    <div class="grid" id="islamicLinksGrid" style="padding-top:0;"></div>
   </section>
 
   <div class="beads"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
@@ -327,9 +215,7 @@
       <h2>✨ জীবন, স্বপ্ন ও প্রেরণা</h2>
       <p>জীবনকে অর্থবহ করে তুলুন — প্রেরণামূলক বাণী ও উক্তি।</p>
     </div>
-    <div class="grid" id="inspirationGrid">
-      <div class="empty"><strong>এখনো কোনো বাণী যোগ করা হয়নি</strong><code>inspirationData</code> তালিকায় উক্তি যোগ করুন।</div>
-    </div>
+    <div class="grid" id="inspirationGrid"></div>
   </section>
 
   <div class="beads"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
@@ -337,11 +223,9 @@
     <div class="section-head">
       <span class="tag">০৫ · ব্লগ</span>
       <h2>📝 ব্লগ ও লেখার ঘর</h2>
-      <p>ছবি ও ক্যাপশন সহ লেখা — ইসলামিক, প্রেরণামূলক, দেশপ্রেম ও সাধারণ বিষয়।</p>
+      <p>ইসলামিক, প্রেরণামূলক, দেশপ্রেম ও সাধারণ বিষয়ে লেখা।</p>
     </div>
-    <div class="grid" id="blogGrid">
-      <div class="empty"><strong>এখনো কোনো ব্লগ পোস্ট নেই</strong><code>blogData</code> তালিকায় পোস্ট যোগ করুন।</div>
-    </div>
+    <div class="grid" id="blogGrid"></div>
   </section>
 
   <div class="beads"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
@@ -351,34 +235,33 @@
       <h2>🎵 বিনোদন কর্নার</h2>
       <p>"চারপাশে যা দেখছি" চ্যানেলের সেরা গানগুলো — ক্লিক করে দেখুন ও শুনুন।</p>
     </div>
-    <div class="grid" id="entertainmentGrid">
-      <div class="empty"><strong>এখনো কোনো গান যোগ করা হয়নি</strong><code>songsData</code> তালিকায় ইউটিউব লিংক যোগ করুন।</div>
-    </div>
+    <div class="grid" id="entertainmentGrid"></div>
   </section>
 
   <div class="beads"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   <section class="block" id="income">
-    <div class="cta-row">
-      <div class="cta-card a">
-        <h3>💰 অনলাইন ইনকাম অ্যাপ</h3>
-        <p>বিশ্বস্ত ইনকাম অ্যাপ ও তার ব্যবহার-ভিডিও — ডাউনলোড করুন ও ভিডিও দেখে শুরু করুন।</p>
-        <a href="#" class="btn btn-gold">অ্যাপ দেখুন</a>
-      </div>
-      <div class="cta-card b">
-        <h3>📚 পড়ালেখা</h3>
-        <p>বাচ্চাদের প্রাথমিক শিক্ষা — বাংলা, ইংরেজি ও আরবি একসাথে, রঙিন ও সহজভাবে সাজানো।</p>
-        <a href="study.html" class="btn btn-gold">📖 পড়ালেখা শুরু করুন →</a>
-      </div>
+    <div class="section-head">
+      <span class="tag">০৭ · ইনকাম</span>
+      <h2>💰 অনলাইন ইনকাম অ্যাপ</h2>
+      <p>বিশ্বস্ত ইনকাম অ্যাপ ও তার ব্যবহার-ভিডিও — ডাউনলোড করুন ও ভিডিও দেখে শুরু করুন।</p>
     </div>
+    <div class="cta-row" id="incomeGrid"></div>
   </section>
 
   <section class="block" id="social">
+    <div class="section-head">
+      <span class="tag">০৮ · সোশ্যাল</span>
+      <h2>📱 সোশ্যাল মিডিয়া</h2>
+      <p>সব প্ল্যাটফর্মে আমাদের সাথে যুক্ত থাকুন।</p>
+    </div>
+    <div class="social-grid" id="socialGrid"></div>
+
     <div class="support">
       <h2>🙏 এই প্ল্যাটফর্মকে সাপোর্ট করুন</h2>
       <p>Amin AI World সম্পূর্ণ ফ্রি রাখতে পরিশ্রম করি। শেয়ার করে পাশে থাকুন।</p>
       <div class="hero-ctas">
         <a href="https://www.facebook.com/share/1DRgjnsLRv/" target="_blank" rel="noopener" class="btn btn-gold">📘 শেয়ার করুন</a>
-        <a href="https://youtube.com/@charpashezadekhchi" target="_blank" rel="noopener" class="btn btn-outline">📺 সাবস্ক্রাইব করুন</a>
+        <a href="https://youtube.com/@charpashezadekhchi?si=vNa2biVYhnysXzvs" target="_blank" rel="noopener" class="btn btn-outline">📺 সাবস্ক্রাইব করুন</a>
       </div>
     </div>
   </section>
@@ -394,7 +277,6 @@
   </div>
 </footer>
 
-<!-- Install banner -->
 <div id="installBanner">
   <div class="ib-icon">📲</div>
   <div class="ib-text"><b>অ্যাপ ইনস্টল করুন</b>হোম স্ক্রিনে যোগ করে দ্রুত অ্যাক্সেস পান</div>
@@ -402,135 +284,163 @@
   <button class="close" id="installClose" aria-label="বন্ধ করুন">✕</button>
 </div>
 
-<div id="iosModal">
-  <div class="sheet">
-    <h3>📲 হোম স্ক্রিনে যোগ করুন</h3>
-    <ol>
-      <li>নিচে Safari-এর <b>Share</b> (□↑) বাটনে চাপুন</li>
-      <li><b>"Add to Home Screen"</b> খুঁজে বের করে ট্যাপ করুন</li>
-      <li><b>"Add"</b> চাপুন — ব্যস, আইকন হোম স্ক্রিনে চলে আসবে</li>
-    </ol>
-    <button class="close-sheet" id="iosClose">বুঝেছি</button>
-  </div>
-</div>
-
+<script src="data.js"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mobile menu
   const menuBtn = document.getElementById('menuBtn');
   const navLinks = document.getElementById('navLinks');
   menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-  /* ---------------------------------------------------------
-     CONTENT DATA
-     এখানে আপনার আসল টুল/প্রম্পট/বাণী/ব্লগ/গান যোগ করুন।
-     প্রতিটি array-তে অবজেক্ট যোগ করলেই কার্ড অটো তৈরি হবে
-     এবং উপরের কাউন্টারও অটো আপডেট হবে।
-  --------------------------------------------------------- */
-  const toolsData = [
-    // { icon:"✍️", name:"ChatGPT", desc:"লেখা ও কথোপকথনের জন্য AI সহকারী", url:"https://chat.openai.com" },
-  ];
-  const promptsData = [
-    // { icon:"🖼️", name:"সাইবারপাংক সিটি", desc:"রাতের নিয়ন আলোয় ভবিষ্যতের শহর", url:"#" },
-  ];
-  const islamicData = [
-    // { icon:"🕋", name:"সবর", desc:"ধৈর্যের ফজিলত সম্পর্কে হাদিস", url:"#" },
-  ];
-  const inspirationData = [
-    // { icon:"🔥", name:"লক্ষ্য স্থির রাখুন", desc:"ছোট পদক্ষেপই বড় পরিবর্তনের শুরু", url:"#" },
-  ];
-  const blogData = [
-    // { icon:"📝", name:"সফলতার গল্প", desc:"সংক্ষিপ্ত বিবরণ এখানে দিন", url:"#" },
-  ];
-  const songsData = [
-    // { icon:"🎵", name:"চারপাশে যা দেখছি", desc:"সর্বশেষ পর্ব দেখুন", url:"https://youtube.com/@charpashezadekhchi" },
-  ];
-
-  function renderGrid(gridId, data, emptyTitle, emptyMsg){
-    const grid = document.getElementById(gridId);
-    if(!data.length){
-      grid.innerHTML = `<div class="empty"><strong>${emptyTitle}</strong>${emptyMsg}</div>`;
-      return;
-    }
-    grid.innerHTML = data.map(item => `
-      <a class="card" href="${item.url || '#'}" target="_blank" rel="noopener">
-        <div class="icon">${item.icon || '✨'}</div>
-        <h3>${item.name}</h3>
-        <p>${item.desc || ''}</p>
-      </a>
-    `).join('');
+  function animateCount(id, target){
+    const el = document.getElementById(id);
+    let cur = 0;
+    if(!target){ el.textContent = '0'; return; }
+    const step = Math.max(1, Math.ceil(target/30));
+    const tick = () => { cur = Math.min(target, cur+step); el.textContent = cur; if(cur<target) requestAnimationFrame(tick); };
+    tick();
   }
 
-  renderGrid('toolsGrid', toolsData, 'এখনো কোনো টুল যোগ করা হয়নি', 'উপরের <code>toolsData</code> তালিকায় টুল যোগ করলেই এখানে কার্ড আকারে দেখা যাবে।');
-  renderGrid('promptsGrid', promptsData, 'এখনো কোনো প্রম্পট যোগ করা হয়নি', '<code>promptsData</code> তালিকায় প্রম্পট যোগ করুন।');
-  renderGrid('islamicGrid', islamicData, 'আরও বাণী যোগ করুন', '<code>islamicData</code> তালিকায় কোরআন-হাদিসের বাণী যোগ করলে এখানে কার্ড আকারে যোগ হবে।');
-  renderGrid('inspirationGrid', inspirationData, 'এখনো কোনো বাণী যোগ করা হয়নি', '<code>inspirationData</code> তালিকায় উক্তি যোগ করুন।');
-  renderGrid('blogGrid', blogData, 'এখনো কোনো ব্লগ পোস্ট নেই', '<code>blogData</code> তালিকায় পোস্ট যোগ করুন।');
-  renderGrid('entertainmentGrid', songsData, 'এখনো কোনো গান যোগ করা হয়নি', '<code>songsData</code> তালিকায় ইউটিউব লিংক যোগ করুন।');
+  // ---------- TOOLS ----------
+  const toolsGrid = document.getElementById('toolsGrid');
+  toolsGrid.innerHTML = TOOLS.map(t => `
+    <a class="card" href="${t.link}" target="_blank" rel="noopener">
+      <span class="badge">${t.category}</span>
+      <h3>${t.name}</h3>
+      <p>${t.desc}</p>
+      <span class="linkbtn">${t.free ? '✅ ফ্রি ব্যবহার করুন' : '⭐ প্রিমিয়াম'} →</span>
+    </a>
+  `).join('');
+  animateCount('cnt-tools', TOOLS.length);
 
-  // Animate stat counters based on actual data lengths
-  const counts = {
-    0: toolsData.length,
-    1: promptsData.length,
-    2: islamicData.length,
-    3: songsData.length
-  };
-  document.querySelectorAll('.stat-num').forEach((el, i) => {
-    const target = counts[i] || 0;
-    let cur = 0;
-    if(target === 0){ el.textContent = '0'; return; }
-    const step = Math.max(1, Math.ceil(target / 30));
-    const tick = () => {
-      cur = Math.min(target, cur + step);
-      el.textContent = cur;
-      if(cur < target) requestAnimationFrame(tick);
-    };
-    tick();
+  // ---------- PROMPTS ----------
+  const promptsGrid = document.getElementById('promptsGrid');
+  const promptTags = ['সব', ...new Set(PROMPTS.flatMap(p => p.tags))].slice(0, 14);
+  document.getElementById('promptFilters').innerHTML = promptTags.map((tag,i) =>
+    `<button data-tag="${tag}" class="${i===0?'active':''}">${tag}</button>`
+  ).join('');
+
+  function renderPrompts(filterTag){
+    const list = (!filterTag || filterTag === 'সব') ? PROMPTS : PROMPTS.filter(p => p.tags.includes(filterTag));
+    promptsGrid.innerHTML = list.map(p => `
+      <div class="card prompt-card" style="background:${p.gradient}">
+        <span class="p-tool">${p.tool}</span>
+        <h3>${p.title}</h3>
+        <button class="copy" data-id="${p.id}">📋 প্রম্পট কপি করুন</button>
+      </div>
+    `).join('');
+    promptsGrid.querySelectorAll('button.copy').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = PROMPTS.find(p => p.id === btn.dataset.id);
+        navigator.clipboard?.writeText(item.prompt).then(() => {
+          btn.textContent = '✅ কপি হয়েছে!';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = '📋 প্রম্পট কপি করুন'; btn.classList.remove('copied'); }, 1800);
+        });
+      });
+    });
+  }
+  renderPrompts('সব');
+  document.getElementById('promptFilters').addEventListener('click', e => {
+    if(e.target.tagName !== 'BUTTON') return;
+    document.querySelectorAll('#promptFilters button').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    renderPrompts(e.target.dataset.tag);
   });
+  animateCount('cnt-prompts', PROMPTS.length);
+
+  // ---------- ISLAMIC ----------
+  const dq = ISLAMIC_QUOTES[Math.floor(Math.random()*ISLAMIC_QUOTES.length)];
+  document.getElementById('dailyQuote').textContent = `"${dq.quote}"`;
+  document.getElementById('dailyQuoteAttr').textContent = dq.attribution;
+
+  document.getElementById('islamicGrid').innerHTML = ISLAMIC_QUOTES.map(q => `
+    <div class="card" style="background:${q.gradient};color:#fff;">
+      <h3 style="color:#fff;">${q.title}</h3>
+      <p style="color:rgba(255,255,255,0.9);">"${q.quote}"</p>
+      <span class="p-tool" style="opacity:.85;">${q.attribution}</span>
+    </div>
+  `).join('');
+
+  document.getElementById('islamicLinksGrid').innerHTML = ISLAMIC_LINKS.map(l => `
+    <a class="card" href="${l.link}" target="_blank" rel="noopener">
+      <div class="icon">${l.icon}</div>
+      <h3>${l.name}</h3>
+      <p>${l.desc}</p>
+    </a>
+  `).join('');
+  animateCount('cnt-islamic', ISLAMIC_QUOTES.length);
+
+  // ---------- INSPIRATION ----------
+  document.getElementById('inspirationGrid').innerHTML = INSPIRATION_QUOTES.map(q => `
+    <div class="card" style="background:${q.gradient};color:#fff;">
+      <h3 style="color:#fff;">${q.title}</h3>
+      <p style="color:rgba(255,255,255,0.9);">"${q.quote}"</p>
+      <span class="p-tool" style="opacity:.85;">${q.attribution}</span>
+    </div>
+  `).join('');
+
+  // ---------- BLOG ----------
+  document.getElementById('blogGrid').innerHTML = ARTICLES.map(a => `
+    <div class="card">
+      <div class="icon">📝</div>
+      <h3>${a.title}</h3>
+      <p>${a.excerpt}</p>
+      <span class="badge">${a.date}</span>
+    </div>
+  `).join('') || `<div class="card"><p>শীঘ্রই আরও পোস্ট আসছে।</p></div>`;
+
+  // ---------- ENTERTAINMENT (MUSIC) ----------
+  document.getElementById('entertainmentGrid').innerHTML = MUSIC.map(m => `
+    <a class="card" href="https://www.youtube.com/watch?v=${m.youtubeId}" target="_blank" rel="noopener">
+      <div class="icon">🎵</div>
+      <h3>${m.title}</h3>
+      <span class="badge">${m.category}</span>
+    </a>
+  `).join('');
+  animateCount('cnt-music', MUSIC.length);
+
+  // ---------- INCOME APPS ----------
+  document.getElementById('incomeGrid').innerHTML = INCOME_APPS.map((app,i) => `
+    <div class="cta-card ${i%2===0?'a':'b'}">
+      <h3>💰 ${app.name}</h3>
+      <p>${app.desc}</p>
+      <iframe class="income-video" src="https://www.youtube.com/embed/${app.videoId}" title="${app.name}" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      <a href="${app.playLink}" target="_blank" rel="noopener" class="btn btn-gold">📲 অ্যাপ ডাউনলোড করুন</a>
+    </div>
+  `).join('');
+
+  // ---------- SOCIAL ----------
+  document.getElementById('socialGrid').innerHTML = SOCIAL_LINKS.map(s => `
+    <a class="social-card" href="${s.link}" target="_blank" rel="noopener">
+      <span class="s-icon" style="background:${s.color}">${s.icon}</span>
+      <span class="s-text"><b>${s.name}</b>${s.desc}</span>
+    </a>
+  `).join('');
 
   /* ---------------- PWA install prompt ---------------- */
   const installBanner = document.getElementById('installBanner');
-  const iosModal = document.getElementById('iosModal');
   let deferredPrompt = null;
-
-  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
   const dismissed = localStorage.getItem('installDismissed') === '1';
-
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
     if(!isStandalone && !dismissed) installBanner.classList.add('show');
   });
-
-  if(isIOS && !isStandalone && !dismissed){
-    setTimeout(() => installBanner.classList.add('show'), 1200);
-  }
-
   document.getElementById('installGo').addEventListener('click', async () => {
-    if(isIOS){
-      installBanner.classList.remove('show');
-      iosModal.classList.add('show');
-      return;
-    }
-    if(deferredPrompt){
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
-    }
+    if(deferredPrompt){ deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null; }
     installBanner.classList.remove('show');
   });
-
   document.getElementById('installClose').addEventListener('click', () => {
     installBanner.classList.remove('show');
-    localStorage.setItem('installDismissed', '1');
+    localStorage.setItem('installDismissed','1');
   });
 
-  document.getElementById('iosClose').addEventListener('click', () => {
-    iosModal.classList.remove('show');
-  });
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  }
 </script>
 
 </body>
